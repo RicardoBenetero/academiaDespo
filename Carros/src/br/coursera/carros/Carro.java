@@ -24,7 +24,7 @@ public class Carro {
 	
 	void imprimir() {
 		
-		System.out
+		System.out.println (velocidade);
 	}
 
 }
