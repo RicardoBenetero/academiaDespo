@@ -24,7 +24,7 @@ public class Carro {
 	
 	void imprimir() {
 		
-		System.out.println (velocidade);
+		System.out.println ("O carro " + nome + " está a velocidade de "+getVelocidade()+" Km/h");
 	}
 
 }
