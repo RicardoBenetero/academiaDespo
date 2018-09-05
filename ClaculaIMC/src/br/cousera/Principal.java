@@ -10,9 +10,9 @@ public class Principal {
 		
 		Paciente Ricardo = new Paciente(96,1.81 );
 		
-		System.out.println("Índice de massa corporal (IMC) do paciente Ana: " + Ana.diagnostico()+ "\n" );
-		System.out.println("Índice de massa corporal (IMC) do paciente Marcia: " + Marcia.diagnostico() + "\n");
-		System.out.println("Índice de massa corporal (IMC) do paciente Ricardo: " + Ricardo.diagnostico() + "\n");
+		System.out.println("Indice de massa corporal (IMC) do paciente Ana: " + Ana.diagnostico()+ "\n" );
+		System.out.println("Indice de massa corporal (IMC) do paciente Marcia: " + Marcia.diagnostico() + "\n");
+		System.out.println("Indice de massa corporal (IMC) do paciente Ricardo: " + Ricardo.diagnostico() + "\n");
 
 
 

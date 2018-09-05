@@ -34,7 +34,7 @@ public class Paciente {
 		} else if (valorImc >= 35 && valorImc <= 39.99) {
 			return "Obesidade grau II ";
 		} else {
-			return "Obesidade grau III (obesidade mórbida)";
+			return "Obesidade grau III (obesidade morbida)";
 		}
 	}
 
