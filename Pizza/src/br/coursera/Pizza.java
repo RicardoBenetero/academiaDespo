@@ -3,7 +3,7 @@ package br.coursera;
 public class Pizza {
 	
 	String sabor;
-	double preco = 20.0;
+	double preco;
 	
 	public Pizza(String sabor) {
 		
@@ -14,11 +14,11 @@ public class Pizza {
 	
 	public double calculaPreco(){
 		
-		if(sabor == "C") {
+		if(sabor == "Calabreza") {
 			preco = 25.0;
-		}else if (sabor == "M") {
+		}else if (sabor == "Muzzarela") {
 			preco = 22.0;
-		}else if (sabor == "P")
+		}else if (sabor == "Portuguesa")
 			preco = 30.0;
 		
 		return preco;

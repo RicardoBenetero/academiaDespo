@@ -3,7 +3,7 @@ package br.coursera;
 public class Carrinho {
 	
 	double precoTotal;
-	
+	String cliente;
 	Pizza pizza;
 	Entrega entrega;
 	
