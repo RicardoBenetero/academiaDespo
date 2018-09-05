@@ -7,7 +7,7 @@ public class Principal {
 		
 		Carrinho carrinho = new Carrinho();
 		
-		System.out.println("O valor do seu pedido é " + carrinho.calculaPrecoTotal("C", 6, "naoDiaUtil"));
+		System.out.println("O valor do seu pedido eh " + carrinho.calculaPrecoTotal("C", 6, "naoDiaUtil"));
 	}
 
 }
