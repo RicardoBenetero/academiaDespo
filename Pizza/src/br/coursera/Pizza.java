@@ -14,7 +14,7 @@ public class Pizza {
 	
 	public double calculaPreco(){
 		
-		if(sabor == "Calabreza") {
+		if(sabor.equals("Calabreza")) {
 			preco = 25.0;
 		}else if (sabor == "Muzzarela") {
 			preco = 22.0;
