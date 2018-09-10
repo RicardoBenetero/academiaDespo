@@ -13,14 +13,12 @@ public class Principal {
 		for (int i = 0; i < 3; i++) {
 			somador1.somar();
 			somador2.somar();
-            somador3.somar();
-            
-            somador1.imprimir();
-            somador2.imprimir();
-            somador3.imprimir();
-
+			somador3.somar();
 
 		}
+		somador1.imprimir();
+		somador2.imprimir();
+		somador3.imprimir();
 	}
 
 }
