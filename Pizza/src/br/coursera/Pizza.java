@@ -16,9 +16,9 @@ public class Pizza {
 		
 		if(sabor.equals("Calabreza")) {
 			preco = 25.0;
-		}else if (sabor == "Muzzarela") {
+		}else if (sabor.equals("Muzzarela")) {
 			preco = 22.0;
-		}else if (sabor == "Portuguesa")
+		}else if (sabor.equals("Portuguesa"))
 			preco = 30.0;
 		
 		return preco;
