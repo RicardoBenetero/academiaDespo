@@ -44,11 +44,7 @@ public class Calcula {
 		
 	}
 	
-	public static boolean validaCPF(int cpf) {
-		return true;
-		
-		
-	}
+	
 	
 public static void formataCPF(String cpf) {
         
