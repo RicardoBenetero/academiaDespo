@@ -30,7 +30,6 @@ public class Calcula {
 		
 		System.out.println("Temperatura em fahrenheit eh: " + fahrenheit);
 		
-		
 	}
 	
 	public static void retornaNumeroAleatorio(int numero1, int numero2) {
