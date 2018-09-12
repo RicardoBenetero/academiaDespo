@@ -7,136 +7,101 @@ public class Cofrinho {
 	int moedaVinteECincoCentavos;
 	int moedaCinquentaCentavos;
 	int moedaUmReal;
-	
-	int quantidadeMoedas;
-	
-	
-	
-	
 
-	
-	void contaNumeroMoedasArmazenadas(String moeda){
-		
-		
-		if(moeda .equals("moedaUmCentavo") || moeda.equals("moedaCincoCentavos") || moeda.equals("moedaDezCentavos") || moeda.equals("moedaVinteECincoCentavos") || moeda.equals("moedaCinquentaCentavos") || moeda.equals("moedaUmReal")){
+	int quantidadeMoedas;
+
+	void contaNumeroMoedasArmazenadas(Moeda moeda) {
+
+		if (moeda.valorMoeda.equals("moedaUmCentavo") || moeda.valorMoeda.equals("moedaCincoCentavos")
+				|| moeda.valorMoeda.equals("moedaDezCentavos") || moeda.valorMoeda.equals("moedaVinteECincoCentavos")
+				|| moeda.valorMoeda.equals("moedaCinquentaCentavos") || moeda.valorMoeda.equals("moedaUmReal")) {
 			quantidadeMoedas++;
 			contaNumeroMoedasDeterminadoValor(moeda);
-		}else{
-			
-			System.out.println( moeda + " - invalida nao foi adicionada ao cofrinho! " );
+		} else {
+
+			System.out.println(moeda.valorMoeda + " - invalida nao foi adicionada ao cofrinho! ");
 		}
-			
-		
+
 	}
-	
-	
 
-	
+	void contaNumeroMoedasDeterminadoValor(Moeda moeda) {
 
-	void contaNumeroMoedasDeterminadoValor(String moeda) {
-		
-		if (moeda.equals("moedaUmCentavo")) {
-			
+		if (moeda.valorMoeda.equals("moedaUmCentavo")) {
+
 			moedaUmCentavo++;
-			
-		}else if(moeda.equals("moedaCincoCentavos")) {
-			
+
+		} else if (moeda.valorMoeda.equals("moedaCincoCentavos")) {
+
 			moedaCincoCentavos++;
+		} else if (moeda.valorMoeda.equals("moedaDezCentavos")) {
+
+			moedaDezCentavos++;
 		}
-        else if(moeda.equals("moedaDezCentavos")) {
-			
-        	moedaDezCentavos++;
+
+		else if (moeda.valorMoeda.equals("moedaVinteECincoCentavos")) {
+
+			moedaVinteECincoCentavos++;
 		}
-		
-       else if(moeda.equals("moedaVinteECincoCentavos")) {
-			
-    	   moedaVinteECincoCentavos++;
+
+		else if (moeda.valorMoeda.equals("moedaCinquentaCentavos")) {
+
+			moedaCinquentaCentavos++;
 		}
-		
-       else if(moeda.equals("moedaCinquentaCentavos")) {
-			
-    	   moedaCinquentaCentavos++;
+
+		else if (moeda.valorMoeda.equals("moedaUmReal")) {
+
+			moedaUmReal++;
 		}
-		
-       else if(moeda.equals("moedaUmReal")) {
-			
-    	   moedaUmReal++;
-		}
-		
+
 	}
-	
+
 	void informaMoedaMaiorValor() {
-		
-		if (this.moedaUmReal != 0){
+
+		if (this.moedaUmReal != 0) {
 			System.out.println("Moeda de maior valor no cofrinho - moeda De Um Real");
-			
-		}else if(this.moedaCinquentaCentavos != 0){
+
+		} else if (this.moedaCinquentaCentavos != 0) {
 			System.out.println("Moeda de maior valor no cofrinho - moeda Cinquenta Centavos");
-		
-		}else if(this.moedaVinteECincoCentavos != 0){
+
+		} else if (this.moedaVinteECincoCentavos != 0) {
 			System.out.println("Moeda de maior valor no cofrinho - moeda Vinte E Cinco Centavos");
-		
-		}else if(this.moedaDezCentavos != 0){
+
+		} else if (this.moedaDezCentavos != 0) {
 			System.out.println("Moeda de maior valor no cofrinho - moeda Dez Centavos");
-		
-		}else if(this.moedaCincoCentavos != 0){
+
+		} else if (this.moedaCincoCentavos != 0) {
 			System.out.println("Moeda de maior valor no cofrinho - moeda Cinco Centavos");
-		
-		}else if(this.moedaUmCentavo != 0){
+
+		} else if (this.moedaUmCentavo != 0) {
 			System.out.println("Moeda de maior valor no cofrinho - moeda Um Centavo");
-		
+
 		}
-		
-		
+
 	}
-	
+
 	public int getQuantidadeMoedas() {
 		return quantidadeMoedas;
 	}
-
-
-
-
 
 	public int getMoedaUmCentavo() {
 		return moedaUmCentavo;
 	}
 
-
-
-
-
 	public int getMoedaCincoCentavos() {
 		return moedaCincoCentavos;
 	}
-
-
-
-
 
 	public int getMoedaDezCentavos() {
 		return moedaDezCentavos;
 	}
 
-
-
-
-
 	public int getMoedaVinteECincoCentavos() {
 		return moedaVinteECincoCentavos;
 	}
 
-
-
-
-
 	public int getMoedaCinquenta() {
 		return moedaCinquentaCentavos;
 	}
-
-
-
-
 
 	public int getMoedaUmReal() {
 		return moedaUmReal;
