@@ -10,7 +10,7 @@ public class Principal {
         
         Calcula.retornaMaiorNumero(5, 6);
         
-        Calcula.retornaTemperaturaConvertida(15);
+        Calcula.retornaTemperaturaConvertidaDeCelsiusParafahrenheit(15);
         
         Calcula.retornaNumeroAleatorio(1, 4);
     }

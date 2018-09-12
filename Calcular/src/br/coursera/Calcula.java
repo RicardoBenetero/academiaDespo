@@ -23,7 +23,7 @@ public class Calcula {
 		
 	}
 	
-	public static void retornaTemperaturaConvertida(int temperaturaEmGrausCelsius) {
+	public static void retornaTemperaturaConvertidaDeCelsiusParafahrenheit(int temperaturaEmGrausCelsius) {
 		
 		double fahrenheit = (9 * temperaturaEmGrausCelsius + 160 )/ 5;
 		
