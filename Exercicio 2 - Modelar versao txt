@@ -18,13 +18,13 @@ métodos
 
 
 // Altera saldo quando há retiradas ou abastecimentos
-setSaldo
+setSaldo()
 
 //Altera nome 
-setNome
+setNome()
 
 //mostra os dados do material 
-getCodigoNumerico
+getCodigoNumerico()
 
 -------------------------------------------------------------------------------------------
 
@@ -42,7 +42,7 @@ métodos
 registrarEntradaProduto()
 
 //operação de saída de produtos
-registrarSaidaProduto
+registrarSaidaProduto()
 
 
 
