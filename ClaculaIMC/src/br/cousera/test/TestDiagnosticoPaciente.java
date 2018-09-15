@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import br.cousera.Paciente;
 
-public class TestPaciente {
+public class TestDiagnosticoPaciente {
 
 	@Test
 	public void testDiagnosticoBaixoPeso() {
