@@ -1,16 +1,16 @@
 package br.coursera;
 
 public class Cofrinho {
-	int moedaUmCentavo;
-	int moedaCincoCentavos;
-	int moedaDezCentavos;
-	int moedaVinteECincoCentavos;
-	int moedaCinquentaCentavos;
-	int moedaUmReal;
+	private int moedaUmCentavo;
+	private int moedaCincoCentavos;
+	private int moedaDezCentavos;
+	private int moedaVinteECincoCentavos;
+	private int moedaCinquentaCentavos;
+	private int moedaUmReal;
 
-	int quantidadeMoedas;
+	private int quantidadeMoedas;
 
-	void contaNumeroMoedasArmazenadas(Moeda moeda) {
+	public void contaNumeroMoedasArmazenadas(Moeda moeda) {
 
 		if (moeda.valorMoeda.equals("moedaUmCentavo") || moeda.valorMoeda.equals("moedaCincoCentavos")
 				|| moeda.valorMoeda.equals("moedaDezCentavos") || moeda.valorMoeda.equals("moedaVinteECincoCentavos")
@@ -24,7 +24,7 @@ public class Cofrinho {
 
 	}
 
-	void contaNumeroMoedasDeterminadoValor(Moeda moeda) {
+	public void contaNumeroMoedasDeterminadoValor(Moeda moeda) {
 
 		if (moeda.valorMoeda.equals("moedaUmCentavo")) {
 
@@ -55,28 +55,26 @@ public class Cofrinho {
 
 	}
 
-	void informaMoedaMaiorValor() {
+	public String informaMoedaMaiorValor() {
 
 		if (this.moedaUmReal != 0) {
-			System.out.println("Moeda de maior valor no cofrinho - moeda De Um Real");
+		return "Moeda de maior valor no cofrinho - moeda De Um Real";
 
 		} else if (this.moedaCinquentaCentavos != 0) {
-			System.out.println("Moeda de maior valor no cofrinho - moeda Cinquenta Centavos");
+			return "Moeda de maior valor no cofrinho - moeda Cinquenta Centavos";
 
 		} else if (this.moedaVinteECincoCentavos != 0) {
-			System.out.println("Moeda de maior valor no cofrinho - moeda Vinte E Cinco Centavos");
+			return "Moeda de maior valor no cofrinho - moeda Vinte E Cinco Centavos";
 
 		} else if (this.moedaDezCentavos != 0) {
-			System.out.println("Moeda de maior valor no cofrinho - moeda Dez Centavos");
+			return "Moeda de maior valor no cofrinho - moeda Dez Centavos";
 
 		} else if (this.moedaCincoCentavos != 0) {
-			System.out.println("Moeda de maior valor no cofrinho - moeda Cinco Centavos");
+			return "Moeda de maior valor no cofrinho - moeda Cinco Centavos";
 
-		} else if (this.moedaUmCentavo != 0) {
-			System.out.println("Moeda de maior valor no cofrinho - moeda Um Centavo");
-
-		}
-
+		} else 
+			return "Moeda de maior valor no cofrinho - moeda Um Centavo";
+		
 	}
 
 	public int getQuantidadeMoedas() {
