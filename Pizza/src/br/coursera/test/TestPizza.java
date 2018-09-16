@@ -9,7 +9,7 @@ import br.coursera.Carrinho;
 public class TestPizza {
 	
 	
-    //Se tiver uma variação dos valores, que esteja dentro do delta retorna true
+    
 	private static final double DELTA = 1e-2;
 	
 	@Test
