@@ -2,8 +2,8 @@ package br.coursera;
 
 public class Pizza {
 	
-	String sabor;
-	double preco;
+	public String sabor;
+	public double preco;
 	
 	public Pizza(String sabor) {
 		

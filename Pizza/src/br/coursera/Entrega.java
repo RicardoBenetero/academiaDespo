@@ -2,8 +2,8 @@ package br.coursera;
 
 public class Entrega {
 	
-	double valorEntrega;
-	String diaSemana;
+	public double valorEntrega;
+	public String diaSemana;
 	
 	public double calculaValorEntrega(double distancia, String diaSemana) {
 		this.diaSemana = diaSemana;

@@ -2,8 +2,8 @@ package br.coursera;
 
 public class Carrinho {
 	
-	double precoTotal;
-	String cliente;
+	public double precoTotal;
+	public String cliente;
 	Pizza pizza;
 	Entrega entrega;
 	
