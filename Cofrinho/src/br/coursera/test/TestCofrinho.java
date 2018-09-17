@@ -2,6 +2,7 @@ package br.coursera.test;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import br.coursera.Cofrinho;
@@ -9,9 +10,12 @@ import br.coursera.Moeda;
 
 public class TestCofrinho {
 
-	@Test
-	public void testCofrinho() {
-		Cofrinho cofrinho = new Cofrinho();
+	Cofrinho cofrinho;
+
+	@Before
+	public void preparaDados() {
+
+		cofrinho = new Cofrinho();
 
 		Moeda moedaUmReal = new Moeda();
 		moedaUmReal.valorMoeda = "moedaUmReal";
@@ -46,17 +50,31 @@ public class TestCofrinho {
 
 		cofrinho.contaNumeroMoedasArmazenadas(moedaTrintaCentavos);
 
+	}
+
+	@Test
+	public void contaNumeroMoedasArmazenadas() {
+
 		assertEquals(5, cofrinho.getQuantidadeMoedas());
+
+	}
+
+	@Test
+	public void contaNumeroMoedasDeterminadoValor() {
+
 		assertEquals(3, cofrinho.getMoedaUmReal());
 		assertEquals(1, cofrinho.getMoedaUmCentavo());
 		assertEquals(0, cofrinho.getMoedaCincoCentavos());
 		assertEquals(0, cofrinho.getMoedaDezCentavos());
 		assertEquals(1, cofrinho.getMoedaVinteECincoCentavos());
 		assertEquals(0, cofrinho.getMoedaCinquenta());
+
+	}
+
+	@Test
+	public void informaMoedaMaiorValor() {
+
 		assertEquals("Moeda de maior valor no cofrinho - moeda De Um Real", cofrinho.informaMoedaMaiorValor());
-
-
-
 
 	}
 
