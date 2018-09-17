@@ -2,27 +2,27 @@ package br.coursera.carros;
 
 public class Carro {
 	
-	int potencia;
-	int velocidade;
-	String nome;
+	public int potencia;
+	public int velocidade;
+	public String nome;
 	
-	void acelerar() {
+	public void acelerar() {
 		
 		velocidade = velocidade + potencia;
 	}
 	
-	void frear() {
+	public void frear() {
 		
 		velocidade = velocidade /2;
 	}
 	
-	int getVelocidade() {
+	public int getVelocidade() {
 		
 		return velocidade;
 		
 	}
 	
-	void imprimir() {
+	public void imprimir() {
 		
 		System.out.println ("O carro " + nome + " está a velocidade de "+getVelocidade()+" Km/h");
 	}
