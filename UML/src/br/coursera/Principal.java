@@ -23,17 +23,15 @@ public class Principal {
 		
         Cliente cliente2 = new Cliente();
 		
-		cliente2.setNome("Ana");
+		cliente2.setNome("Joao");
 		
 		cliente2.setEndereco("Rua Marechal Freitas");
 		
 	//	List<Cliente>	clientes = new ArrayList<Cliente>();
 		
-		Pedido pedido1 = new Pedido(cliente1, data, true, 1);
+		Pedido pedido1 = new Pedido(cliente1, data, true,1);
 		
-		Pedido pedido2 = new Pedido(cliente2, data, true, 1);
-		
-	   // pedido1 = new Pedido(cliente2);
+		Pedido pedido2 = new Pedido(cliente2, data, true,3);
 		
 		
 		pedido1.setData(data);
@@ -43,20 +41,20 @@ public class Principal {
 		pedido1.setStatus(true);
 		
 		
-	///	pedido2.setData(data);
-	//	
-	//	formato.format( pedido2.getData());
+		pedido2.setData(data);
 		
-	//	pedido1.setStatus(true);
-	//	
+		formato.format( pedido2.getData());
+		
+		pedido2.setStatus(false);
+		
 		
 	
 		
 
 		
-		System.out.println("Cliente 1 :  " + " Nome: " + pedido1.getClientes().get(0).getNome() + " Data Pedido: " + formato.format( pedido1.getData()) + " Situacao Pedido :" + " " + pedido1.isStatus() );
+		System.out.println("Cliente 1 :  " + " Nome: " + pedido1.getClientes().get(0).getNome() + " Data Pedido: " + formato.format( pedido1.getData()) + " Situacao Pedido :" + " " + pedido1.isStatus()+ " numero pedido: " + pedido1.getNumero() );
 		
-	//	System.out.println("Cliente 1 :  " + " Nome: " + pedido2.getClientes().get(0).getNome() + " Data Pedido: " + formato.format( pedido2.getData()) + " Situacao Pedido :" + " " + pedido2.isStatus() );
+		System.out.println("Cliente 2 :  " + " Nome: " + pedido2.getClientes().get(0).getNome() + " Data Pedido: " + formato.format( pedido2.getData()) + " Situacao Pedido :" + " " + pedido2.isStatus()+" numero pedido: " + pedido2.getNumero() );
 		
 	//	System.out.println("Cliente 1 :  " + " Nome: " + pedido1.cliente.getNome() + " Data Pedido: " + formato.format( pedido1.getData()) + " Situacao Pedido :" + " " + pedido1.isStatus() );	
 
