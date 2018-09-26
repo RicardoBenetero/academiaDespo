@@ -33,6 +33,14 @@ public class Principal {
 		
 		Pedido pedido2 = new Pedido(cliente2, data, true,3);
 		
+		Item item1 = new Item();
+		
+		item1.setDescricao("produto1");
+		
+		item1.setPesoEntrega(2);
+		
+		item1.getPrecoPelaQuantidade();
+		
 		
 		pedido1.setData(data);
 	
