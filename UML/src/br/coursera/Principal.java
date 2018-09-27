@@ -34,6 +34,7 @@ public class Principal {
 		Pagamento cheque = new Cheque();
 		
 		Pagamento cartaoCredito = new CartaoCredito();
+		
 
         Item item1 = new Item();
 		
@@ -47,6 +48,30 @@ public class Principal {
 		
 		item1.getPeso();
 		
+		 Item item2 = new Item();
+			
+			item2.setDescricao("violao");
+			
+			item2.setPesoEntrega(15);
+			
+		    item2.setQuantidade(2);
+			
+			item2.getPrecoPelaQuantidade(item2.getQuantidade(),"violao");
+			
+			item2.getPeso();
+			
+			 Item item3 = new Item();
+				
+				item3.setDescricao("violao");
+				
+				item3.setPesoEntrega(20);
+				
+			    item3.setQuantidade(3);
+				
+				item3.getPrecoPelaQuantidade(item3.getQuantidade(),"amplificador");
+				
+				item3.getPeso();
+		
         // DetalhePedido detalhePedido = new DetalhePedido(item1);
 		
 		//detalhePedido.calculaPeso();
@@ -54,9 +79,12 @@ public class Principal {
 	    //detalhePedido.calculaSubTotal();
 		
 		
-		Pedido pedido1 = new Pedido(cliente1, data, true,1,"cheque",3000);
+		Pedido pedido1 = new Pedido(cliente1, data,1,"cheque",3000);
 		
-		Pedido pedido2 = new Pedido(cliente2, data, true,3, "dinheiro",0);
+		Pedido pedido2 = new Pedido(cliente2, data,3, "dinheiro",0);
+		
+		Pedido pedido3 = new Pedido(cliente2, data,4, "cartaoCredito",500);
+
 		
 		
 		
@@ -69,7 +97,7 @@ public class Principal {
 		
 		pedido1.setStatus(true);
 		
-		pedido1.adicionaItemPedido(item1);
+		//pedido1.adicionaItemPedido(item1);
 		//pedido1.formaPagamento("cheque", 3000);
 		
 		
@@ -77,18 +105,36 @@ public class Principal {
 		
 		formato.format( pedido2.getData());
 		
-		pedido2.setStatus(false);
+		pedido2.setStatus(true);
 		
 		
-	
+		cliente1.adicionaPedidosDoCliente(pedido1);
+		cliente2.adicionaPedidosDoCliente(pedido2);
+		cliente2.adicionaPedidosDoCliente(pedido3);
+		//pedidos.size()
 		
+	    cliente1.mostraPedidosCliente();
+	    
+	    cliente2.mostraPedidosCliente();
 
 		
-		System.out.println("Cliente 1 :  " + " Nome: " + pedido1.getClientes().get(0).getNome() + " Data Pedido: " + formato.format( pedido1.getData()) + " Situacao Pedido :" + " " + pedido1.isStatus()+ " numero pedido: " + pedido1.getNumero()+ " pagamento aceito : " + pedido1.isPagamentoAceito() + " pedido ativo: " + pedido1.isStatus()+ " detalhe pedido: " + pedido1.getDetalhePedido());
+	//	for(int i =0;i<cliente2.pedidos.size();i++)
+	//	{
+			
+	//	System.out.println("| Nome Cliente: " + pedido2.getClientes().get(0).pedidos.get(i).getNumero());
 		
-		System.out.println("Cliente 2 :  " + " Nome: " + pedido2.getClientes().get(0).getNome() + " Data Pedido: " + formato.format( pedido2.getData()) + " Situacao Pedido :" + " " + pedido2.isStatus()+" numero pedido: " + pedido2.getNumero() );
+	//	}
 		
-	//	System.out.println("Cliente 1 :  " + " Nome: " + pedido1.cliente.getNome() + " Data Pedido: " + formato.format( pedido1.getData()) + " Situacao Pedido :" + " " + pedido1.isStatus() );	
+		System.out.println("Pedido  :  " + pedido1.getNumero()+ "| Nome Cliente: " + pedido1.getClientes().get(0).getNome() + "| Data Pedido: " + formato.format( pedido1.getData()) + "| Situacao Pedido :" + " " + pedido1.isStatus()+ "| numero pedido: " + pedido1.getNumero()+ "| pagamento aceito : " + pedido1.isPagamentoAceito() + "| pedido ativo: " + pedido1.isStatus()+ "| detalhe pedido: " + pedido1.adicionaItemPedido(item1));
+		
+		System.out.println("Pedido  :  " +pedido2.getNumero()+ "| Nome: Cliente " + pedido2.getClientes().get(0).getNome() + "| Data Pedido: " + formato.format( pedido2.getData()) + "| Situacao Pedido :" + " " + pedido2.isStatus()+"| numero pedido: " + pedido2.getNumero() + "| pagamento aceito : " + pedido2.isPagamentoAceito() + "| pedido ativo: " + pedido2.isStatus()+ "| detalhe pedido: " + pedido2.adicionaItemPedido(item2));
+		
+		System.out.println("Pedido  :  " +pedido3.getNumero()+ "| Nome: Cliente " + pedido3.getClientes().get(0).getNome() + "| Data Pedido: " + formato.format( pedido3.getData()) + "| Situacao Pedido :" + " " + pedido3.isStatus()+"| numero pedido: " + pedido3.getNumero() + "| pagamento aceito : " + pedido3.isPagamentoAceito() + "| pedido ativo: " + pedido3.isStatus()+ "| detalhe pedido: " + pedido3.adicionaItemPedido(item3));
+		
+		System.out.println(pedido1.calculaTaxa(cliente1));
+		
+		System.out.println(pedido2.calculaTaxa(cliente2));
+
 
 	}
 

@@ -15,21 +15,21 @@ public class Pedido {
 	private boolean pagamentoAceito = false;
     private DetalhePedido detalhePedido;
    // private Item item;
-
+   
 
 	List<Cliente> clientes = new ArrayList<Cliente>();
 
-	public Pedido(Cliente cliente, Date data, boolean status, int numero, String formaPagamento, int limite) {
+	public Pedido(Cliente cliente, Date data, int numero, String formaPagamento, int limite) {
 		
 	   formaPagamento(formaPagamento,limite);
 	   
 	 //  adicionaItemPedido(item );
 
 		this.data = data;
-		this.status = status;
 		this.numero = numero;
        // this.item = item;
 		clientes.add(cliente);
+		
 
 	}
 
@@ -84,7 +84,7 @@ public class Pedido {
 		
 	}
 	
-	public void adicionaItemPedido(Item item ) {
+	public String adicionaItemPedido(Item item ) {
 		
 		detalhePedido = new DetalhePedido(item);
 		//this.item = item;
@@ -92,13 +92,16 @@ public class Pedido {
 		detalhePedido.calculaPeso();
 		detalhePedido.calculaSubTotal();
 		detalhePedido.isStatusImposto();
-		System.out.println("quantidade: " + detalhePedido.getQuantidade() + "peso: " + detalhePedido.getPeso() + "Status Imposto: " + detalhePedido.isStatusImposto() + " Sub Total: " + detalhePedido.getSubTotal() );
+		return ("quantidade: " + detalhePedido.getQuantidade() + "| peso: " + detalhePedido.getPeso() + "| Status Imposto: " + detalhePedido.isStatusImposto() + "| Sub Total: " + detalhePedido.getSubTotal() );
 		
 		
 	}
+	
 
-	public double calculaTaxa() {
-		return 0;
+	public double calculaTaxa(Cliente cliente) {
+		
+	double taxa=this.getDetalhePedido().calculaPeso() * 2;
+		return taxa;
 
 	}
 
