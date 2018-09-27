@@ -29,17 +29,38 @@ public class Principal {
 		
 	//	List<Cliente>	clientes = new ArrayList<Cliente>();
 		
-		Pedido pedido1 = new Pedido(cliente1, data, true,1);
+		Pagamento dinheiro = new Dinheiro();
 		
-		Pedido pedido2 = new Pedido(cliente2, data, true,3);
+		Pagamento cheque = new Cheque();
 		
-		Item item1 = new Item();
+		Pagamento cartaoCredito = new CartaoCredito();
+
+        Item item1 = new Item();
 		
-		item1.setDescricao("produto1");
+		item1.setDescricao("guitarra");
 		
-		item1.setPesoEntrega(2);
+		item1.setPesoEntrega(20);
 		
-		item1.getPrecoPelaQuantidade();
+	    item1.setQuantidade(2);
+		
+		item1.getPrecoPelaQuantidade(item1.getQuantidade(),"guitarra");
+		
+		item1.getPeso();
+		
+        // DetalhePedido detalhePedido = new DetalhePedido(item1);
+		
+		//detalhePedido.calculaPeso();
+		
+	    //detalhePedido.calculaSubTotal();
+		
+		
+		Pedido pedido1 = new Pedido(cliente1, data, true,1,"cheque",3000);
+		
+		Pedido pedido2 = new Pedido(cliente2, data, true,3, "dinheiro",0);
+		
+		
+		
+		
 		
 		
 		pedido1.setData(data);
@@ -47,6 +68,9 @@ public class Principal {
 		formato.format( pedido1.getData());
 		
 		pedido1.setStatus(true);
+		
+		pedido1.adicionaItemPedido(item1);
+		//pedido1.formaPagamento("cheque", 3000);
 		
 		
 		pedido2.setData(data);
@@ -60,7 +84,7 @@ public class Principal {
 		
 
 		
-		System.out.println("Cliente 1 :  " + " Nome: " + pedido1.getClientes().get(0).getNome() + " Data Pedido: " + formato.format( pedido1.getData()) + " Situacao Pedido :" + " " + pedido1.isStatus()+ " numero pedido: " + pedido1.getNumero() );
+		System.out.println("Cliente 1 :  " + " Nome: " + pedido1.getClientes().get(0).getNome() + " Data Pedido: " + formato.format( pedido1.getData()) + " Situacao Pedido :" + " " + pedido1.isStatus()+ " numero pedido: " + pedido1.getNumero()+ " pagamento aceito : " + pedido1.isPagamentoAceito() + " pedido ativo: " + pedido1.isStatus()+ " detalhe pedido: " + pedido1.getDetalhePedido());
 		
 		System.out.println("Cliente 2 :  " + " Nome: " + pedido2.getClientes().get(0).getNome() + " Data Pedido: " + formato.format( pedido2.getData()) + " Situacao Pedido :" + " " + pedido2.isStatus()+" numero pedido: " + pedido2.getNumero() );
 		
