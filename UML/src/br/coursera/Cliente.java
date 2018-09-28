@@ -17,12 +17,12 @@ public class Cliente {
 		
 	}
 	
-	
 	public void mostraPedidosCliente() {
 		for(int i =0;i < pedidos.size();i++)
 		{
 			
 		System.out.println ("Nome Cliente: " + getNome() + "| Numero Pedido: " +pedidos.get(i).getNumero());
+		
 		
 		}
 		}	

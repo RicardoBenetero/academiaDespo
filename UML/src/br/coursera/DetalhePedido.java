@@ -17,7 +17,6 @@ public class DetalhePedido {
 	
 	public double calculaSubTotal() {
 		
-		//item = new Item();
 		subTotal =	item.getPreco();
 
 		statusImposto = true;
@@ -29,7 +28,6 @@ public class DetalhePedido {
 	
 	public double calculaPeso() {
 		
-		//item = new Item();
 		peso =   item.getPeso();
 		return peso;
 		
