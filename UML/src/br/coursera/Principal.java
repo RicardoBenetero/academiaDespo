@@ -2,9 +2,7 @@ package br.coursera;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Principal {
 
@@ -12,7 +10,7 @@ public class Principal {
 
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		Date data = formato.parse("24/09/2018");
-        //---------Clientes
+		// ---------Clientes
 		Cliente cliente1 = new Cliente();
 
 		cliente1.setNome("Ana");
@@ -25,7 +23,7 @@ public class Principal {
 
 		cliente2.setEndereco("Rua Marechal Freitas");
 
-		//----itens
+		// ----itens
 		Item item1 = new Item();
 
 		item1.setDescricao("guitarra");
@@ -36,8 +34,7 @@ public class Principal {
 
 		item1.getPrecoPelaQuantidade(item1.getQuantidade(), "guitarra");
 
-	
-        //----
+		// ----
 		Item item2 = new Item();
 
 		item2.setDescricao("violao");
@@ -48,7 +45,7 @@ public class Principal {
 
 		item2.getPrecoPelaQuantidade(item2.getQuantidade(), "violao");
 
-		//-----
+		// -----
 
 		Item item3 = new Item();
 
@@ -60,7 +57,7 @@ public class Principal {
 
 		item3.getPrecoPelaQuantidade(item3.getQuantidade(), "amplificador");
 
-        //----pedidos
+		// ----pedidos
 		Pedido pedido1 = new Pedido(cliente1, data, 1, "cheque", 3000);
 
 		Pedido pedido2 = new Pedido(cliente2, data, 3, "dinheiro", 0);
@@ -79,25 +76,25 @@ public class Principal {
 
 		pedido2.setStatus(true);
 
-		//-----adiciona pedidos para o cliente
+		// -----adiciona pedidos para o cliente
 		cliente1.adicionaPedidosDoCliente(pedido1);
 		cliente2.adicionaPedidosDoCliente(pedido2);
 		cliente2.adicionaPedidosDoCliente(pedido3);
-		
-		
 
-        //---  mostra todos pedidos do cliente
-		System.out.println("---------------------------Mostra Pedidos do Cliente --------------------------------------");
+		// --- mostra todos pedidos do cliente
+		System.out
+				.println("---------------------------Mostra Pedidos do Cliente --------------------------------------");
 		cliente1.mostraPedidosCliente();
 
 		cliente2.mostraPedidosCliente();
-		System.out.println("---------------------------Detalhamento Pedidos--------------------------------------------");
-        //----
+		System.out
+				.println("---------------------------Detalhamento Pedidos--------------------------------------------");
+		// ----
 		System.out.println("Pedido  :  " + pedido1.getNumero() + "| Nome Cliente: "
 				+ pedido1.getClientes().get(0).getNome() + "| Data Pedido: " + formato.format(pedido1.getData())
 				+ "| Situacao Pedido :" + " " + pedido1.isStatus() + "| numero pedido: " + pedido1.getNumero()
 				+ "| pagamento aceito : " + pedido1.isPagamentoAceito() + "| pedido ativo: " + pedido1.isStatus()
-				+ "| detalhe pedido: " + pedido1.adicionaItemPedido(item1) );
+				+ "| detalhe pedido: " + pedido1.adicionaItemPedido(item1));
 
 		System.out.println("Pedido  :  " + pedido2.getNumero() + "| Nome: Cliente "
 				+ pedido2.getClientes().get(0).getNome() + "| Data Pedido: " + formato.format(pedido2.getData())
@@ -114,18 +111,23 @@ public class Principal {
 		System.out.println("Pedido 1: " + pedido1.getNumero() + pedido1.calculaTaxa(cliente1));
 
 		System.out.println("Pedido 2: " + pedido2.getNumero() + pedido2.calculaTaxa(cliente2));
-		
-		System.out.println("--------------------------Valor Total Pedidos--------------------------------------------");
-		
-		System.out.println("Cliente: " + pedido1.getClientes().get(0).getNome() + " Total a pagar " );pedido1.calculaTotal();
-		
-		System.out.println("Cliente: " + pedido2.getClientes().get(0).getNome() + " Total a pagar " );pedido2.calculaTotal();
 
-        System.out.println("--------------------------Peso Total-----------------------------------------------------");
-		
-		System.out.println("Cliente: " + pedido1.getClientes().get(0).getNome() + " Peso Total Pedidos" );pedido1.calculaTotalPeso();
-		
-		System.out.println("Cliente: " + pedido2.getClientes().get(0).getNome() + " Peso Total Pedidos" );pedido2.calculaTotalPeso();
+		System.out.println("--------------------------Valor Total Pedidos--------------------------------------------");
+
+		System.out.println("Cliente: " + pedido1.getClientes().get(0).getNome() + " Total a pagar ");
+		pedido1.calculaTotal();
+
+		System.out.println("Cliente: " + pedido2.getClientes().get(0).getNome() + " Total a pagar ");
+		pedido2.calculaTotal();
+
+		System.out.println("--------------------------Peso Total-----------------------------------------------------");
+
+		System.out.println("Cliente: " + pedido1.getClientes().get(0).getNome() + " Peso Total Pedidos");
+		pedido1.calculaTotalPeso();
+
+		System.out.println("Cliente: " + pedido2.getClientes().get(0).getNome() + " Peso Total Pedidos");
+		pedido2.calculaTotalPeso();
+
 	}
 
 }

@@ -7,6 +7,7 @@ public class Cliente {
 	
 	private String nome;
 	private String endereco;
+	private int quantidadePedidos;
 	
 	List<Pedido> pedidos = new ArrayList<Pedido>();
 	
@@ -14,7 +15,7 @@ public class Cliente {
 	public void adicionaPedidosDoCliente(Pedido pedido) {
 		
 		this.pedidos.add(pedido);
-		
+		quantidadePedidos++;
 	}
 	
 	public void mostraPedidosCliente() {
@@ -40,6 +41,14 @@ public class Cliente {
 	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+
+	public int getQuantidadePedidos() {
+		return quantidadePedidos;
+	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
 	}
 
 	

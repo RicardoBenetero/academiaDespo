@@ -14,6 +14,8 @@ public class Pedido {
 	private CartaoCredito cartaoCredito;
 	private boolean pagamentoAceito = false;
 	private DetalhePedido detalhePedido;
+	public static int total;
+	public double valortotal;
 
 	List<Cliente> clientes = new ArrayList<Cliente>();
 
@@ -21,12 +23,11 @@ public class Pedido {
 
 		formaPagamento(formaPagamento, limite);
 
-
 		this.data = data;
 		this.numero = numero;
 		// this.item = item;
 		clientes.add(cliente);
-
+		total++;
 	}
 
 	public void formaPagamento(String Formapagamento, int limite) {
@@ -79,7 +80,7 @@ public class Pedido {
 
 		detalhePedido = new DetalhePedido(item);
 		detalhePedido.calculaPeso();
-		detalhePedido.calculaSubTotal();
+		valortotal = valortotal + detalhePedido.calculaSubTotal();
 		detalhePedido.isStatusImposto();
 		return ("quantidade: " + detalhePedido.getQuantidade() + "| peso: " + detalhePedido.getPeso()
 				+ "| Status Imposto: " + detalhePedido.isStatusImposto() + "| Sub Total: "
@@ -97,20 +98,35 @@ public class Pedido {
 	public void calculaTotal() {
 
 		for (int i = 0; i < clientes.size(); i++) {
-			System.out.println(clientes.get(i).pedidos.get(0).detalhePedido.calculaSubTotal()
-					+ clientes.iterator().next().pedidos.get(clientes.get(i).pedidos.size() - 1).detalhePedido
-							.calculaSubTotal());
 
+			if (clientes.get(i).getQuantidadePedidos() == 1) {
+				System.out.println(clientes.get(i).pedidos.get(0).detalhePedido.calculaSubTotal());
+
+			} else {
+				System.out.println(clientes.get(i).pedidos.get(0).detalhePedido.calculaSubTotal()
+						+ clientes.iterator().next().pedidos.get(clientes.get(i).pedidos.size() - 1).detalhePedido
+								.calculaSubTotal());
+
+			}
 		}
 
 	}
 
-	public void calculaTotalPeso() {
-		for (int i = 0; i < clientes.size(); i++) {
-			System.out.println(clientes.get(i).pedidos.get(0).detalhePedido.calculaPeso()
-					+ clientes.iterator().next().pedidos.get(clientes.get(i).pedidos.size() - 1).detalhePedido
-							.calculaPeso());
+	
 
+	public void calculaTotalPeso() {
+
+		for (int i = 0; i < clientes.size(); i++) {
+
+			if (clientes.get(i).getQuantidadePedidos() == 1) {
+				System.out.println(clientes.get(i).pedidos.get(0).detalhePedido.calculaPeso());
+
+			} else {
+				System.out.println(clientes.get(i).pedidos.get(0).detalhePedido.calculaPeso()
+						+ clientes.iterator().next().pedidos.get(clientes.get(i).pedidos.size() - 1).detalhePedido
+								.calculaPeso());
+
+			}
 		}
 
 	}
@@ -161,6 +177,10 @@ public class Pedido {
 
 	public void setDetalhePedido(DetalhePedido detalhePedido) {
 		this.detalhePedido = detalhePedido;
+	}
+
+	public static int getTotal() {
+		return total;
 	}
 
 }
