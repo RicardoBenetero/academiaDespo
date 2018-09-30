@@ -15,7 +15,7 @@ public class Pedido {
 	private boolean pagamentoAceito = false;
 	private DetalhePedido detalhePedido;
 	public static int total;
-	public double valortotal;
+	public static double valorTotal;
 
 	List<Cliente> clientes = new ArrayList<Cliente>();
 
@@ -80,7 +80,7 @@ public class Pedido {
 
 		detalhePedido = new DetalhePedido(item);
 		detalhePedido.calculaPeso();
-		valortotal = valortotal + detalhePedido.calculaSubTotal();
+		valorTotal = valorTotal + detalhePedido.calculaSubTotal();
 		detalhePedido.isStatusImposto();
 		return ("quantidade: " + detalhePedido.getQuantidade() + "| peso: " + detalhePedido.getPeso()
 				+ "| Status Imposto: " + detalhePedido.isStatusImposto() + "| Sub Total: "

@@ -112,7 +112,7 @@ public class Principal {
 
 		System.out.println("Pedido 2: " + pedido2.getNumero() + pedido2.calculaTaxa(cliente2));
 
-		System.out.println("--------------------------Valor Total Pedidos--------------------------------------------");
+		System.out.println("--------------------------Valor Total Pedidos Por Cliente--------------------------------------------");
 
 		System.out.println("Cliente: " + pedido1.getClientes().get(0).getNome() + " Total a pagar ");
 		pedido1.calculaTotal();
@@ -120,13 +120,22 @@ public class Principal {
 		System.out.println("Cliente: " + pedido2.getClientes().get(0).getNome() + " Total a pagar ");
 		pedido2.calculaTotal();
 
-		System.out.println("--------------------------Peso Total-----------------------------------------------------");
+		System.out.println("--------------------------Peso Total Pedidos Por Cliente-----------------------------------------------------");
 
 		System.out.println("Cliente: " + pedido1.getClientes().get(0).getNome() + " Peso Total Pedidos");
 		pedido1.calculaTotalPeso();
 
 		System.out.println("Cliente: " + pedido2.getClientes().get(0).getNome() + " Peso Total Pedidos");
 		pedido2.calculaTotalPeso();
+		
+		System.out.println("--------------------------Quantidade Total Pedidos Da Loja-----------------------------------------------------");
+
+		System.out.println(pedido1.total);
+		
+		System.out.println("--------------------------Quantidade Valor Total (R$) Pedidos Da Loja-----------------------------------------------------");
+		System.out.println("R$"+ pedido1.valorTotal);
+		
+
 
 	}
 
