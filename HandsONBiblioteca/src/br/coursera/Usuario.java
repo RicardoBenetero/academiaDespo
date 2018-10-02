@@ -5,6 +5,7 @@ import java.util.Collection;
 
 public class Usuario {
 	
+	String nome;
 	
 private Collection<Livro> livros;
 
@@ -19,14 +20,39 @@ public Usuario() {
 	
 	public void anexaLivroAListaDeLivrosEmprestados(Livro livro) {
 		
+		if(!livro.emprestado) {
 		livros.add(livro);
+		livro.emprestado = true;
 		quantidadeLivros ++;
+		
+	}else {
+		
+		livro.setMensagemIndisponivel("Usuario(a): "+ getNome( ) +" Livro indisponivel no momento. Aguarde devolucao.") ;
+				
+	}
 		
 	}
 
 
+
+
 	public int getQuantidadeLivros() {
 		return quantidadeLivros;
+	}
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+	public Collection<Livro> getLivros() {
+		return livros;
 	}
 
 }
