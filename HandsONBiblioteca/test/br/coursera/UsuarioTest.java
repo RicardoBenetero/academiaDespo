@@ -34,4 +34,31 @@ public class UsuarioTest {
 				livro1.getMensagemIndisponivel());
 	}
 
+	@Test
+	public void devolveQuantidadeLivros() {
+		Biblioteca biblioteca = new Biblioteca();
+
+		Livro livro1 = new Livro();
+
+		livro1.setCodigo("1234");
+
+		Livro livro2 = new Livro();
+
+		livro1.setCodigo("963");
+
+		Usuario usuario = new Usuario();
+
+		usuario.setNome("Marcela");
+
+		biblioteca.adicionarLivros(livro1);
+
+		biblioteca.adicionarLivros(livro2);
+
+		usuario.anexaLivroAListaDeLivrosEmprestados(livro1);
+
+		usuario.anexaLivroAListaDeLivrosEmprestados(livro2);
+
+		assertEquals(2, usuario.getQuantidadeLivros());
+	}
+
 }
