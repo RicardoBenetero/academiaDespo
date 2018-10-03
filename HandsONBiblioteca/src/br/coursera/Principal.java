@@ -87,17 +87,17 @@ public class Principal {
 		biblioteca.emprestaLivro(livro1234);
 		
 		
-		Livro livro636 = new Livro();
+		Livro livro637 = new Livro();
 
-		livro636.setCodigo("636");
+		livro637.setCodigo("637");
 
 		Usuario usuario6 = new Usuario();
 		
-		biblioteca.registraUsuario(usuario6);
+		biblioteca1.registraUsuario(usuario6);
 
-		biblioteca.adicionarLivros(livro636);
+		biblioteca1.adicionarLivros(livro637);
 
-		biblioteca.emprestaLivro(livro636);
+		biblioteca1.emprestaLivro(livro637);
 		
 		
 		Livro livro758 = new Livro();

@@ -51,7 +51,7 @@ public class Biblioteca {
 
 		for (Livro livro : livroAdicionados) {
 
-			if (livro.emprestado == true)
+			if (livro.emprestado == false)
 	
 			System.out.println(livro.getCodigo());
 		
@@ -65,7 +65,7 @@ public class Biblioteca {
 
 		for (Livro livro : livroAdicionados) {
 
-			if (livro.emprestado == false)
+			if (livro.emprestado == true)
 
 				System.out.println(livro.getCodigo());
 
