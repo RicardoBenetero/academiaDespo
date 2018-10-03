@@ -28,7 +28,8 @@ public Usuario() {
 	}else {
 		
 		livro.setMensagemIndisponivel("Usuario(a): "+ getNome( ) +" Livro indisponivel no momento. Aguarde devolucao.") ;
-				
+		
+		
 	}
 		
 	}

@@ -17,7 +17,6 @@ public class Livro {
 		
 		this.usuario = usuario;
 		
-		
 	}
 	public String getCodigo() {
 		return codigo;

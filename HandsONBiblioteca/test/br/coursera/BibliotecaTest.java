@@ -152,7 +152,7 @@ public class BibliotecaTest {
 		
         
 		
-	    //biblioteca.exibeLivrosDisponiveisEmprestimo();
+	    biblioteca.exibeLivrosDisponiveisEmprestimo();
 
 		//assertEquals("1234",biblioteca.exibeLivrosDisponiveisEmprestimo() );
 		

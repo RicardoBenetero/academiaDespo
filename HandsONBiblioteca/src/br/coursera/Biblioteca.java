@@ -54,6 +54,8 @@ public class Biblioteca {
 			if (livro.emprestado == true)
 	
 			System.out.println(livro.getCodigo());
+			
+			
 		}
 
 	}
