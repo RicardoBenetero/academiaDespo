@@ -12,6 +12,7 @@ public class Livro {
 		
 		this.usuario = usuario;
 		
+		
 	}
 	public void anexaUsuarioDoEmprestimo(Usuario usuario) {
 		

@@ -42,6 +42,7 @@ public class LivroTest {
 
 		assertEquals("Marcela", livro1.getUsuario().getNome());
 
+		
 	}
 
 }

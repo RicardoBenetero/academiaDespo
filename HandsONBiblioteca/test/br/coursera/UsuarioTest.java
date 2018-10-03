@@ -22,6 +22,7 @@ public class UsuarioTest {
 
 		usuario.anexaLivroAListaDeLivrosEmprestados(livro1);
 
+		
 		Usuario usuario3 = new Usuario();
 
 		usuario3.setNome("Marcia");
