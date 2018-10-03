@@ -1,0 +1,40 @@
+Questionário Herança
+
+Respostas
+
+orientação a objetos
+
+
+1. D) É-um
+
+2. A) VERDADEIRO
+
+3. d) É PERMITIDO ADICIONAR ATRIBUTOS
+
+4. A) VERDADEIRO
+
+5. c) A CLASSE GATO É UM ANIMAL
+
+java
+
+1. D) extends
+
+2. E) super
+
+3. B) instanceof
+
+4. B) FALSO
+
+5. A) verdadeiro
+
+6. A) sobrescrito
+
+7. B) falso
+
+8. A) 3-1
+
+9. C) cruzeiro instanceof Submarino
+
+10. A) verdadeiro
+
+11. C) pacote EF
