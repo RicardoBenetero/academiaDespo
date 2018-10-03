@@ -34,7 +34,14 @@ public Usuario() {
 	}
 
 
-
+   public void desanexaLivroDaListadeLivrosEmprestados(Livro livro) {
+	   
+	   livros.remove(livro);
+	   livro.emprestado = false;
+	   quantidadeLivros --;
+	
+	
+}
 
 	public int getQuantidadeLivros() {
 		return quantidadeLivros;

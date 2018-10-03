@@ -60,7 +60,60 @@ public class Principal {
 
 		System.out.println("Livro(s) código(s): - " + livro2.getUsuario().getLivros().iterator().next().getCodigo()
 				+ "-  esta emprestado para usuario(a):  " + livro2.getUsuario().getNome());
+		//------------------------
 
+		Livro livro3 = new Livro();
+
+		livro3.setCodigo("636");
+		
+		biblioteca.adicionarLivros(livro3);
+		
+		
+		
+		//
+		
+		Biblioteca biblioteca1 = new Biblioteca();
+
+		Livro livro1234 = new Livro();
+
+		livro1234.setCodigo("1234");
+
+		Usuario usuario5 = new Usuario();
+		
+		biblioteca.registraUsuario(usuario5);
+
+		biblioteca.adicionarLivros(livro1234);
+
+		biblioteca.emprestaLivro(livro1234);
+		
+		
+		Livro livro636 = new Livro();
+
+		livro636.setCodigo("636");
+
+		Usuario usuario6 = new Usuario();
+		
+		biblioteca.registraUsuario(usuario6);
+
+		biblioteca.adicionarLivros(livro636);
+
+		biblioteca.emprestaLivro(livro636);
+		
+		
+		Livro livro758 = new Livro();
+
+		livro758.setCodigo("758");
+		
+		biblioteca.adicionarLivros(livro758);
+		
+		System.out.println(
+				"-----------------------------------livros disponiveis para emprestimo ------------------");
+
+		biblioteca.exibeLivrosDisponiveisEmprestimo();
+		
+		System.out.println(
+				"-----------------------------------livros Indisponiveis para emprestimo ------------------");
+		biblioteca.exibeLivrosIndisponiveisEmprestimo();
 	}
 
 }

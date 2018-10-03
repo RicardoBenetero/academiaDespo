@@ -36,8 +36,37 @@ public class Biblioteca {
 	}
 
 	public void emprestaLivro(Livro livro) {
-
+		usuariosRegistrados.iterator().next().anexaLivroAListaDeLivrosEmprestados(livro);
 		livroAdicionados.remove(livro);
+
+	}
+
+	public void devolveLivro(Livro livro) {
+		usuariosRegistrados.iterator().next().desanexaLivroDaListadeLivrosEmprestados(livro);
+		livroAdicionados.add(livro);
+
+	}
+
+	public void exibeLivrosDisponiveisEmprestimo() {
+
+		for (Livro livro : livroAdicionados) {
+
+			if (livro.emprestado == true)
+	
+			System.out.println(livro.getCodigo());
+		}
+
+	}
+
+	public void exibeLivrosIndisponiveisEmprestimo() {
+
+		for (Livro livro : livroAdicionados) {
+
+			if (livro.emprestado == false)
+
+				System.out.println(livro.getCodigo());
+
+		}
 
 	}
 
