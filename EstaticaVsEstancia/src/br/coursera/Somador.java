@@ -2,16 +2,16 @@ package br.coursera;
 
 public class Somador {
 	
-	String nome;
-	int valorInstancia = 0;
-	static int valorEstatica = 0;
+	public String nome;
+	public int valorInstancia = 0;
+	public static int valorEstatica = 0;
 	
-	void somar(){
+	public void somar(){
 		valorInstancia ++;
 		valorEstatica ++;
 	}
 	
-	void imprimir(){
+	public void imprimir(){
 		System.out.println("O somador "+nome+ " : intancia = " + valorInstancia+ " e estatica = "+valorEstatica);
 		
 		
