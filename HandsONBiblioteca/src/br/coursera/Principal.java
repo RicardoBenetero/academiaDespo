@@ -114,7 +114,10 @@ public class Principal {
 		
 		System.out.println(
 				"-----------------------------------livros Indisponiveis para emprestimo ------------------");
+		//System.out.println(biblioteca.exibeLivrosIndisponiveisEmprestimo());
+		
 		biblioteca.exibeLivrosIndisponiveisEmprestimo();
+
 		
 	}
 

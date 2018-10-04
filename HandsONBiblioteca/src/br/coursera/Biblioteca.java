@@ -2,6 +2,7 @@ package br.coursera;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class Biblioteca {
 
@@ -9,10 +10,13 @@ public class Biblioteca {
 
 	private Collection<Livro> livroAdicionados;
 
+	private Collection<Livro> livrosIndisponiveis;
+
 	public Biblioteca() {
 
 		this.usuariosRegistrados = new ArrayList<>();
 		this.livroAdicionados = new ArrayList<>();
+		this.livrosIndisponiveis = new ArrayList<>();
 
 	}
 
@@ -37,6 +41,7 @@ public class Biblioteca {
 
 	public void emprestaLivro(Livro livro) {
 		usuariosRegistrados.iterator().next().anexaLivroAListaDeLivrosEmprestados(livro);
+		livrosIndisponiveis.add(livro);
 		livroAdicionados.remove(livro);
 
 	}
@@ -47,30 +52,37 @@ public class Biblioteca {
 
 	}
 
-	public void exibeLivrosDisponiveisEmprestimo() {
+	public List<String> exibeLivrosDisponiveisEmprestimo() {
+
+		List<String> livrosDisponiveis = new ArrayList<String>();
 
 		for (Livro livro : livroAdicionados) {
 
-			if (livro.emprestado == false)
-	
-			System.out.println(livro.getCodigo());
-		
-			
-			
-		}
+			if (!livro.emprestado) {
 
+				livrosDisponiveis.add(livro.getCodigo());
+
+			}
+
+		}
+		return livrosDisponiveis;
 	}
 
-	public void exibeLivrosIndisponiveisEmprestimo() {
+	public List<String> exibeLivrosIndisponiveisEmprestimo() {
 
-		for (Livro livro : livroAdicionados) {
+		List<String> livros = new ArrayList<String>();
 
-			if (livro.emprestado == true)
+		for (Livro livro : livrosIndisponiveis) {
 
-				System.out.println(livro.getCodigo());
+			if (livro.emprestado) {
+
+				livros.add(livro.getCodigo());
+
+			}
 
 		}
 
+		return livros;
 	}
 
 }

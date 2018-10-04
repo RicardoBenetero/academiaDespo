@@ -5,7 +5,7 @@ public class Livro {
 	
 	private String codigo;
 	private Usuario usuario;
-	boolean emprestado = false;
+	boolean emprestado;
 	String mensagemIndisponivel;
 	
 	public Livro() {

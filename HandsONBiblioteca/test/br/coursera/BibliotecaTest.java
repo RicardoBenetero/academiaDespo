@@ -1,8 +1,9 @@
 package br.coursera;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -68,7 +69,7 @@ public class BibliotecaTest {
 		assertEquals(1, usuario.getQuantidadeLivros());
 
 	}
-	
+
 	@Test
 	public void marcaLivroComoEmprestadoQuandoUsuarioPega() {
 
@@ -79,17 +80,17 @@ public class BibliotecaTest {
 		livro.setCodigo("1234");
 
 		Usuario usuario = new Usuario();
-		
+
 		biblioteca.registraUsuario(usuario);
 
 		biblioteca.adicionarLivros(livro);
 
 		biblioteca.emprestaLivro(livro);
 
-		assertEquals(true,livro.emprestado );
+		assertEquals(true, livro.emprestado);
 
 	}
-	
+
 	@Test
 	public void desmarcaLivroEmprestadoQuandoUsuarioDevolve() {
 
@@ -100,19 +101,19 @@ public class BibliotecaTest {
 		livro.setCodigo("1234");
 
 		Usuario usuario = new Usuario();
-		
+
 		biblioteca.registraUsuario(usuario);
 
 		biblioteca.adicionarLivros(livro);
 
 		biblioteca.emprestaLivro(livro);
-		
+
 		biblioteca.devolveLivro(livro);
 
-		assertEquals(false,livro.emprestado );
+		assertEquals(false, livro.emprestado);
 
 	}
-	
+
 	@Test
 	public void apresentaLivrosdisponiveisParaEmprestimo() {
 
@@ -123,43 +124,94 @@ public class BibliotecaTest {
 		livro.setCodigo("1234");
 
 		Usuario usuario = new Usuario();
-		
+
 		biblioteca.registraUsuario(usuario);
 
 		biblioteca.adicionarLivros(livro);
 
 		biblioteca.emprestaLivro(livro);
-		
-		
+
 		Livro livro2 = new Livro();
 
 		livro2.setCodigo("636");
 
 		Usuario usuario2 = new Usuario();
-		
+
 		biblioteca.registraUsuario(usuario2);
 
 		biblioteca.adicionarLivros(livro2);
 
 		biblioteca.emprestaLivro(livro2);
-		
-		
+
 		Livro livro3 = new Livro();
 
-		livro3.setCodigo("636");
-		
+		livro3.setCodigo("845");
+
 		biblioteca.adicionarLivros(livro3);
 		
-        
-		
-		
-		
-	    biblioteca.exibeLivrosDisponiveisEmprestimo();
+		Livro livro4 = new Livro();
 
-		//assertEquals("1234",biblioteca.exibeLivrosDisponiveisEmprestimo() );
+		livro4.setCodigo("633");
+
+		biblioteca.adicionarLivros(livro4);
+		
+		List<String> codigos = new ArrayList<String>();
+		
+		codigos.add("845");
+		codigos.add("633");
+
+		assertEquals(codigos, biblioteca.exibeLivrosDisponiveisEmprestimo());
+
+	}
+	
+	@Test
+	public void apresentaLivrosIndisponiveisParaEmprestimo() {
+
+		Biblioteca biblioteca = new Biblioteca();
+
+		Livro livro = new Livro();
+
+		livro.setCodigo("1234");
+
+		Usuario usuario = new Usuario();
+
+		biblioteca.registraUsuario(usuario);
+
+		biblioteca.adicionarLivros(livro);
+
+		biblioteca.emprestaLivro(livro);
+
+		Livro livro2 = new Livro();
+
+		livro2.setCodigo("636");
+
+		Usuario usuario2 = new Usuario();
+
+		biblioteca.registraUsuario(usuario2);
+
+		biblioteca.adicionarLivros(livro2);
+
+		biblioteca.emprestaLivro(livro2);
+
+		Livro livro3 = new Livro();
+
+		livro3.setCodigo("846");
+
+		biblioteca.adicionarLivros(livro3);
+		
+		Livro livro4 = new Livro();
+
+		livro4.setCodigo("634");
+
+		biblioteca.adicionarLivros(livro4);
 		
 		
+        List<String> codigos = new ArrayList<String>();
 		
+		codigos.add("1234");
+		codigos.add("636");
+
+		assertEquals(codigos, biblioteca.exibeLivrosIndisponiveisEmprestimo());
 
 	}
 
