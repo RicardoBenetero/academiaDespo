@@ -2,7 +2,7 @@ package br.coursera;
 
 public class ContaCorrente {
 	
-	private int saldo;
+	protected int saldo;
 
 	public int sacar(int valor) {
 		
