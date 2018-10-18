@@ -7,7 +7,7 @@ public class TV {
 	private List<Integer> canais;
 	private int volume = 0;
 	private boolean ligada = false;
-	private int indiceCanalAtivo = 0;
+	private int canalAtivo = 0;
 
 	public TV(List<Integer> canais) {
 
@@ -25,32 +25,32 @@ public class TV {
 		ligada = false;
 	}
 
-	public void aumentaVolume() {
-		while (volume >= 50) {
+	public int aumentaVolume() {
+
+		if (volume < 50) {
 			this.volume++;
+
 		}
 
-		System.out.println("volume atingiu limite maximo");
-
+		return volume;
 	}
 
-	public void diminuiVolume() {
+	public int diminuiVolume() {
 
-		while (volume < 0) {
+		if (volume > 0) {
 			this.volume--;
+
 		}
 
-		System.out.println("volume atingiu limite minimo");
-
+		return volume;
 	}
 
-	public void mudaCanal(int canal) {
+	public int mudaCanal(int canal) {
 		if (canais.contains(canal)) {
-			indiceCanalAtivo = canais.get(canal);
-		} else {
-
-			System.out.println("canal inexistente");
+			canalAtivo = canal;
+		
 		}
+		return canalAtivo;
 
 	}
 

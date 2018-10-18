@@ -10,15 +10,15 @@ public class ControleRemoto {
 
 	}
 
-	public void aumentaVolume() {
+	public int aumentaVolume() {
 
-		tv.aumentaVolume();
+		return tv.aumentaVolume();
 
 	}
 
-	public void diminuiVolume() {
+	public int diminuiVolume() {
 
-		tv.diminuiVolume();
+	return	tv.diminuiVolume();
 
 	}
 
@@ -34,9 +34,9 @@ public class ControleRemoto {
 
 	}
 	
-	public void mudaCanal(int canal) {
+	public int mudaCanal(int canal) {
 		
-		tv.mudaCanal(canal);
+		return tv.mudaCanal(canal);
 		
 	}
 
