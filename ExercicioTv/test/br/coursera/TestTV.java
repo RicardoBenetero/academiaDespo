@@ -123,5 +123,22 @@ public class TestTV {
 		assertEquals(0, controleRemoto.mudaCanal(14));
 
 	}
+	
+	@Test
+	public void aumentaCanalDeveRetornarProximoCanal() {
+		
+		int canalAtivo =controleRemoto.mudaCanal(10);
+		
+		System.out.println(canalAtivo);
+		
+		int canal = controleRemoto.aumetaCanal();
+		
+		System.out.println(canal);
+		
+		assertEquals(12, canal);
+
+		
+		
+	}
 
 }

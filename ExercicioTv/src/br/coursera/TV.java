@@ -1,7 +1,5 @@
 package br.coursera;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class TV {
@@ -10,7 +8,7 @@ public class TV {
 	private int volume;
 	private List<Integer> canais;
 	private boolean ligada = false;
-	private int canalAtivo = 0;
+	private Integer canalAtivo = 0;
 
 	public TV(List<Integer> canais) {
 
@@ -55,6 +53,22 @@ public class TV {
 			canalAtivo = canal;
 
 		}
+		return canalAtivo;
+
+	}
+
+	public int aumentaCanal() {
+		
+		
+
+		int indice = canais.indexOf(canalAtivo);
+        System.out.println("indice "+indice);
+       
+        canalAtivo = canais.get(indice + 1);
+	
+
+		
+		
 		return canalAtivo;
 
 	}

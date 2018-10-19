@@ -40,4 +40,10 @@ public class ControleRemoto {
 
 	}
 
+	public int aumetaCanal() {
+
+		return tv.aumentaCanal();
+
+	}
+
 }
