@@ -1,11 +1,14 @@
 package br.coursera;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class TV {
-
+	private static int volumeMaximo = 50;
+	private static int volumeMinimo = 0;
+	private int volume;
 	private List<Integer> canais;
-	private int volume = 0;
 	private boolean ligada = false;
 	private int canalAtivo = 0;
 
@@ -15,19 +18,21 @@ public class TV {
 
 	}
 
-	public void liga() {
+	public boolean liga() {
 
 		ligada = true;
+		return ligada;
 	}
 
-	public void desliga() {
+	public boolean desliga() {
 
 		ligada = false;
+		return ligada;
 	}
 
 	public int aumentaVolume() {
 
-		if (volume < 50) {
+		if (volume < volumeMaximo) {
 			this.volume++;
 
 		}
@@ -37,7 +42,7 @@ public class TV {
 
 	public int diminuiVolume() {
 
-		if (volume > 0) {
+		if (volume > volumeMinimo) {
 			this.volume--;
 
 		}
@@ -48,17 +53,9 @@ public class TV {
 	public int mudaCanal(int canal) {
 		if (canais.contains(canal)) {
 			canalAtivo = canal;
-		
+
 		}
 		return canalAtivo;
-
-	}
-
-	public String tvEstaLigada() {
-
-		if (ligada == true)
-			return "ligada";
-		return "desligada";
 
 	}
 

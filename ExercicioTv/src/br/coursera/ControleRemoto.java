@@ -2,7 +2,7 @@ package br.coursera;
 
 public class ControleRemoto {
 
-	TV tv;
+	private TV tv;
 
 	public ControleRemoto(TV tv) {
 
@@ -18,26 +18,26 @@ public class ControleRemoto {
 
 	public int diminuiVolume() {
 
-	return	tv.diminuiVolume();
+		return tv.diminuiVolume();
 
 	}
 
-	public void ligaTv() {
+	public boolean ligaTv() {
 
-		tv.liga();
+		return tv.liga();
+
+	}
+
+	public boolean desligaTv() {
+
+		return tv.desliga();
 
 	}
 
-	public void desligaTv() {
-
-		tv.desliga();
-
-	}
-	
 	public int mudaCanal(int canal) {
-		
+
 		return tv.mudaCanal(canal);
-		
+
 	}
 
 }

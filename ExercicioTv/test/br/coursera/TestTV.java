@@ -1,4 +1,4 @@
-package br.coursera.test;
+package br.coursera;
 
 import static org.junit.Assert.*;
 
@@ -13,9 +13,9 @@ import br.coursera.TV;
 
 public class TestTV {
 
-	List<Integer> canais;
-	TV tv;
-	ControleRemoto controleRemoto;
+	private List<Integer> canais;
+	private TV tv;
+	private ControleRemoto controleRemoto;
 
 	@Before
 	public void preparaMassa() {
@@ -45,18 +45,22 @@ public class TestTV {
 	@Test
 	public void testLigaTV() {
 
-		controleRemoto.ligaTv();
+		boolean TvLigada = true;
 
-		assertTrue(tv.tvEstaLigada().equals("ligada"));
+		boolean ligada = controleRemoto.ligaTv();
+
+		assertTrue(TvLigada == ligada);
 
 	}
 
 	@Test
 	public void testDesligaTV() {
 
-		controleRemoto.desligaTv();
+		boolean TvLigada = false;
 
-		assertTrue(tv.tvEstaLigada().equals("desligada"));
+		boolean ligada = controleRemoto.desligaTv();
+
+		assertTrue(TvLigada == ligada);
 
 	}
 
