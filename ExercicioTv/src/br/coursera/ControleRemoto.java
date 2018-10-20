@@ -45,5 +45,11 @@ public class ControleRemoto {
 		return tv.aumentaCanal();
 
 	}
+	
+	public int diminuiCanal() {
+
+		return tv.diminuiCanal();
+
+	}
 
 }

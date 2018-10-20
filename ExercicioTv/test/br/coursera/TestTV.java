@@ -43,7 +43,7 @@ public class TestTV {
 	}
 
 	@Test
-	public void testLigaTV() {
+	public void deveRetornarLigadaQuandoLigaTV() {
 
 		boolean TvLigada = true;
 
@@ -54,7 +54,7 @@ public class TestTV {
 	}
 
 	@Test
-	public void testDesligaTV() {
+	public void deveRetornarDesligadaQuandoDesligaTV() {
 
 		boolean TvLigada = false;
 
@@ -76,7 +76,7 @@ public class TestTV {
 	}
 
 	@Test
-	public void testAumentaVolumeTVAcimaLimiteDeveRetornarSempreOLimite() {
+	public void deveRetornarSempreOLimiteQuandoAumentaVolumeTVAcimaLimite() {
 		int volume = 0;
 		for (int i = 1; i <= 51; i++) {
 
@@ -87,7 +87,7 @@ public class TestTV {
 	}
 
 	@Test
-	public void testDiminuiVolumeTVAbaixoLimiteDeveRetornarSempreOLimite() {
+	public void deveRetornarSempreOLimiteQuandoDiminuiVolumeTVAbaixoLimite() {
 		int volume = 0;
 		testAumentaVolumeTVDuasVezes();
 
@@ -111,34 +111,61 @@ public class TestTV {
 	}
 
 	@Test
-	public void testMudaCanalTvCanalInformadoDeveSerOAtivo() {
+	public void canalInformadoDeveSerOAtivo() {
 
 		assertEquals(6, controleRemoto.mudaCanal(6));
 
 	}
 
 	@Test
-	public void testMudaCanalTvParaCanalInexistenteDeveRetornarZero() {
+	public void deveRetornarZeroQuandoInformadoCanalInexistente() {
 
 		assertEquals(0, controleRemoto.mudaCanal(14));
 
 	}
-	
+
 	@Test
-	public void aumentaCanalDeveRetornarProximoCanal() {
-		
-		int canalAtivo =controleRemoto.mudaCanal(10);
-		
-		System.out.println(canalAtivo);
-		
+	public void deveRetornarProximoCanalQuandoaumentaCanal() {
+
+		int canalAtivo = controleRemoto.mudaCanal(6);
+
 		int canal = controleRemoto.aumetaCanal();
-		
-		System.out.println(canal);
-		
+
+		assertEquals(8, canal);
+
+	}
+
+	@Test
+	public void deveRetornarCanalAnteriorQuandoDiminuiCanal() {
+
+		int canalAtivo = controleRemoto.mudaCanal(6);
+
+		int canal = controleRemoto.diminuiCanal();
+
+		assertEquals(4, canal);
+
+	}
+
+	@Test
+	public void deveRetornarUltimoCanalQuandoAumentaEJaEstaNoUltimo() {
+
+		int canalAtivo = controleRemoto.mudaCanal(12);
+
+		int canal = controleRemoto.aumetaCanal();
+
 		assertEquals(12, canal);
 
-		
-		
+	}
+
+	@Test
+	public void deveRetornarPrimeiroCanalQuandoDiminueEJaEstaNoPrimeiro() {
+
+		int canalAtivo = controleRemoto.mudaCanal(2);
+
+		int canal = controleRemoto.diminuiCanal();
+
+		assertEquals(2, canal);
+
 	}
 
 }

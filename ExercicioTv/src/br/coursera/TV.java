@@ -3,8 +3,8 @@ package br.coursera;
 import java.util.List;
 
 public class TV {
-	private static int volumeMaximo = 50;
-	private static int volumeMinimo = 0;
+	private static int VOLUME_MAXIMO = 50;
+	private static int VOLUME_MINIMO = 0;
 	private int volume;
 	private List<Integer> canais;
 	private boolean ligada = false;
@@ -30,7 +30,7 @@ public class TV {
 
 	public int aumentaVolume() {
 
-		if (volume < volumeMaximo) {
+		if (volume < VOLUME_MAXIMO) {
 			this.volume++;
 
 		}
@@ -40,7 +40,7 @@ public class TV {
 
 	public int diminuiVolume() {
 
-		if (volume > volumeMinimo) {
+		if (volume > VOLUME_MINIMO) {
 			this.volume--;
 
 		}
@@ -58,17 +58,25 @@ public class TV {
 	}
 
 	public int aumentaCanal() {
-		
-		
 
-		int indice = canais.indexOf(canalAtivo);
-        System.out.println("indice "+indice);
-       
-        canalAtivo = canais.get(indice + 1);
-	
+		int indiceCanalAtivo = canais.indexOf(canalAtivo);
 
-		
-		
+		if (indiceCanalAtivo < canais.size() - 1)
+
+			canalAtivo = canais.get(indiceCanalAtivo + 1);
+
+		return canalAtivo;
+
+	}
+
+	public int diminuiCanal() {
+
+		int indiceCanalAtivo = canais.indexOf(canalAtivo);
+
+		if (indiceCanalAtivo < canais.size() - 1 && indiceCanalAtivo != 0)
+
+			canalAtivo = canais.get(indiceCanalAtivo - 1);
+
 		return canalAtivo;
 
 	}
