@@ -7,6 +7,10 @@ public class Principal {
 		Conexao bancoConexao =  new Oracle();
 		
 		conectar(bancoConexao);
+		conectar( new Mysql());
+		conectar( new Postgres());
+
+
 		
 			
 
