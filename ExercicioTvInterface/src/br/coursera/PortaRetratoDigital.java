@@ -8,12 +8,15 @@ public class PortaRetratoDigital implements Controlavel {
 	private static int VOLUME_MINIMO = 0;
 	private int volume;
 	private List<Integer> musicas;
+	private List<Integer> fotos;
 	private boolean ligada = false;
-	private Integer musicaAtiva = 0;
+	private Integer fotoAtiva = 0;
 
-	public PortaRetratoDigital(List<Integer> musicas) {
+	public PortaRetratoDigital(List<Integer> musicas,List<Integer> fotos) {
 
 		this.musicas = musicas;
+		this.fotos = fotos;
+
 
 	}
 
@@ -41,25 +44,25 @@ public class PortaRetratoDigital implements Controlavel {
 
 	@Override
 	public int avanca() {
-		int indiceMusicaAtiva = musicas.indexOf(musicaAtiva);
+		int indiceFotoAtiva = fotos.indexOf(fotoAtiva);
 
-		if (indiceMusicaAtiva < musicas.size() - 1)
+		if (indiceFotoAtiva < fotos.size()-1 && indiceFotoAtiva != 5)
 
-			musicaAtiva = musicas.get(indiceMusicaAtiva + 1);
+			fotoAtiva = fotos.get(indiceFotoAtiva + 1);
 
-		return musicaAtiva;
+		return fotoAtiva;
 
 	}
 
 	@Override
 	public int retrocede() {
-		int indiceMusicaAtiva = musicas.indexOf(musicaAtiva);
+		int indiceFotoAtiva = fotos.indexOf(fotoAtiva);
 
-		if (indiceMusicaAtiva < musicas.size() - 1 && indiceMusicaAtiva != 0)
+		if (indiceFotoAtiva <= fotos.size()  && indiceFotoAtiva != 0)
 
-			musicaAtiva = musicas.get(indiceMusicaAtiva - 1);
+			fotoAtiva = fotos.get(indiceFotoAtiva - 1);
 
-		return musicaAtiva;
+		return fotoAtiva;
 
 	}
 
@@ -79,12 +82,12 @@ public class PortaRetratoDigital implements Controlavel {
 
 	
 	@Override
-	public int escolhe(int musica) {
-		if (musicas.contains(musica)) {
-			musicaAtiva = musica;
+	public int escolhe(int foto) {
+		if (fotos.contains(foto)) {
+			fotoAtiva = foto;
 
 		}
-		return musicaAtiva;
+		return fotoAtiva;
 
 }
 }

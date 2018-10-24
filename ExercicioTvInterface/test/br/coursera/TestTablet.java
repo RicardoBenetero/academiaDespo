@@ -9,27 +9,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TestTablet {
-	
-	private List<Integer> musicas;
+
 	private ControleRemoto controleRemoto;
 	private Controlavel controlavel;
 
 	@Before
 	public void preparaMassa() {
 
-		this.musicas = new ArrayList<Integer>();
-	
-
-		this.musicas.add(2);
-		this.musicas.add(4);
-		this.musicas.add(6);
-		this.musicas.add(8);
-		this.musicas.add(10);
-		this.musicas.add(12);
-
-		
-		
-		controlavel = new Tablet(musicas);
+		controlavel = new Tablet();
 
 		controleRemoto = new ControleRemoto(controlavel);
 
@@ -38,22 +25,22 @@ public class TestTablet {
 	@Test
 	public void deveRetornarLigadaQuandoLiga() {
 
-		boolean TvLigada = true;
+		boolean ligado = true;
 
 		boolean ligada = controleRemoto.liga();
 
-		assertTrue(TvLigada == ligada);
+		assertTrue(ligado == ligada);
 
 	}
 
 	@Test
 	public void deveRetornarDesligadaQuandoDesliga() {
 
-		boolean TvLigada = false;
+		boolean ligado = false;
 
 		boolean ligada = controleRemoto.desliga();
 
-		assertTrue(TvLigada == ligada);
+		assertTrue(ligado == ligada);
 
 	}
 
@@ -103,65 +90,4 @@ public class TestTablet {
 
 	}
 
-	@Test
-	public void musicaInformadaDeveSerAAtiva() {
-
-		assertEquals(6, controleRemoto.escolhe(6));
-
-	}
-
-	@Test
-	public void deveRetornarZeroQuandoInformadaMusicaInexistente() {
-
-		assertEquals(0, controleRemoto.escolhe(14));
-
-	}
-
-	@Test
-	public void deveRetornarProximaMusicaQuandoAvanca() {
-
-		int canalAtivo = controleRemoto.escolhe(6);
-
-		int canal = controleRemoto.avanca();
-
-		assertEquals(8, canal);
-
-	}
-
-	@Test
-	public void deveRetornarMusicaAnteriorQuandoRetrocede() {
-
-		int canalAtivo = controleRemoto.escolhe(6);
-
-		int canal = controleRemoto.retrocede();
-
-		assertEquals(4, canal);
-
-	}
-
-	@Test
-	public void deveRetornarUltimaMusicaQuandoAvancaEJaEstaNaUltima() {
-
-		int canalAtivo = controleRemoto.escolhe(12);
-
-		int canal = controleRemoto.avanca();
-
-		assertEquals(12, canal);
-
-	}
-
-	@Test
-	public void deveRetornarPrimeiraMusicaQuandoRetrocedeEJaEstaNaPrimeira() {
-
-		int canalAtivo = controleRemoto.escolhe(2);
-
-		int canal = controleRemoto.retrocede();
-
-		assertEquals(2, canal);
-
-	}
-
 }
-
-
-

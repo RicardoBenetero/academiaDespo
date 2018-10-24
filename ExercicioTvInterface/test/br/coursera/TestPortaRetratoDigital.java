@@ -11,6 +11,7 @@ import org.junit.Test;
 public class TestPortaRetratoDigital {
 
 	private List<Integer> musicas;
+	private List<Integer> fotos;
 	private ControleRemoto controleRemoto;
 	private Controlavel controlavel;
 
@@ -18,6 +19,8 @@ public class TestPortaRetratoDigital {
 	public void preparaMassa() {
 
 		this.musicas = new ArrayList<Integer>();
+		this.fotos = new ArrayList<Integer>();
+
 	
 
 		this.musicas.add(2);
@@ -26,39 +29,46 @@ public class TestPortaRetratoDigital {
 		this.musicas.add(8);
 		this.musicas.add(10);
 		this.musicas.add(12);
+		
+		this.fotos.add(1);
+		this.fotos.add(2);
+		this.fotos.add(3);
+		this.fotos.add(4);
+		this.fotos.add(5);
+		this.fotos.add(6);
 
 		
 		
-		controlavel = new PortaRetratoDigital(musicas);
+		controlavel = new PortaRetratoDigital(musicas,fotos);
 
 		controleRemoto = new ControleRemoto(controlavel);
 
 	}
 
 	@Test
-	public void deveRetornarLigadaQuandoLigaSom() {
+	public void deveRetornarLigadaQuandoLiga() {
 
-		boolean TvLigada = true;
+		boolean ligado = true;
 
 		boolean ligada = controleRemoto.liga();
 
-		assertTrue(TvLigada == ligada);
+		assertTrue(ligado == ligada);
 
 	}
 
 	@Test
-	public void deveRetornarDesligadaQuandoDesligaSom() {
+	public void deveRetornarDesligadaQuandoDesliga() {
 
-		boolean TvLigada = false;
+		boolean ligado = false;
 
 		boolean ligada = controleRemoto.desliga();
 
-		assertTrue(TvLigada == ligada);
+		assertTrue(ligado == ligada);
 
 	}
 
 	@Test
-	public void testAumentaVolumeSomDuasVezes() {
+	public void testAumentaVolumeDuasVezes() {
 
 		int volume = 0;
 		for (int i = 1; i <= 2; i++) {
@@ -69,7 +79,7 @@ public class TestPortaRetratoDigital {
 	}
 
 	@Test
-	public void deveRetornarSempreOLimiteQuandoAumentaVolumeSomAcimaLimite() {
+	public void deveRetornarSempreOLimiteQuandoAumentaVolumeAcimaLimite() {
 		int volume = 0;
 		for (int i = 1; i <= 21; i++) {
 
@@ -80,9 +90,9 @@ public class TestPortaRetratoDigital {
 	}
 
 	@Test
-	public void deveRetornarSempreOLimiteQuandoDiminuiVolumeSomAbaixoLimite() {
+	public void deveRetornarSempreOLimiteQuandoDiminuiVolumeAbaixoLimite() {
 		int volume = 0;
-		testAumentaVolumeSomDuasVezes();
+		testAumentaVolumeDuasVezes();
 
 		for (int i = 1; i <= 3; i++) {
 
@@ -95,7 +105,7 @@ public class TestPortaRetratoDigital {
 	@Test
 	public void testDiminuiVolumeTVUmaVez() {
 		int volume = 0;
-		testAumentaVolumeSomDuasVezes();
+		testAumentaVolumeDuasVezes();
 
 		volume = controleRemoto.diminuiVolume();
 
@@ -104,60 +114,60 @@ public class TestPortaRetratoDigital {
 	}
 
 	@Test
-	public void musicaInformadaDeveSerAAtiva() {
+	public void fotoInformadaDeveSerAAtiva() {
 
 		assertEquals(6, controleRemoto.escolhe(6));
 
 	}
 
 	@Test
-	public void deveRetornarZeroQuandoInformadaMusicaInexistente() {
+	public void deveRetornarZeroQuandoInformadaFotoInexistente() {
 
 		assertEquals(0, controleRemoto.escolhe(14));
 
 	}
 
 	@Test
-	public void deveRetornarProximaMusicaQuandoAvanca() {
+	public void deveRetornarProximaFotoQuandoAvanca() {
 
-		int canalAtivo = controleRemoto.escolhe(6);
+		controleRemoto.escolhe(5);
 
-		int canal = controleRemoto.avanca();
+		int foto = controleRemoto.avanca();
 
-		assertEquals(8, canal);
+		assertEquals(6, foto);
 
 	}
 
 	@Test
 	public void deveRetornarMusicaAnteriorQuandoRetrocede() {
 
-		int canalAtivo = controleRemoto.escolhe(6);
+		controleRemoto.escolhe(6);
 
-		int canal = controleRemoto.retrocede();
+		int foto = controleRemoto.retrocede();
 
-		assertEquals(4, canal);
-
-	}
-
-	@Test
-	public void deveRetornarUltimaMusicaQuandoAvancaEJaEstaNaUltima() {
-
-		int canalAtivo = controleRemoto.escolhe(12);
-
-		int canal = controleRemoto.avanca();
-
-		assertEquals(12, canal);
+		assertEquals(5, foto);
 
 	}
 
 	@Test
-	public void deveRetornarPrimeiraMusicaQuandoRetrocedeEJaEstaNaPrimeira() {
+	public void deveRetornarUltimaFotoQuandoAvancaEJaEstaNaUltima() {
 
-		int canalAtivo = controleRemoto.escolhe(2);
+		controleRemoto.escolhe(6);
 
-		int canal = controleRemoto.retrocede();
+		int foto = controleRemoto.avanca();
 
-		assertEquals(2, canal);
+		assertEquals(6, foto);
+
+	}
+
+	@Test
+	public void deveRetornarPrimeiraFotoQuandoRetrocedeEJaEstaNaPrimeira() {
+
+		controleRemoto.escolhe(1);
+
+		int foto = controleRemoto.retrocede();
+
+		assertEquals(1, foto);
 
 	}
 

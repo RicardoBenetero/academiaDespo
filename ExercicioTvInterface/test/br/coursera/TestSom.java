@@ -38,22 +38,22 @@ public class TestSom {
 	@Test
 	public void deveRetornarLigadaQuandoLigaSom() {
 
-		boolean TvLigada = true;
+		boolean ligado = true;
 
 		boolean ligada = controleRemoto.liga();
 
-		assertTrue(TvLigada == ligada);
+		assertTrue(ligado == ligada);
 
 	}
 
 	@Test
 	public void deveRetornarDesligadaQuandoDesligaSom() {
 
-		boolean TvLigada = false;
+		boolean ligado = false;
 
 		boolean ligada = controleRemoto.desliga();
 
-		assertTrue(TvLigada == ligada);
+		assertTrue(ligado == ligada);
 
 	}
 
@@ -120,44 +120,44 @@ public class TestSom {
 	@Test
 	public void deveRetornarProximaMusicaQuandoAvanca() {
 
-		int canalAtivo = controleRemoto.escolhe(6);
+		controleRemoto.escolhe(6);
 
-		int canal = controleRemoto.avanca();
+		int musica = controleRemoto.avanca();
 
-		assertEquals(8, canal);
+		assertEquals(8, musica);
 
 	}
 
 	@Test
 	public void deveRetornarMusicaAnteriorQuandoRetrocede() {
 
-		int canalAtivo = controleRemoto.escolhe(6);
+		controleRemoto.escolhe(6);
 
-		int canal = controleRemoto.retrocede();
+		int musica = controleRemoto.retrocede();
 
-		assertEquals(4, canal);
+		assertEquals(4, musica);
 
 	}
 
 	@Test
 	public void deveRetornarUltimaMusicaQuandoAvancaEJaEstaNaUltima() {
 
-		int canalAtivo = controleRemoto.escolhe(12);
+		controleRemoto.escolhe(12);
 
-		int canal = controleRemoto.avanca();
+		int musica = controleRemoto.avanca();
 
-		assertEquals(12, canal);
+		assertEquals(12, musica);
 
 	}
 
 	@Test
 	public void deveRetornarPrimeiraMusicaQuandoRetrocedeEJaEstaNaPrimeira() {
 
-		int canalAtivo = controleRemoto.escolhe(2);
+	    controleRemoto.escolhe(2);
 
-		int canal = controleRemoto.retrocede();
+		int musica = controleRemoto.retrocede();
 
-		assertEquals(2, canal);
+		assertEquals(2, musica);
 
 	}
 

@@ -6,17 +6,11 @@ public class Tablet implements Controlavel {
 
 	private static int VOLUME_MAXIMO = 30;
 	private static int VOLUME_MINIMO = 0;
-	private List<Integer> musicas;
+
 	private int volume;
-	private int avanca;
-	private int retrocede;
 	private boolean ligada = false;
-	private Integer musicaAtiva = 0;
 
-
-	public Tablet(List<Integer> musicas) {
-
-		this.musicas = musicas;
+	public Tablet() {
 
 	}
 
@@ -43,25 +37,15 @@ public class Tablet implements Controlavel {
 
 	@Override
 	public int avanca() {
-		int indiceMusicaAtiva = musicas.indexOf(musicaAtiva);
 
-		if (indiceMusicaAtiva < musicas.size() - 1)
-
-			musicaAtiva = musicas.get(indiceMusicaAtiva + 1);
-
-		return musicaAtiva;
+		return 0;
 
 	}
 
 	@Override
 	public int retrocede() {
-		int indiceMusicaAtiva = musicas.indexOf(musicaAtiva);
 
-		if (indiceMusicaAtiva < musicas.size() - 1 && indiceMusicaAtiva != 0)
-
-			musicaAtiva = musicas.get(indiceMusicaAtiva - 1);
-
-		return musicaAtiva;
+		return 0;
 
 	}
 
@@ -78,21 +62,9 @@ public class Tablet implements Controlavel {
 		return ligada;
 	}
 
-	public int mudaMusica(int musica) {
-		if (musicas.contains(musica)) {
-			musicaAtiva = musica;
-
-		}
-		return musicaAtiva;
-
-	}
-
 	@Override
-	public int escolhe(int musica) {
-		if (musicas.contains(musica)) {
-			musicaAtiva = musica;
+	public int escolhe(int dados) {
 
-		}
-		return musicaAtiva;
+		return 0;
 	}
 }

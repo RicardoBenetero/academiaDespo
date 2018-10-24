@@ -120,7 +120,7 @@ public class TestTv {
 	@Test
 	public void deveRetornarProximoCanalQuandoaumentaCanal() {
 
-		int canalAtivo = controleRemoto.escolhe(6);
+		controleRemoto.escolhe(6);
 
 		int canal = controleRemoto.avanca();
 
@@ -131,7 +131,7 @@ public class TestTv {
 	@Test
 	public void deveRetornarCanalAnteriorQuandoDiminuiCanal() {
 
-		int canalAtivo = controleRemoto.escolhe(6);
+		controleRemoto.escolhe(6);
 
 		int canal = controleRemoto.retrocede();
 
@@ -142,7 +142,7 @@ public class TestTv {
 	@Test
 	public void deveRetornarUltimoCanalQuandoAumentaEJaEstaNoUltimo() {
 
-		int canalAtivo = controleRemoto.escolhe(12);
+		controleRemoto.escolhe(12);
 
 		int canal = controleRemoto.avanca();
 
@@ -153,7 +153,7 @@ public class TestTv {
 	@Test
 	public void deveRetornarPrimeiroCanalQuandoDiminueEJaEstaNoPrimeiro() {
 
-		int canalAtivo = controleRemoto.escolhe(2);
+		controleRemoto.escolhe(2);
 
 		int canal = controleRemoto.retrocede();
 
