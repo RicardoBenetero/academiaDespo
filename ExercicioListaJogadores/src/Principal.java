@@ -12,7 +12,7 @@ public class Principal {
 		Jogador dudu = new Jogador("Dudu", 35);
 		Jogador borja = new Jogador("Borja", 25);
 		Jogador willian = new Jogador("Willian", 26);
-		Jogador lucas = new Jogador("Lucas", 2);
+		Jogador lucas = new Jogador("Lucas", 27);
 		
 		jogadores.add(dudu);
 		jogadores.add(borja);

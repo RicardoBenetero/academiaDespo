@@ -46,7 +46,7 @@ public class PortaRetratoDigital implements Controlavel {
 	public int avanca() {
 		int indiceFotoAtiva = fotos.indexOf(fotoAtiva);
 
-		if (indiceFotoAtiva < fotos.size()-1 && indiceFotoAtiva != 5)
+		if (indiceFotoAtiva < fotos.size()-1)// && indiceFotoAtiva != 5)
 
 			fotoAtiva = fotos.get(indiceFotoAtiva + 1);
 
