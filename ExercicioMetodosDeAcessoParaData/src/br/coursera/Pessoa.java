@@ -24,16 +24,6 @@ public class Pessoa {
 		
 	}
 	
-	public int mes(){
-		
-		
-		
-		return dataDeNascimento.getMonthValue();
-		
-		
-		
-		
-	}
 	
 	
 	public String getSigno() {
@@ -112,7 +102,7 @@ public class Pessoa {
 			break;			
 		case 11:
 			if(dataDeNascimento.getDayOfMonth()>=22) {
-				signo = "Sagitario";
+				signo = "Sargitario";
 			} else {
 				signo = "Escorpiao";
 			}
@@ -121,7 +111,7 @@ public class Pessoa {
 			if(dataDeNascimento.getDayOfMonth()>=22) {
 				signo = "Capricornio";
 			} else {
-				signo = "Sagitario";
+				signo = "Sargitario";
 			}
 			break;			
 		}
