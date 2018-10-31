@@ -29,8 +29,8 @@ public class testeFormatador {
 
 	@Test
 	public void deveRetornarTratamentoComTitulo() {
-		Autoridade autoridade = new Autoridade("Pedro", "Cabral", "Magnífico");
-		assertEquals("Magnífico Pedro Cabral", autoridade.getTratamento());
+		Autoridade autoridade = new Autoridade("Pedro", "Cabral", "Magnifico");
+		assertEquals("Magnifico Pedro Cabral", autoridade.getTratamento());
 	}
 
 	@Test(expected = MensagemErroException.class)

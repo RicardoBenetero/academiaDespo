@@ -4,7 +4,7 @@ public class Autoridade implements FormatadorNome {
 
 	private final static int INFORMAL = 1;
 	private final static int RESPEITOSO = 2;
-	private final static int COM_TTITULO = 3;
+	private final static int COM_TITULO = 3;
 	public final static int FEMININO = 0;
 	public final static int MASCULINO = 1;
 	private String nome, sobrenome;
@@ -30,7 +30,7 @@ public class Autoridade implements FormatadorNome {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.titulo = titulo;
-		tratamento = COM_TTITULO;
+		tratamento = COM_TITULO;
 	}
 
 	public String getTratamento() {
@@ -41,7 +41,7 @@ public class Autoridade implements FormatadorNome {
 	public String formatarNome(String nome, String sobrenome) {
 		if (tratamento == INFORMAL)
 			return formatacaoInformal();
-		if (tratamento == COM_TTITULO)
+		if (tratamento == COM_TITULO)
 			return formatacaoComTitulo();
 		if (tratamento == RESPEITOSO)
 			return formatacaoRespeitosa();
