@@ -1,0 +1,8 @@
+O enunciado / regras são:
+- Devem existir Contas Correntes do tipo Regular e do tipo Premium;
+- Contas Correntes Regulares têm uma taxa de juros fixa de 5%;
+- Contas Correntes Premium têm uma taxa de juros fixa de 1%;
+- Ao fazer um deposito em uma Conta Corrente Premium, é apenas incrementado o valor total do saldo;
+- Ao fazer um deposito em uma Conta Corrente Premium, é incrementado ao saldo o valor depositado + 6% do valor depositado.
+- É PROIBIDO USAR *IFS* OU QUALQUER OUTRO CONDICIONAL NO CÓDIGO;
+- É PROIBIDO ALTERAR OS TESTES DE UNIDADE.
