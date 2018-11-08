@@ -2,7 +2,7 @@ package br.coursera;
 
 public class ContaCorrenteRegular implements ContaCorrente {
 
-	public static double TAXA_JUROS_FIXA = 5.0;
+	private static double TAXA_JUROS_FIXA = 5.0;
 	private double saldo;
 
 
@@ -23,4 +23,16 @@ public class ContaCorrenteRegular implements ContaCorrente {
 		return TAXA_JUROS_FIXA;
 	}
 
+	@Override
+	public void efetuarRetirada(Double valor) {
+		
+		if (valor <= this.saldo) {
+		
+		this.saldo = this.saldo - valor;
+		}else {
+		throw new SaldoInsuficienteException("Saldo insuficiente");
+		
+	}
+
+}
 }
