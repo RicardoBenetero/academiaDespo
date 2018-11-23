@@ -1,0 +1,134 @@
+Exercícios Exceptions
+
+1. Para criar exceções customizadas, o que é recomendado fazer?
+a. implementar Object
+b. implementar Runnable
+c. extender Exception
+d. extender Error
+e. Não é necessário implementar ou extender nada
+
+2. Quais classes são subclasses deRuntimeException?
+a. ArithmeticException
+b. InterruptedException
+c. IOException
+d. ArrayIndexOutOfBoundsException
+e. FileNotFoundException
+
+3. Sempre é necessário tratar uma RuntimeException?
+FALSO
+VERDADEIRO
+
+4. Pode existir try sem catch?
+a. Sim, somente se existir  um throw dentro do bloco try
+b. Não, nunca é permitido
+c. Sim e deve estar dentro de um bloco if
+d. Somente se o método conter throws
+e. Sim, se for acompanhado de um bloco finally
+
+5. O que será impresso no código à seguir?
+Diagrama de classes das Exceções
+
+try {
+    File file = new File("config.sys");
+    FileReader reader = new FileReader(file);
+} catch(Exception e) {
+    System.out.print("> Exception ");
+} catch(IOException e) {
+    System.out.print("> IOException ");
+} catch(FileNotFoundException e) {
+    System.out.print("> FileNotFoundException ");
+}
+a. > Exception > IOException > FileNotFoundException
+b. > FileNotFoundException > IOException > Exception
+c. > IOException > Exception > FileNotFoundException
+d. O código não compila
+e. O código executa normalmente apesar de não encontrar o arquivo
+
+6. Em um bloco try..catch, o bloco finally é opcional.
+FALSO
+VERDADEIRO
+
+7. O que será impresso nesse código?
+public class ElevadorTeste {
+    public static void main(String[] args) {
+        Elevador elevador = new Elevador();
+
+        try {
+            elevador.irParaAndar(4);
+            System.out.println("Subindo para o quarto andar");
+        } catch (ArrayIndexOutOfBoundsException | AndarNaoEncontradoException e) {
+            System.out.printf("erro não genérico: %s", e.getMessage());
+        } catch (Exception e) {
+            System.out.println("erro genérico");
+        }
+    }
+}
+
+public class Elevador {
+    private String[] andares = new String[] {"0", "1", "2", "3"};
+    private String andarCorrente;
+
+    public void irParaAndar(int andar) throws AndarNaoEncontradoException {
+        if(andar < 0 || andar > 4) {
+            throw new AndarNaoEncontradoException(andar);
+        }
+
+        andarCorrente = andares[andar];
+    }
+}
+
+public class AndarNaoEncontradoException extends Exception {
+
+    public AndarNaoEncontradoException(int andar) {
+        super(String.format("Andar não existe: %d", andar));
+    }
+
+}
+a. erro não genérico: Andar não existe: 4
+b. Subindo para o quarto andar
+c. erro genérico
+d. erro não genérico: 4
+e. O código não compila
+
+8. O que será impresso nesse código?
+String sentence = "Minha,lista,de,Strings";
+
+try {
+    String[] words = sentence.split(",");
+    System.out.print(words[3] + " ");
+    System.exit(1);
+} catch(Exception e) {
+    System.out.print("Deu ruim! ");
+    System.exit(1);
+} finally {
+    System.out.print("Finalmente... ");
+}
+a. Deu ruim! Finalmente...
+b. Strings Finalmente...
+c. Strings
+d. O Código não compila.
+e. Nada
+
+9. Ao realizar o multithrow, conforme o código abaixo, as exceptions E1 e E2 devem ter a mesma subclasse?
+try {
+    String line = object1.someMethod();
+    object2.otherMethod(line);
+} catch(E1 | E2 e) {
+    throw e;
+}
+FALSO
+VERDADEIRO
+
+10. No framework JUnit 4, o que deve ser feito para testar uma exceção?
+a. Deve se colocar a chamada que lança exception simplesmente dentro de um bloco try {} catch() {}
+b. @Test(expected = AlgumaException.class)
+c. assertThrows(() -> { codigo.lancaException(); });
+d. Não é necessário fazer nada
+e. Somente um throws Exception na declaralção do método
+
+11. As palavras reservadas throws e throw são usadas, repectivamente:
+a. Na declaração da classe e de atributos
+b. No bloco if e no bloco for
+c. Na declaração de um método e dentro de um bloco de código
+d. Dentro de um bloco de código e na declaração de um métdodo
+e. Dentro de um bloco finally e somente quando o método for tiver o modificador native
