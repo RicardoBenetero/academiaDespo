@@ -17,7 +17,9 @@ public PessoaJuridica(String nome, Double renda,String cnpj) {
 	
 	
 	public double calcularImposto() {
-		return renda;
+		
+	Double	resultado = (renda*10)/100;
+		return resultado;
 		
 		
 		
