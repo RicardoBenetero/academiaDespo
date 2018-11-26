@@ -5,7 +5,7 @@ import java.util.List;
 public class Banco {
 	
 	String nome;
-	List<Conta> contas = new ArrayList<Conta>();
+	List<ContaCorrente> contas = new ArrayList<ContaCorrente>();
 	List<Cliente> clientes = new ArrayList<Cliente>();
 
  

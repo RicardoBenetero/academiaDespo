@@ -12,9 +12,13 @@ public class TestCaixa24h {
 		
 		Banco banco = new Banco();
 		
-		Cliente cliente1 = new Cliente();
+		//Cliente cliente1 = new Cliente(conta,"Ana");
 		
-		Conta conta = new Conta(cliente1, "1234");
+	
+		
+		Conta conta = new ContaCorrente( "1234");
+		
+		Cliente cliente1 = new Cliente(conta,"Ana");
 		
 		conta.realizarDeposito(200.00);
 		
@@ -24,7 +28,11 @@ public class TestCaixa24h {
 		
 		atm.consultarSaldo(cliente1);
 		
-		 assertEquals(200.00,conta.consultarSaldo() );
+		Conta conta2 = new ContaCorrente( "1234");
+		
+		double delta = 0.01;
+		
+		assertEquals(200.00,conta.consultarSaldo(),delta );
 		
 	}
 

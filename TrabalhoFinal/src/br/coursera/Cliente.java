@@ -4,12 +4,16 @@ public class Cliente {
 	
 	
 	String nome;
-	String numeroConta;
 	Conta conta;
 	
-	
-	public String getNumeroConta() {
-		return numeroConta;
+	public Cliente(Conta conta,String nome){
+		
+		this.conta = conta;
+		this.nome = nome;
+		
+		
+		
+		
 	}
 	
 	

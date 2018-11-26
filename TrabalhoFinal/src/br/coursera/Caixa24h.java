@@ -3,7 +3,7 @@ package br.coursera;
 public class Caixa24h {
 	
 	Banco banco;
-	Cliente cliente;
+	
 	
 	public Caixa24h(Banco banco) {
 		
@@ -18,8 +18,13 @@ public class Caixa24h {
 		
 	}
 	public double consultarSaldo(Cliente cliente){
-		
+	
+
 		if (banco.clientes.contains(cliente)) {
+			
+			//System.out.println(cliente.conta.getNumeroConta()+ " passou");
+			
+			System.out.println(cliente.conta + " passou");
 			
 			cliente.conta.consultarSaldo();
 			
