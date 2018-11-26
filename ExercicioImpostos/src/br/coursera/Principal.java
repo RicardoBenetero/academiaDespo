@@ -10,7 +10,7 @@ public class Principal {
 		//System.out.println( p.calcularImposto());
 		
 		
-		PessoaFisica p1 = new PessoaFisica("teste2", 6000.01, "1234");
+		PessoaFisica p1 = new PessoaFisica("teste2", 8000.01, "1234");
 
 		System.out.println( p1.calcularImposto());
 

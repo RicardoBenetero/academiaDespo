@@ -16,25 +16,27 @@ public class PessoaFisica implements Contribuinte {
 
 	public double calcularImposto() {
 
-		Double resultado = 0.0;
+		Double resultado = 0.00;
 
-		if (renda == 0.0 || renda <= 2000.0) {
-
+		if (renda == 0.00 && renda <= 2000.00) {
+ 
 			return resultado;
 
-		} else if (renda > 2000.0 || renda <= 4000.0) {
-
+		} else if (renda > 2000.00 && renda <= 4000.00) {
+ 
 			return resultado = (renda * 10) / 100;
 
-		} else if (renda > 4000.0 || renda <= 6000.0) {
-
+		} else if (renda > 4000.00 && renda <= 6000.00) {
+ 
 			return resultado = (renda * 15) / 100;
-		} else if (renda > 6000.0 || renda <= 8000.0) {
-
+		} else if (renda > 6000.00 && renda <= 8000.00) {
+ 
 			return resultado = (renda * 25) / 100;
-		} else if (renda > 8000.0) {
-
+		} else if (renda > 8000.00) {
+ 			
 			return resultado = (renda * 30) / 100;
+			
+			
 		}
 		return resultado;
 
