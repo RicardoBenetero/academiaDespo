@@ -9,7 +9,7 @@ public class TestCaixa24h {
 	@Test
 	public void deveraRetornarSaldo() {
 
-		Banco banco = new Banco();
+		Banco bancoBeta = new BancoBeta();
 
 		Conta conta = new ContaCorrente("1234");
 
@@ -17,10 +17,10 @@ public class TestCaixa24h {
 
 		conta.realizarDeposito(200.00);
 
-		banco.clientes.add(cliente1);
-		banco.contas.add(conta);
+		
+	
 
-		Caixa24h atm = new Caixa24h(banco);
+		Caixa24h atm = new Caixa24h(bancoBeta);
 
 		//
 		Conta conta2 = new ContaCorrente("1235");
@@ -28,8 +28,6 @@ public class TestCaixa24h {
 
 		conta2.realizarDeposito(400.00);
 
-		banco.clientes.add(cliente2);
-		banco.contas.add(conta2);
 
 		double delta = 0.01;
 
@@ -41,15 +39,14 @@ public class TestCaixa24h {
 	@Test
 	public void deveraRealizarDepositoComSucesso() {
 
-		Banco banco = new Banco();
+		Banco bancoBeta = new BancoBeta();
 
 		Conta conta = new ContaCorrente("1234");
 
 		Cliente cliente1 = new Cliente(conta, "Ana");
-		Caixa24h atm = new Caixa24h(banco);
+		Caixa24h atm = new Caixa24h(bancoBeta);
 
-		banco.clientes.add(cliente1);
-		banco.contas.add(conta);
+		
 
 		atm.realizarDeposito(cliente1, 200.00);
 
@@ -57,8 +54,6 @@ public class TestCaixa24h {
 		Conta conta2 = new ContaCorrente("1235");
 		Cliente cliente2 = new Cliente(conta2, "Joao");
 
-		banco.clientes.add(cliente2);
-		banco.contas.add(conta2);
 
 		atm.realizarDeposito(cliente2, 400.00);
 
@@ -72,15 +67,13 @@ public class TestCaixa24h {
 	@Test
 	public void deveraRealizarSaqueComSucesso() {
 
-		Banco banco = new Banco();
+		Banco bancoBeta = new BancoBeta();
 
 		Conta conta = new ContaCorrente("1234");
 
 		Cliente cliente1 = new Cliente(conta, "Ana");
-		Caixa24h atm = new Caixa24h(banco);
+		Caixa24h atm = new Caixa24h(bancoBeta);
 
-		banco.clientes.add(cliente1);
-		banco.contas.add(conta);
 
 		atm.realizarDeposito(cliente1, 200.00);
 		atm.Sacar(cliente1, 100.00);
@@ -89,8 +82,6 @@ public class TestCaixa24h {
 		Conta conta2 = new ContaCorrente("1235");
 		Cliente cliente2 = new Cliente(conta2, "Joao");
 
-		banco.clientes.add(cliente2);
-		banco.contas.add(conta2);
 
 		atm.realizarDeposito(cliente2, 400.00);
 		atm.Sacar(cliente2, 100.00);
@@ -105,18 +96,82 @@ public class TestCaixa24h {
 	@Test(expected = SaldoInsuficienteException.class)
 	public void naoDevePermitirSaqueSuperiorAoValorDepositado() throws SaldoInsuficienteException {
 
-		Banco banco = new Banco();
+		Banco bancoBeta = new BancoBeta();
 
 		Conta conta = new ContaCorrente("1234");
 
 		Cliente cliente1 = new Cliente(conta, "Ana");
-		Caixa24h atm = new Caixa24h(banco);
+		Caixa24h atm = new Caixa24h(bancoBeta);
 
-		banco.clientes.add(cliente1);
-		banco.contas.add(conta);
 
 		atm.realizarDeposito(cliente1, 200.00);
 		atm.Sacar(cliente1, 200.01);
 
 	}
+	@Test
+	public void deveraRealizarTransferenciaComSucesso() {
+
+		Banco bancoBeta = new BancoBeta();
+
+		Conta conta = new ContaCorrente("1234");
+
+		Cliente cliente1 = new Cliente(conta, "Ana");
+		Caixa24h atm = new Caixa24h(bancoBeta);
+
+
+		atm.realizarDeposito(cliente1, 800.00);
+	
+
+		//
+		Conta conta2 = new ContaCorrente("1235");
+		Cliente cliente2 = new Cliente(conta2, "Joao");
+
+
+		atm.realizarDeposito(cliente2, 400.00);
+		
+		atm.realizarTransferencia(cliente1, conta, 100.00, conta2);
+		
+		double delta = 0.01;
+		
+		atm.consultarSaldo(cliente1);
+       
+		assertEquals(700.00, atm.consultarSaldo(cliente1), delta);
+		assertEquals(500.00, atm.consultarSaldo(cliente2), delta);
+
+	}
+	
+	@Test
+	public void deveraConsultarSaqueComSucesso() {
+
+		Banco bancoBeta = new BancoBeta();
+
+		Conta conta = new ContaCorrente("1234");
+
+		Cliente cliente1 = new Cliente(conta, "Ana");
+		Caixa24h atm = new Caixa24h(bancoBeta);
+
+
+		atm.realizarDeposito(cliente1, 800.00);
+	
+
+		//
+		Conta conta2 = new ContaCorrente("1235");
+		Cliente cliente2 = new Cliente(conta2, "Joao");
+
+
+		atm.realizarDeposito(cliente2, 400.00);
+		
+		atm.realizarTransferencia(cliente1, conta, 100.00, conta2);
+		
+		
+		atm.consultarSaldo(cliente1);
+		atm.realizarDeposito(cliente1, 800.00);
+		atm.Sacar(cliente1, 200.00);
+		atm.realizarTransferencia(cliente1, conta, 100.00, conta2);
+		atm.consultarExtrato(cliente1);
+		
+
+	}
+
+	
 }

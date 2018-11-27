@@ -10,7 +10,9 @@ public class Caixa24h {
 
 	}
 
-	public void consultarExtrato() {
+	public void consultarExtrato(Cliente cliente) {
+		
+		cliente.conta.consultarExtrato();
 
 	}
 
@@ -20,7 +22,10 @@ public class Caixa24h {
 
 	}
 
-	public void realizarTransferencia() {
+	public void realizarTransferencia(Cliente cliente,Conta contaDeposita,Double valor, Conta contaRecebeDeposito) {
+		
+		cliente.conta.realizarTransferencia(contaDeposita, valor, contaRecebeDeposito);
+		
 
 	}
 

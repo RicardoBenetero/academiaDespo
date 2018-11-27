@@ -6,7 +6,7 @@ public interface Conta {
 
 	public double consultarSaldo();
 
-	public void realizarTransferencia();
+	public void realizarTransferencia(Conta contaDeposita,Double valor, Conta contaRecebeDeposito);
 
 	public void realizarDeposito(Double valor);
 
