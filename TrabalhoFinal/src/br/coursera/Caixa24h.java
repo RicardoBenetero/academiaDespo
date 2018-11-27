@@ -1,53 +1,38 @@
 package br.coursera;
 
 public class Caixa24h {
-	
-	Banco banco;
-	
-	
-	public Caixa24h(Banco banco) {
-		
-		this.banco = banco;
-		
-		
-	}
-	
-	public void consultarExtrato() {
-		
-		
-		
-	}
-	public double consultarSaldo(Cliente cliente){
-	
 
-		if (banco.clientes.contains(cliente)) {
-			
-			//System.out.println(cliente.conta.getNumeroConta()+ " passou");
-			
-			System.out.println(cliente.conta + " passou");
-			
-			cliente.conta.consultarSaldo();
-			
-		}
-		
-		return 0;
-		
-		
-		
+	Banco banco;
+
+	public Caixa24h(Banco banco) {
+
+		this.banco = banco;
+
 	}
+
+	public void consultarExtrato() {
+
+	}
+
+	public double consultarSaldo(Cliente cliente) {
+
+		return cliente.conta.consultarSaldo();
+
+	}
+
 	public void realizarTransferencia() {
-		
-		
-		
+
 	}
-	public void realizarDeposito() {
-		
-		
+
+	public void realizarDeposito(Cliente cliente, Double valor) {
+		cliente.conta.realizarDeposito(valor);
+
 	}
-	public void Sacar() {
-		
-		
-		
+
+	public void Sacar(Cliente cliente, Double valor) {
+
+		cliente.conta.sacar(valor);
+
 	}
 
 }

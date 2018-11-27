@@ -10,6 +10,6 @@ public interface Conta {
 
 	public void realizarDeposito(Double valor);
 
-	public void Sacar();
+	public void sacar(Double valor);
 
 }

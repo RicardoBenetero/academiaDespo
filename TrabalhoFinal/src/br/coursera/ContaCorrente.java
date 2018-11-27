@@ -1,69 +1,46 @@
 package br.coursera;
 
-import java.util.ArrayList;
-import java.util.List;
+public class ContaCorrente implements Conta {
 
-public class ContaCorrente implements Conta{
-	
 	private Double saldo = 0.00;
 	private String numeroConta;
-	List<String> numerosConta = new ArrayList<String>();
 
-	//private Cliente cliente;
-	
-	public ContaCorrente( String numeroConta) {
-		
-		for(String n: numerosConta){
-			if(numerosConta.contains(numeroConta)){
-				
-				System.out.println("erro");
-				
-			}
-			
-		else{
-		
-		//this.cliente = cliente;
-		//this.numeroConta = numeroConta;
-			System.out.println("aqui");
-		numerosConta.add(numeroConta);
-		}
-	//	for(String n: numerosConta){
-		//	System.out.println(numerosConta);
-			
-		}
-		for(String n: numerosConta){
-				System.out.println(numerosConta);
-		}
+	public ContaCorrente(String numeroConta) {
+
+		this.numeroConta = numeroConta;
+
 	}
-			
-			
-	
-    public void consultarExtrato() {
-		
-		
-		
+
+	public void consultarExtrato() {
+
 	}
-	public double consultarSaldo(){
-		
+
+	public double consultarSaldo() {
+
 		return saldo;
 	}
+
 	public void realizarTransferencia() {
-		
-		
-		
+
 	}
+
 	public void realizarDeposito(Double valor) {
-		  this.saldo = saldo + valor;
-		
-		
-	}
-	public void Sacar() {
-		
-		
-		
+
+		this.saldo = saldo + valor;
+
 	}
 
+	public void sacar(Double valor) throws SaldoInsuficienteException {
 
+		if (valor <= this.saldo) {
+
+			this.saldo = this.saldo - valor;
+		} else {
+			throw new SaldoInsuficienteException("Saldo insuficiente");
+
+		}
+
+	}
 
 	public String getNumeroConta() {
 		return numeroConta;
