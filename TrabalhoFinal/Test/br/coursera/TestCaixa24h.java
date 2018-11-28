@@ -2,6 +2,9 @@ package br.coursera;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
 public class TestCaixa24h {
@@ -141,7 +144,7 @@ public class TestCaixa24h {
 	}
 	
 	@Test
-	public void deveraConsultarSaqueComSucesso() {
+	public void deveraConsultarExtratoComSucesso() {
 
 		Banco bancoBeta = new BancoBeta();
 
@@ -170,7 +173,17 @@ public class TestCaixa24h {
 		atm.realizarTransferencia(cliente1, conta, 100.00, conta2);
 		atm.consultarExtrato(cliente1);
 		
+		double delta = 0.01;
+		
+	//	List<String> transacoesEfetuadas = new ArrayList<String>();
+		
+	//	transacoesEfetuadas.add ("operação realizada = realizar deposito: 800.0");
 
+		
+	//	for(String teste: transacoesEfetuadas) {
+		
+	//	assertEquals([transacoesEfetuadas], atm.consultarExtrato(cliente1));
+	//	}
 	}
 
 	
