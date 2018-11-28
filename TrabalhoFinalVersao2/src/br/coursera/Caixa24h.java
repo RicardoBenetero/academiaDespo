@@ -10,41 +10,35 @@ public class Caixa24h {
 
 	}
 
-	public void consultarExtrato(Cliente cliente) {
-		
-		cliente.conta.consultarExtrato();
-		
-	
-	
-	
+	public void consultarExtrato(Banco banco) {
+
+		banco.consultarExtrato();
 
 	}
 
 	public double consultarSaldo(Cliente cliente) {
 
-		return cliente.conta.consultarSaldo();
-		
-	
-		
-		
+		return banco.consultarSaldo();
 
 	}
 
-	public void realizarTransferencia(Cliente cliente,Conta contaDeposita,Double valor, Conta contaRecebeDeposito) {
-		
-		cliente.conta.realizarTransferencia(contaDeposita, valor, contaRecebeDeposito);
-		
+	public void realizarTransferencia(Cliente cliente, Conta contaDeposita,
+			Double valor, Conta contaRecebeDeposito) {
+
+		banco.realizarTransferencia(contaDeposita, valor, contaRecebeDeposito);
 
 	}
 
-	public void realizarDeposito(Cliente cliente, Double valor) {
-		cliente.conta.realizarDeposito(valor);
+	public void realizarDeposito(Cliente cliente, Double valor)
+			throws ValorInvalidoException {
+		banco.realizarDeposito(valor);
 
 	}
 
-	public void Sacar(Cliente cliente, Double valor) {
+	public void sacar(Cliente cliente, Double valor)
+			throws SaldoInsuficienteException {
 
-		cliente.conta.sacar(valor);
+		banco.sacar();
 
 	}
 

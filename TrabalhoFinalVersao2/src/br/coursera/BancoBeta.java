@@ -2,11 +2,11 @@ package br.coursera;
 
 public class BancoBeta implements Banco {
 	
-	private String nome;
-	private ContaCorrenteBancoBeta  contaCorrenteBancoBeta;
+    private final static String BANCOBETA = "BANCOBETA";
+	private Conta  contaCorrenteBancoBeta;
 	
 	
-	 public BancoBeta(ContaCorrenteBancoBeta  contaCorrenteBancoBeta) {
+	 public BancoBeta(Conta  contaCorrenteBancoBeta) {
 	    	
 	    	
 	    	this.contaCorrenteBancoBeta= contaCorrenteBancoBeta;
@@ -14,7 +14,7 @@ public class BancoBeta implements Banco {
 	
 	public String getNome() {
 		
-		return nome;
+		return BANCOBETA;
 		
 	}
 

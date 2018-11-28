@@ -5,13 +5,13 @@ public class Cliente {
 	
 	private String nome;
 	protected Conta conta;
-	private Banco banco;
+//	private Banco banco;
 	
-	public Cliente(Conta conta,String nome,Banco banco){
+	public Cliente(Conta conta,String nome){
 		
 		this.conta = conta;
 		this.nome = nome;
-		this.banco = banco;
+	//	this.banco = banco;
 		
 		
 		

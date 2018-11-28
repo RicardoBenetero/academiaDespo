@@ -1,6 +1,10 @@
 package br.coursera;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public interface Banco {
+	
 	
 	public String getNome();
 	public void consultarExtrato();

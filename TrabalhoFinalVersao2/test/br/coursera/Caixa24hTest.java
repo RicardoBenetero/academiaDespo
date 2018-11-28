@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class TestCaixa24h {
+public class Caixa24hTest {
 
 	@Test
 	public void deveraRetornarSaldo() {
@@ -68,14 +68,14 @@ public class TestCaixa24h {
 		Caixa24h atm = new Caixa24h(bancoBeta);
 
 		atm.realizarDeposito(cliente1, 200.00);
-		atm.Sacar(cliente1, 100.00);
+		atm.sacar(cliente1, 100.00);
 
 		//
 		ContaCorrenteBancoBeta conta2 = new ContaCorrenteBancoBeta("1235");
 		Cliente cliente2 = new Cliente(conta2, "Joao", bancoBeta);
 
 		atm.realizarDeposito(cliente2, 400.00);
-		atm.Sacar(cliente2, 100.00);
+		atm.sacar(cliente2, 100.00);
 
 		double delta = 0.01;
 
@@ -95,7 +95,7 @@ public class TestCaixa24h {
 		Caixa24h atm = new Caixa24h(bancoBeta);
 
 		atm.realizarDeposito(cliente1, 200.00);
-		atm.Sacar(cliente1, 200.01);
+		atm.sacar(cliente1, 200.01);
 
 	}
 
@@ -150,7 +150,7 @@ public class TestCaixa24h {
 
 		atm.consultarSaldo(cliente1);
 		atm.realizarDeposito(cliente1, 800.00);
-		atm.Sacar(cliente1, 200.00);
+		atm.sacar(cliente1, 200.00);
 		atm.realizarTransferencia(cliente1, conta, 100.00, conta2);
 		atm.consultarExtrato(cliente1);
 
@@ -160,20 +160,23 @@ public class TestCaixa24h {
 	public void deveraRetornarSaldoQuandoBancoAlfa() {
 
 		ContaCorrenteBancoAlfa conta = new ContaCorrenteBancoAlfa("1234");
+		Cliente cliente1 = new Cliente(conta, "Ana");
 
-		Banco bancoAlfa = new BancoAlfa(conta);
+		Banco bancoAlfa = new BancoAlfa(cliente1);
 
-		Cliente cliente1 = new Cliente(conta, "Ana", bancoAlfa);
+	
 
-		conta.realizarDeposito(200.00);
+		
 
 		Caixa24h atm = new Caixa24h(bancoAlfa);
+		
+		atm.realizarDeposito(cliente1,200.00);
 
 		//
 		Conta conta2 = new ContaCorrenteBancoAlfa("1235");
-		Cliente cliente2 = new Cliente(conta2, "Joao", bancoAlfa);
+		Cliente cliente2 = new Cliente(conta2, "Joao");
 
-		conta2.realizarDeposito(400.00);
+		atm.realizarDeposito(cliente2,400.00);
 
 		double delta = 0.01;
 
