@@ -28,7 +28,7 @@ public class ContaCorrenteBancoAlfa implements Conta {
 
 	public void realizarTransferencia(Conta contaDeposita,Double valor, Conta contaRecebeDeposito) {
 		
-		insereTransacaoNoExtrato = "operação realizada = realizar tranferencia: " + valor;
+		insereTransacaoNoExtrato = "operaï¿½ï¿½o realizada = realizar tranferencia: " + valor;
 		transacoesEfetuadas.add(insereTransacaoNoExtrato);
 			
 			contaDeposita.sacar(10.00);
@@ -42,10 +42,15 @@ public class ContaCorrenteBancoAlfa implements Conta {
 
 	public void realizarDeposito(Double valor) {
 		
-		insereTransacaoNoExtrato = "operação realizada = realizar deposito: " + valor;
+		insereTransacaoNoExtrato = "operaï¿½ï¿½o realizada = realizar deposito: " + valor;
 		transacoesEfetuadas.add(insereTransacaoNoExtrato);
 
-		this.saldo = saldo + 10.00;
+		if (valor > 0){
+			this.saldo = saldo + 10.00;
+	        }else{
+	        	throw new ValorInvalidoException("Valor Deposito invalido");
+	        	
+	        }
 
 	}
 
@@ -56,7 +61,7 @@ public class ContaCorrenteBancoAlfa implements Conta {
 		if (valor <= this.saldo) {
 
 			this.saldo = this.saldo - 10.00;
-			insereTransacaoNoExtrato = "operação realizada = realizar saque: " + 10.00;
+			insereTransacaoNoExtrato = "operaï¿½ï¿½o realizada = realizar saque: " + 10.00;
 			transacoesEfetuadas.add(insereTransacaoNoExtrato);
 		} else {
 			throw new SaldoInsuficienteException("Saldo insuficiente");

@@ -22,14 +22,14 @@ public class ContaCorrenteBancoBeta implements Conta {
 	}
 
 	public double consultarSaldo() {
-		insereTransacaoNoExtrato = "operação realizada = consulta saldo: " + saldo;
+		insereTransacaoNoExtrato = "operaï¿½ï¿½o realizada = consulta saldo: " + saldo;
 		transacoesEfetuadas.add(insereTransacaoNoExtrato);
 		return saldo;
 	}
 
 	public void realizarTransferencia(Conta contaDeposita,Double valor, Conta contaRecebeDeposito) {
 		
-		insereTransacaoNoExtrato = "operação realizada = realizar tranferencia: " + valor;
+		insereTransacaoNoExtrato = "operaï¿½ï¿½o realizada = realizar tranferencia: " + valor;
 		transacoesEfetuadas.add(insereTransacaoNoExtrato);
 			
 			contaDeposita.sacar(valor);
@@ -43,11 +43,14 @@ public class ContaCorrenteBancoBeta implements Conta {
 
 	public void realizarDeposito(Double valor) {
 		
-		insereTransacaoNoExtrato = "operação realizada = realizar deposito: " + valor;
+		insereTransacaoNoExtrato = "operaï¿½ï¿½o realizada = realizar deposito: " + valor;
 		transacoesEfetuadas.add(insereTransacaoNoExtrato);
-
+        if (valor > 0){
 		this.saldo = saldo + valor;
-
+        }else{
+        	throw new ValorInvalidoException("Valor Deposito invalido");
+        	
+        }
 	}
 
 	public void sacar(Double valor) throws SaldoInsuficienteException {
@@ -57,7 +60,7 @@ public class ContaCorrenteBancoBeta implements Conta {
 		if (valor <= this.saldo) {
 
 			this.saldo = this.saldo - valor;
-			insereTransacaoNoExtrato = "operação realizada = realizar saque: " + valor;
+			insereTransacaoNoExtrato = "operaï¿½ï¿½o realizada = realizar saque: " + valor;
 			transacoesEfetuadas.add(insereTransacaoNoExtrato);
 		} else {
 			throw new SaldoInsuficienteException("Saldo insuficiente");
