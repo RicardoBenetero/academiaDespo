@@ -36,8 +36,8 @@ public class Caixa24h implements Banco {
 	}
 
 	@Override
-	public void realizarDeposito(Conta conta,String numero,Double valor) throws ValorInvalidoException{
-		banco.realizarDeposito(conta,numero,valor);
+	public void realizarDeposito(String numero,Double valor) throws ValorInvalidoException{
+		banco.realizarDeposito(numero,valor);
 
 	}
 

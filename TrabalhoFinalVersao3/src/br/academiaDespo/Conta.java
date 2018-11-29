@@ -10,7 +10,7 @@ public interface Conta {
 
 	public void realizarTransferencia(String numeroContadeposita,Double valor, String numeroContaRecebeDeposito);
 
-	public void realizarDeposito(Conta conta,String numero,Double valor);
+	public void realizarDeposito(String numero,Double valor);
 
 	public void sacar(String numero,Double valor);
 	

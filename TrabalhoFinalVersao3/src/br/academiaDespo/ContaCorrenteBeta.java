@@ -33,21 +33,18 @@ public class ContaCorrenteBeta implements Conta {
 	public void realizarTransferencia(String numeroContadeposita,Double valor, String numeroContaRecebeDeposito) {
 		insereTransacaoNoExtrato = "opera��o realizada = realizar tranferencia: " + valor;
 		transacoesEfetuadas.add(insereTransacaoNoExtrato);
-			System.out.println("classe contacorrente metodo transferir numeroContaRecebeDeposito" +numeroContadeposita +" "+ valor);
 			sacar(numeroContadeposita,valor);
-			System.out.println("classe contacorrente metodo transferir saldo " +consultarSaldo(numeroContadeposita));
-			System.out.println("classe contacorrente metodo transferir saldo numeroContaRecebeDeposito " +consultarSaldo(numeroContaRecebeDeposito));
 
 			realizarDeposito(numeroContaRecebeDeposito,valor);
-			System.out.println("classe contacorrente metodo transferir saldo 2 " +numeroContaRecebeDeposito+ " "+consultarSaldo(numeroContaRecebeDeposito) + "valor " + valor);
 	}
 	@Override
-	public void realizarDeposito(Conta conta,String numero,Double valor)throws ValorInvalidoException {
+	public void realizarDeposito(String numero,Double valor) throws ContaInexistenteException{
 		insereTransacaoNoExtrato = "opera��o realizada = realizar deposito: " + valor;
 		transacoesEfetuadas.add(insereTransacaoNoExtrato);
         if(valor > 0) {
+        	
 		this.saldo = saldo + valor;
-        } else {
+       } else {
 			throw new ValorInvalidoException("Valor invalido");
         }
 	}

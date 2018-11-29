@@ -47,10 +47,9 @@ public class BancoBeta implements Banco {
 	public void realizarTransferencia(String numeroContadeposita,Double valor, String numeroContaRecebeDeposito) throws ContaInexistenteException{
 		
 		if(contas.iterator().next().getNumero().equals(numeroContadeposita)  ){
-			System.out.println("classe banco beta " + numeroContadeposita);
+			
 		contas.iterator().next().realizarTransferencia(numeroContadeposita, valor, numeroContaRecebeDeposito);
 		
-		System.out.println("classe banco beta " + numeroContaRecebeDeposito + "valor " + valor);
 	}else{
 		
 		throw new ContaInexistenteException("Conta Inexistente");
@@ -59,51 +58,19 @@ public class BancoBeta implements Banco {
 	}
 
 	@Override
-	public void realizarDeposito(Conta conta,String numero,Double valor) throws ContaInexistenteException {
-
-		
-		if(conta.getNumero().equals(numero)){
+	public void realizarDeposito(String numero,Double valor) throws ContaInexistenteException {
+        
+		if(contas.iterator().next().getNumero().equals(numero)  ){
 			
-			
-			System.out.println(numero);
-			
-			for(Conta cont: contas){
-				
-				cont.realizarDeposito(conta, numero, valor);
-				
-			}
-		}
-		/*
-		System.out.println(numero);
-		if(contas.iterator().hasNext()){
-			
-				System.out.println("aqui");
-				contas.iterator().next().realizarDeposito(numero,valor);
-			
-		}
-		//realizarDeposito(numero, valor);
-		
-	//	for (int i = 0; i < contas.size();i++){
-			
-			//contas.get(i).realizarDeposito(numero, valor);
-		//	System.out.println(numero);
-		//}
-		/*
-		if(contas.iterator().next().getNumero().equals(numero)){
-		
-	
-			
-		contas.iterator().next().realizarDeposito(numero,valor);
-			
-		}else {
+			contas.iterator().next().realizarDeposito(numero, valor);
+		}  else
 			throw new ContaInexistenteException("Conta Inexistente");
 		
 	
-		
 		}
 		
-		*/
-	}
+		
+	
 
 	@Override
 	public void sacar(String numero,Double valor) throws ContaInexistenteException {
