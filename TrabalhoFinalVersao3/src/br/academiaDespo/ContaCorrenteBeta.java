@@ -24,24 +24,26 @@ public class ContaCorrenteBeta implements Conta {
 		return transacoesEfetuadas;		
 	}
 	@Override
-	public double consultarSaldo() {
-		insereTransacaoNoExtrato = "operação realizada = consulta saldo: " + saldo;
+	public double consultarSaldo(String numero) {
+		insereTransacaoNoExtrato = "operaï¿½ï¿½o realizada = consulta saldo: " + saldo;
 		transacoesEfetuadas.add(insereTransacaoNoExtrato);
 		return saldo;
 	}
 	@Override
-	public void realizarTransferencia(Conta contaDeposita,Double valor, Conta contaRecebeDeposito) {
-		insereTransacaoNoExtrato = "operação realizada = realizar tranferencia: " + valor;
+	public void realizarTransferencia(String numeroContadeposita,Double valor, String numeroContaRecebeDeposito) {
+		insereTransacaoNoExtrato = "operaï¿½ï¿½o realizada = realizar tranferencia: " + valor;
 		transacoesEfetuadas.add(insereTransacaoNoExtrato);
-			
-			contaDeposita.sacar(valor);
-			
-			contaRecebeDeposito.realizarDeposito(valor);
-		
+			System.out.println("classe contacorrente metodo transferir numeroContaRecebeDeposito" +numeroContadeposita +" "+ valor);
+			sacar(numeroContadeposita,valor);
+			System.out.println("classe contacorrente metodo transferir saldo " +consultarSaldo(numeroContadeposita));
+			System.out.println("classe contacorrente metodo transferir saldo numeroContaRecebeDeposito " +consultarSaldo(numeroContaRecebeDeposito));
+
+			realizarDeposito(numeroContaRecebeDeposito,valor);
+			System.out.println("classe contacorrente metodo transferir saldo 2 " +numeroContaRecebeDeposito+ " "+consultarSaldo(numeroContaRecebeDeposito) + "valor " + valor);
 	}
 	@Override
-	public void realizarDeposito(Double valor)throws ValorInvalidoException {
-		insereTransacaoNoExtrato = "operação realizada = realizar deposito: " + valor;
+	public void realizarDeposito(Conta conta,String numero,Double valor)throws ValorInvalidoException {
+		insereTransacaoNoExtrato = "operaï¿½ï¿½o realizada = realizar deposito: " + valor;
 		transacoesEfetuadas.add(insereTransacaoNoExtrato);
         if(valor > 0) {
 		this.saldo = saldo + valor;
@@ -52,17 +54,21 @@ public class ContaCorrenteBeta implements Conta {
 
 	
 	@Override
-	public void sacar(Double valor) throws SaldoInsuficienteException{
+	public void sacar(String numero,Double valor) throws SaldoInsuficienteException{
 		if (valor <= this.saldo) {
 
 			this.saldo = this.saldo - valor;
-			insereTransacaoNoExtrato = "operação realizada = realizar saque: " + valor;
+			insereTransacaoNoExtrato = "operaï¿½ï¿½o realizada = realizar saque: " + valor;
 			transacoesEfetuadas.add(insereTransacaoNoExtrato);
 		} else {
 			throw new SaldoInsuficienteException("Saldo insuficiente");
 
 		}
 		
+	}
+
+	public String getNumero() {
+		return numero;
 	}
 	
 	

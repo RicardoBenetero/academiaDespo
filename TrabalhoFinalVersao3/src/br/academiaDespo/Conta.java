@@ -6,11 +6,13 @@ public interface Conta {
 	
 	public List<String> consultarExtrato();
 
-	public double consultarSaldo();
+	public double consultarSaldo(String numero);
 
-	public void realizarTransferencia(Conta contaDeposita,Double valor, Conta contaRecebeDeposito);
+	public void realizarTransferencia(String numeroContadeposita,Double valor, String numeroContaRecebeDeposito);
 
-	public void realizarDeposito(Double valor);
+	public void realizarDeposito(Conta conta,String numero,Double valor);
 
-	public void sacar(Double valor);
+	public void sacar(String numero,Double valor);
+	
+	public String getNumero();
 }
