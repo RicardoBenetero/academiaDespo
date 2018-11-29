@@ -1,6 +1,11 @@
 package br.coursera;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public interface Conta {
+	
+	
 
 	public void consultarExtrato();
 
@@ -11,5 +16,7 @@ public interface Conta {
 	public void realizarDeposito(Double valor);
 
 	public void sacar(Double valor);
+	
+	public String getNumeroConta();
 
 }

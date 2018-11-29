@@ -1,15 +1,14 @@
-package br.coursera;
+package br.academiaDespo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface Banco {
 	
-	List<String> contas = new ArrayList<String>();
 	public String getNome();
-	public void consultarExtrato();
+	
+	public List<String> consultarExtrato();
 
-	public double consultarSaldo(String numeroConta);
+	public double consultarSaldo();
 
 	public void realizarTransferencia(Conta contaDeposita,Double valor, Conta contaRecebeDeposito);
 
@@ -17,6 +16,5 @@ public interface Banco {
 
 	public void sacar(Double valor);
 
- 
 
 }

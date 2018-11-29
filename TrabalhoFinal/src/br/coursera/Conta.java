@@ -1,8 +1,10 @@
 package br.coursera;
 
+import java.util.List;
+
 public interface Conta {
 
-	public void consultarExtrato();
+	public List<String> consultarExtrato();
 
 	public double consultarSaldo();
 

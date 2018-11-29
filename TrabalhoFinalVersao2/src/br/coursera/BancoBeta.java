@@ -4,12 +4,15 @@ public class BancoBeta implements Banco {
 	
     private final static String BANCOBETA = "BANCOBETA";
 	private Conta  contaCorrenteBancoBeta;
+	private Cliente cliente;
 	
 	
-	 public BancoBeta(Conta  contaCorrenteBancoBeta) {
+	 public BancoBeta(Conta contaCorrenteBancoBeta) {
 	    	
 	    	
 	    	this.contaCorrenteBancoBeta= contaCorrenteBancoBeta;
+	    	this.cliente = cliente;
+	    	contas.add(contaCorrenteBancoBeta.getNumeroConta());
 	    }
 	
 	public String getNome() {
@@ -24,8 +27,18 @@ public class BancoBeta implements Banco {
 	}
 
 	@Override
-	public double consultarSaldo() {
-		return contaCorrenteBancoBeta.consultarSaldo()	;	
+	public double consultarSaldo(String numeroConta) throws SaldoInsuficienteException {
+		
+		if(contas.contains(numeroConta)) {
+			System.out.println("aqui"); 
+			return	contaCorrenteBancoBeta.consultarSaldo();
+			
+		}else {
+			
+			
+			throw new SaldoInsuficienteException("Saldo insuficiente");
+		}
+	
 	}
 
 	@Override

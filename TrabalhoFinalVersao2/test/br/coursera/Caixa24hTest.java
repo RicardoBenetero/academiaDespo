@@ -8,17 +8,25 @@ public class Caixa24hTest {
 
 	@Test
 	public void deveraRetornarSaldo() {
+		
+		System.out.println("passou aqui1" );
 
-		ContaCorrenteBancoBeta conta = new ContaCorrenteBancoBeta("1234");
+		Conta conta = new ContaCorrenteBancoBeta("1234");
+		
+		System.out.println("passou aqui2" );
+		Cliente cliente1 = new Cliente(conta, "Ana");
 
+		System.out.println("passou aqui3" );
 		Banco bancoBeta = new BancoBeta(conta);
-
-		Cliente cliente1 = new Cliente(conta, "Ana", bancoBeta);
+		System.out.println("passou aqui4" );
 
 		conta.realizarDeposito(200.00);
-
+		System.out.println("passou aqui5" );
 		Caixa24h atm = new Caixa24h(bancoBeta);
+		System.out.println("passou aqui6" );
+		System.out.println("passou aqui7" +atm.consultarSaldo());
 
+/*
 		//
 		ContaCorrenteBancoBeta conta2 = new ContaCorrenteBancoBeta("1235");
 		Cliente cliente2 = new Cliente(conta2, "Joao", bancoBeta);
@@ -28,10 +36,13 @@ public class Caixa24hTest {
 		double delta = 0.01;
 
 		assertEquals(200.00, atm.consultarSaldo(cliente1), delta);
-		assertEquals(400.00, atm.consultarSaldo(cliente2), delta);
+		double delta = 0.01;
+	*/	double delta = 0.01;
+		
+		assertEquals(400.00, atm.consultarSaldo(), delta);
 
 	}
-
+/*
 	@Test
 	public void deveraRealizarDepositoComSucesso() {
 
@@ -184,5 +195,5 @@ public class Caixa24hTest {
 		assertEquals(10.00, atm.consultarSaldo(cliente2), delta);
 
 	}
-
+*/
 }

@@ -16,9 +16,9 @@ public class Caixa24h {
 
 	}
 
-	public double consultarSaldo(String numeroConta) {
+	public double consultarSaldo() {
 
-		return banco..consultarSaldo();
+		return banco.consultarSaldo("1234");
 
 	}
 
