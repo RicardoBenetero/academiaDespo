@@ -173,7 +173,7 @@ public class Caixa24hTest {
 	}
 
 	@Test
-	public void tenhoDuasContasQuandoFacoDepositoNasDuasDeveraDepositarCorretamente() {
+	public void DeveraDepositarCorretamenteAoFazerDepositoEmDuasContas() {
 
 		List<Conta> contas = new ArrayList<Conta>();
 
