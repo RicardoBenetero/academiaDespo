@@ -10,7 +10,7 @@ public class BancoTeste implements Banco {
 
 	public BancoTeste(List<Conta> contas) {
 
-		this.contas= contas;
+		this.contas = contas;
 	}
 
 	@Override
@@ -22,64 +22,58 @@ public class BancoTeste implements Banco {
 	@Override
 	public List<String> consultarExtrato() {
 		return contas.iterator().next().consultarExtrato();
-		
-		 
+
 	}
 
 	@Override
-	public double consultarSaldo(String numeroConta)throws ContaInexistenteException {
-		
-		if(contas.iterator().next().getNumero().equals(numeroConta)){
-			
-			return contas.iterator().next().consultarSaldo(numeroConta);
-			
-		
-		
-		
-		}else{
-		
-			throw new ContaInexistenteException("Conta Inexistente");
-		
+	public double consultarSaldo(String numeroConta) throws ContaInexistenteException {
+		for (Conta conta : contas) {
+			if (conta.getNumero().equals(numeroConta)) {
+				return conta.consultarSaldo(null);
+			}
 		}
-	}
 
-	@Override
-	public void realizarTransferencia(String numeroContadeposita,Double valor, String numeroContaRecebeDeposito) throws ContaInexistenteException{
-		
-		if(contas.iterator().next().getNumero().equals(numeroContadeposita)  ){
-			
-		contas.iterator().next().realizarTransferencia(numeroContadeposita, valor, numeroContaRecebeDeposito);
-		
-	}else{
-		
 		throw new ContaInexistenteException("Conta Inexistente");
 	}
-		
+
+	@Override
+	public void realizarTransferencia(String numeroContadeposita, Double valor,
+			String numeroContaRecebeDeposito) throws ContaInexistenteException {
+
+		if (contas.iterator().next().getNumero().equals(numeroContadeposita)) {
+
+			contas.iterator()
+					.next()
+					.realizarTransferencia(numeroContadeposita, valor,
+							numeroContaRecebeDeposito);
+
+		} else {
+
+			throw new ContaInexistenteException("Conta Inexistente");
+		}
+
 	}
 
 	@Override
-	public void realizarDeposito(String numeroConta,Double valor) throws ContaInexistenteException {
-        
-		if(contas.iterator().next().getNumero().equals(numeroConta)  ){
-			
+	public void realizarDeposito(String numeroConta, Double valor)
+			throws ContaInexistenteException {
+
+		if (contas.iterator().next().getNumero().equals(numeroConta)) {
+
 			contas.iterator().next().realizarDeposito(numeroConta, valor);
-		}  else
+		} else
 			throw new ContaInexistenteException("Conta Inexistente");
-		
-	
-		}
-		
-		
-	
+
+	}
 
 	@Override
-	public void sacar(String numeroConta,Double valor) throws ContaInexistenteException {
-		if(contas.iterator().next().getNumero().equals(numeroConta)){
-		contas.iterator().next().sacar(numeroConta,valor);
-		} else 
+	public void sacar(String numeroConta, Double valor)
+			throws ContaInexistenteException {
+		if (contas.iterator().next().getNumero().equals(numeroConta)) {
+			contas.iterator().next().sacar(numeroConta, valor);
+		} else
 			throw new ContaInexistenteException("Conta Inexistente");
-			
-		
+
 	}
 
 }
