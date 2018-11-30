@@ -6,17 +6,17 @@ import java.util.List;
 import br.academiaDespo.SaldoInsuficienteException;
 
 
-public class ContaCorrenteBeta implements Conta {
+public class ContaCorrenteTeste implements Conta {
 	
 	private String numero;
 	private Double saldo = 0.0;
 	private List<String> transacoesEfetuadas = new ArrayList<String>();
 	private String insereTransacaoNoExtrato;
 	
-	public ContaCorrenteBeta(String numero) {
+	public ContaCorrenteTeste(String numeroConta) {
 		
 		
-		this.numero = numero;
+		this.numero = numeroConta;
 	}
 	
 	@Override
@@ -24,7 +24,7 @@ public class ContaCorrenteBeta implements Conta {
 		return transacoesEfetuadas;		
 	}
 	@Override
-	public double consultarSaldo(String numero) {
+	public double consultarSaldo(String numeroConta) {
 		insereTransacaoNoExtrato = "opera��o realizada = consulta saldo: " + saldo;
 		transacoesEfetuadas.add(insereTransacaoNoExtrato);
 		return saldo;
@@ -38,7 +38,7 @@ public class ContaCorrenteBeta implements Conta {
 			realizarDeposito(numeroContaRecebeDeposito,valor);
 	}
 	@Override
-	public void realizarDeposito(String numero,Double valor) throws ContaInexistenteException{
+	public void realizarDeposito(String numeroConta,Double valor) throws ContaInexistenteException{
 		insereTransacaoNoExtrato = "opera��o realizada = realizar deposito: " + valor;
 		transacoesEfetuadas.add(insereTransacaoNoExtrato);
         if(valor > 0) {
@@ -51,7 +51,7 @@ public class ContaCorrenteBeta implements Conta {
 
 	
 	@Override
-	public void sacar(String numero,Double valor) throws SaldoInsuficienteException{
+	public void sacar(String numeroConta,Double valor) throws SaldoInsuficienteException{
 		if (valor <= this.saldo) {
 
 			this.saldo = this.saldo - valor;

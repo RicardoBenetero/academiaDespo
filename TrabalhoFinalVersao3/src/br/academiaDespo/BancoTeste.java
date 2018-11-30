@@ -3,12 +3,12 @@ package br.academiaDespo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BancoBeta implements Banco {
+public class BancoTeste implements Banco {
 
 	private final static String NOME = "BANCO BETA";
 	List<Conta> contas = new ArrayList<Conta>();
 
-	public BancoBeta(List<Conta> contas) {
+	public BancoTeste(List<Conta> contas) {
 
 		this.contas= contas;
 	}
@@ -27,11 +27,11 @@ public class BancoBeta implements Banco {
 	}
 
 	@Override
-	public double consultarSaldo(String numero)throws ContaInexistenteException {
+	public double consultarSaldo(String numeroConta)throws ContaInexistenteException {
 		
-		if(contas.iterator().next().getNumero().equals(numero)){
+		if(contas.iterator().next().getNumero().equals(numeroConta)){
 			
-			return contas.iterator().next().consultarSaldo(numero);
+			return contas.iterator().next().consultarSaldo(numeroConta);
 			
 		
 		
@@ -58,11 +58,11 @@ public class BancoBeta implements Banco {
 	}
 
 	@Override
-	public void realizarDeposito(String numero,Double valor) throws ContaInexistenteException {
+	public void realizarDeposito(String numeroConta,Double valor) throws ContaInexistenteException {
         
-		if(contas.iterator().next().getNumero().equals(numero)  ){
+		if(contas.iterator().next().getNumero().equals(numeroConta)  ){
 			
-			contas.iterator().next().realizarDeposito(numero, valor);
+			contas.iterator().next().realizarDeposito(numeroConta, valor);
 		}  else
 			throw new ContaInexistenteException("Conta Inexistente");
 		
@@ -73,13 +73,13 @@ public class BancoBeta implements Banco {
 	
 
 	@Override
-	public void sacar(String numero,Double valor) throws ContaInexistenteException {
-		if(contas.iterator().next().getNumero().equals(numero)){
-		contas.iterator().next().sacar(numero,valor);
-		}else{
+	public void sacar(String numeroConta,Double valor) throws ContaInexistenteException {
+		if(contas.iterator().next().getNumero().equals(numeroConta)){
+		contas.iterator().next().sacar(numeroConta,valor);
+		} else 
 			throw new ContaInexistenteException("Conta Inexistente");
 			
-		}
+		
 	}
 
 }

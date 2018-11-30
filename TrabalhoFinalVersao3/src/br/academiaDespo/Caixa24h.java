@@ -24,26 +24,26 @@ public class Caixa24h implements Banco {
 	}
 
 	@Override
-	public double consultarSaldo(String numero) throws ContaInexistenteException{
+	public double consultarSaldo(String numeroConta) throws ContaInexistenteException{
 		
-		return banco.consultarSaldo(numero);
+		return banco.consultarSaldo(numeroConta);
 	}
 
 	@Override
-	public void realizarTransferencia(String numeroContaDeposita,Double valor, String numeroContaRecebeDeposito)throws ContaInexistenteException {
+	public void realizarTransferencia(String numeroContaDeposita,Double valor, String numeroContaRecebeDeposito)throws ContaInexistenteException,ValorInvalidoException {
 		banco.realizarTransferencia(numeroContaDeposita,valor, numeroContaRecebeDeposito);
 
 	}
 
 	@Override
-	public void realizarDeposito(String numero,Double valor) throws ValorInvalidoException{
-		banco.realizarDeposito(numero,valor);
+	public void realizarDeposito(String numeroConta,Double valor) throws ContaInexistenteException,ValorInvalidoException{
+		banco.realizarDeposito(numeroConta,valor);
 
 	}
 
 	@Override
-	public void sacar(String numero,Double valor)throws SaldoInsuficienteException {
-		banco.sacar(numero,valor);
+	public void sacar(String numeroConta,Double valor)throws ContaInexistenteException,SaldoInsuficienteException {
+		banco.sacar(numeroConta,valor);
 
 	}
 

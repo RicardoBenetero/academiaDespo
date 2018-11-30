@@ -17,13 +17,13 @@ public class Caixa24hTest {
 
 		List<Conta> contas = new ArrayList<Conta>();
 
-		Conta contaCorrenteBeta = new ContaCorrenteBeta("1234");
+		Conta contaCorrenteTeste = new ContaCorrenteTeste("1234");
 
-		contas.add(contaCorrenteBeta);
+		contas.add(contaCorrenteTeste);
 
-		Banco bancoBeta = new BancoBeta(contas);
+		Banco bancoTeste = new BancoTeste(contas);
 
-		Caixa24h atm = new Caixa24h(bancoBeta);
+		Caixa24h atm = new Caixa24h(bancoTeste);
 
 		double delta = 1.0;
 
@@ -36,13 +36,13 @@ public class Caixa24hTest {
 
 		List<Conta> contas = new ArrayList<Conta>();
 
-		Conta contaCorrenteBeta = new ContaCorrenteBeta("1234");
+		Conta contaCorrenteTeste = new ContaCorrenteTeste("1234");
 
-		contas.add(contaCorrenteBeta);
+		contas.add(contaCorrenteTeste);
 
-		Banco bancoBeta = new BancoBeta(contas);
+		Banco bancoTeste = new BancoTeste(contas);
 
-		Caixa24h atm = new Caixa24h(bancoBeta);
+		Caixa24h atm = new Caixa24h(bancoTeste);
 
 		atm.realizarDeposito("1234", 250.00);
 		atm.realizarDeposito("1234", 250.00);
@@ -58,13 +58,13 @@ public class Caixa24hTest {
 
 		List<Conta> contas = new ArrayList<Conta>();
 
-		Conta contaCorrenteBeta = new ContaCorrenteBeta("1234");
+		Conta contaCorrenteTeste = new ContaCorrenteTeste("1234");
 
-		contas.add(contaCorrenteBeta);
+		contas.add(contaCorrenteTeste);
 
-		Banco bancoBeta = new BancoBeta(contas);
+		Banco bancoTeste = new BancoTeste(contas);
 
-		Caixa24h atm = new Caixa24h(bancoBeta);
+		Caixa24h atm = new Caixa24h(bancoTeste);
 
 		atm.realizarDeposito("1234", -1.0);
 
@@ -75,13 +75,13 @@ public class Caixa24hTest {
 
 		List<Conta> contas = new ArrayList<Conta>();
 
-		Conta contaCorrenteBeta = new ContaCorrenteBeta("1234");
+		Conta contaCorrenteTeste = new ContaCorrenteTeste("1234");
 
-		contas.add(contaCorrenteBeta);
+		contas.add(contaCorrenteTeste);
 
-		Banco bancoBeta = new BancoBeta(contas);
+		Banco bancoTeste = new BancoTeste(contas);
 
-		Caixa24h atm = new Caixa24h(bancoBeta);
+		Caixa24h atm = new Caixa24h(bancoTeste);
 
 		atm.realizarDeposito("1234", 250.00);
 		atm.realizarDeposito("1234", 250.00);
@@ -98,13 +98,13 @@ public class Caixa24hTest {
 
 		List<Conta> contas = new ArrayList<Conta>();
 
-		Conta contaCorrenteBeta = new ContaCorrenteBeta("1234");
+		Conta contaCorrenteTeste = new ContaCorrenteTeste("1234");
 
-		contas.add(contaCorrenteBeta);
+		contas.add(contaCorrenteTeste);
 
-		Banco bancoBeta = new BancoBeta(contas);
+		Banco bancoTeste = new BancoTeste(contas);
 
-		Caixa24h atm = new Caixa24h(bancoBeta);
+		Caixa24h atm = new Caixa24h(bancoTeste);
 
 		atm.realizarDeposito("1234", 100.00);
 		atm.sacar("1234", 100.01);
@@ -116,16 +116,16 @@ public class Caixa24hTest {
 
 		List<Conta> contas = new ArrayList<Conta>();
 
-		Conta contaCorrenteBeta = new ContaCorrenteBeta("9999");
+		Conta contaCorrenteTeste = new ContaCorrenteTeste("9999");
 
-		Conta contaCorrenteBeta2 = new ContaCorrenteBeta("3333");
+		Conta contaCorrenteTeste2 = new ContaCorrenteTeste("3333");
 
-		contas.add(contaCorrenteBeta);
-		contas.add(contaCorrenteBeta2);
+		contas.add(contaCorrenteTeste);
+		contas.add(contaCorrenteTeste2);
 
-		Banco bancoBeta = new BancoBeta(contas);
+		Banco bancoTeste = new BancoTeste(contas);
 
-		Caixa24h atm = new Caixa24h(bancoBeta);
+		Caixa24h atm = new Caixa24h(bancoTeste);
 
 		atm.realizarDeposito("9999", 6000.00);
 		
@@ -146,13 +146,13 @@ public class Caixa24hTest {
 	public void deveraMostrarTransacoesEfetuadasAoConsultarExtrato() {
 		List<Conta> contas = new ArrayList<Conta>();
 
-		Conta contaCorrenteBeta = new ContaCorrenteBeta("1234");
+		Conta contaCorrenteTeste = new ContaCorrenteTeste("1234");
 
-		contas.add(contaCorrenteBeta);
+		contas.add(contaCorrenteTeste);
 
-		Banco bancoBeta = new BancoBeta(contas);
+		Banco bancoTeste = new BancoTeste(contas);
 
-		Caixa24h atm = new Caixa24h(bancoBeta);
+		Caixa24h atm = new Caixa24h(bancoTeste);
 
 		atm.realizarDeposito("1234", 100.00);
 		atm.sacar("1234", 50.00);
@@ -177,16 +177,16 @@ public class Caixa24hTest {
 
 		List<Conta> contas = new ArrayList<Conta>();
 
-		Conta contaCorrenteBeta = new ContaCorrenteBeta("3636");
+		Conta contaCorrenteTeste = new ContaCorrenteTeste("3636");
 
-		Conta contaCorrenteBeta2 = new ContaCorrenteBeta("8989");
+		Conta contaCorrenteTeste2 = new ContaCorrenteTeste("8989");
 
-		contas.add(contaCorrenteBeta);
-		//contas.add(contaCorrenteBeta2);
+		contas.add(contaCorrenteTeste);
+		//contas.add(contaCorrenteTeste2);
 
-		Banco bancoBeta = new BancoBeta(contas);
+		Banco bancoTeste = new BancoTeste(contas);
 
-		Caixa24h atm = new Caixa24h(bancoBeta);
+		Caixa24h atm = new Caixa24h(bancoTeste);
 
 		atm.realizarDeposito("3636", 6000.0);
 
