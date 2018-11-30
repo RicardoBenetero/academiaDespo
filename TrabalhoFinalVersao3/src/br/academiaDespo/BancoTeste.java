@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BancoTeste implements Banco {
 
-	private final static String NOME = "BANCO BETA";
+	private final static String NOME = "BANCO TESTE";
 	List<Conta> contas = new ArrayList<Conta>();
 
 	public BancoTeste(List<Conta> contas) {
