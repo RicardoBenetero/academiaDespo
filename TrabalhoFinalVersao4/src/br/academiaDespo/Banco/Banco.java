@@ -6,6 +6,7 @@ package br.academiaDespo.Banco;
 import java.util.List;
 
 import br.academiaDespo.Excecoes.ContaInexistenteException;
+import br.academiaDespo.Excecoes.ValorInvalidoException;
 
 	public interface Banco {
 		
@@ -15,11 +16,12 @@ import br.academiaDespo.Excecoes.ContaInexistenteException;
 
 		public BigDecimal consultarSaldo(String numero) throws ContaInexistenteException;
 
-		public void realizarTransferencia(String numeroContadeposita,Double valor, String numeroContaRecebeDeposito) throws ContaInexistenteException;
+		public void realizarDeposito(String numero,BigDecimal valor) throws ContaInexistenteException, ValorInvalidoException;
 
-		public void realizarDeposito(String numero,Double valor) throws ContaInexistenteException;
+		void sacar(String numeroConta, BigDecimal valor) throws ContaInexistenteException, ValorInvalidoException;
 
-		public void sacar(String numero,Double valor) throws ContaInexistenteException;
+		void realizarTransferencia(String numeroContadeposita, BigDecimal valor, String numeroContaRecebeDeposito)
+				throws ContaInexistenteException, ValorInvalidoException;
 
         
 	}

@@ -7,6 +7,7 @@ import java.util.List;
 import br.academiaDespo.Banco.Banco;
 import br.academiaDespo.Banco.Conta;
 import br.academiaDespo.Excecoes.ContaInexistenteException;
+import br.academiaDespo.Excecoes.ValorInvalidoException;
 
 public class BancoTeste implements Banco {
 
@@ -31,7 +32,7 @@ public class BancoTeste implements Banco {
 	}
 
 	@Override
-	public BigDecimal consultarSaldo(String numeroConta) throws ContaInexistenteException  {
+	public BigDecimal consultarSaldo(String numeroConta) throws ContaInexistenteException {
 		for (Conta conta : contas) {
 			if (conta.getNumero().equals(numeroConta)) {
 				return conta.consultarSaldo();
@@ -42,43 +43,44 @@ public class BancoTeste implements Banco {
 	}
 
 	@Override
-	public void realizarTransferencia(String numeroContadeposita, Double valor,
-			String numeroContaRecebeDeposito) throws ContaInexistenteException {
+	public void realizarTransferencia(String numeroContadeposita, BigDecimal valor, String numeroContaRecebeDeposito)
+			throws ContaInexistenteException, ValorInvalidoException {
 
 		for (Conta conta : contas) {
 			if (conta.getNumero().equals(numeroContadeposita)) {
-				realizarTransferencia(numeroContadeposita, valor, numeroContaRecebeDeposito);;
+				conta.sacar(valor);
+				
+			}
+			if (conta.getNumero().equals(numeroContaRecebeDeposito)) {
+				conta.realizarDeposito(valor);
+				
 			}
 		}
 
-		throw new ContaInexistenteException("Conta Inexistente");
+
 	}
 
-	
-
 	@Override
-	public void realizarDeposito(String numeroConta, Double valor)
-			throws ContaInexistenteException {
-
+	public void realizarDeposito(String numeroConta, BigDecimal valor)
+			throws ContaInexistenteException, ValorInvalidoException {
 		for (Conta conta : contas) {
 			if (conta.getNumero().equals(numeroConta)) {
-          realizarDeposito(numeroConta, valor);	
-          }
+
+				conta.realizarDeposito( valor);
+
+			}
+
 		}
 	}
 
 	@Override
-	public void sacar(String numeroConta, Double valor)
-			throws ContaInexistenteException {
+	public void sacar(String numeroConta, BigDecimal valor) throws ContaInexistenteException, ValorInvalidoException {
 		for (Conta conta : contas) {
 			if (conta.getNumero().equals(numeroConta)) {
-          sacar(numeroConta, valor);	
-          }
+				conta.sacar(valor);
+			}
 		}
 
-}
+	}
 
-	
-
-	
 }

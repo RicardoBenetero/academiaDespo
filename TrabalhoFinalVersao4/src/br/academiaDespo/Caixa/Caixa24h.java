@@ -38,19 +38,19 @@ public class Caixa24h {
 	}
 
 	
-	public void realizarTransferencia(String numeroContaDeposita,Double valor, String numeroContaRecebeDeposito)throws ContaInexistenteException,ValorInvalidoException {
+	public void realizarTransferencia(String numeroContaDeposita,BigDecimal valor, String numeroContaRecebeDeposito)throws ContaInexistenteException,ValorInvalidoException {
 		banco.realizarTransferencia(numeroContaDeposita,valor, numeroContaRecebeDeposito);
 
 	}
 
 
-	public void realizarDeposito(String numeroConta,Double valor) throws ContaInexistenteException,ValorInvalidoException{
+	public void realizarDeposito(String numeroConta,BigDecimal valor) throws ContaInexistenteException,ValorInvalidoException{
 		banco.realizarDeposito(numeroConta,valor);
 
 	}
 
 	
-	public void sacar(String numeroConta,Double valor)throws ContaInexistenteException,SaldoInsuficienteException {
+	public void sacar(String numeroConta,BigDecimal valor)throws ContaInexistenteException,SaldoInsuficienteException, ValorInvalidoException {
 		banco.sacar(numeroConta,valor);
 
 	}
