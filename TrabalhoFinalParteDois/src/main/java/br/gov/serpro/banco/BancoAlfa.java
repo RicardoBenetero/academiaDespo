@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import br.gov.serpro.banco.Conta;
 import br.gov.serpro.caixa24h.exception.ContaInexistenteException;
 import br.gov.serpro.caixa24h.exception.SaldoInsuficienteException;
 
@@ -29,7 +29,7 @@ public class BancoAlfa implements BancoGeral {
 
 	public BigDecimal consultarSaldo(int numeroConta) throws ContaInexistenteException {
 		for (Conta conta : contas) {
-			if (conta.getNumero().equals(numeroConta)) {
+			if (conta.getNumero() == numeroConta) {
 				return conta.consultarSaldo();
 			}
 		}
@@ -39,17 +39,33 @@ public class BancoAlfa implements BancoGeral {
 
 	public void efetuarTransferencia(int numeroConta, int contaDestino, BigDecimal valor)
 			throws SaldoInsuficienteException, ContaInexistenteException {
-		// TODO Auto-generated method stub
+		for (Conta conta : contas) {
+			if (conta.getNumero() == numeroConta) {
+				conta.sacar(valor);
+				
+			}
+			if (conta.getNumero() == contaDestino) {
+				conta.insereValorDeTransferencia(valor);
+				
+			}
+		}
+
+
 		
 	}
 
 	public void efetuarDeposito(int numeroConta, BigDecimal valor) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	public void efetuarSaque(int numeroConta, BigDecimal valor) throws SaldoInsuficienteException {
-		// TODO Auto-generated method stub
+		
+		
+		for (Conta conta : contas) {
+			if (conta.getNumero() == numeroConta) {
+				conta.sacar(valor);
+			}
+		}
 		
 	}
 
