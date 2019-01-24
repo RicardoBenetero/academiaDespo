@@ -23,8 +23,16 @@ public class BancoAlfa implements BancoGeral {
 	}
 
 	public List<Extrato> consultarExtrato(int numeroConta) throws ContaInexistenteException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		for (Conta conta : contas) {
+			if (conta.getNumero() == numeroConta) {
+				return conta.getExtrato();
+				
+			}
+			
+		}
+			throw new ContaInexistenteException("Conta Inexistente");
+	
 	}
 
 	public BigDecimal consultarSaldo(int numeroConta) throws ContaInexistenteException {

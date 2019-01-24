@@ -1,26 +1,34 @@
 package br.gov.serpro.banco;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 public class Extrato {
 
-	private String data;
-	private int credito;
-	private int debito;
+	//private String data;
+	private LocalDate data;
+	
+	private BigDecimal credito = new BigDecimal("0.0");
 
-	public Extrato(String data, int credito, int debito) {
+	private BigDecimal debito = new BigDecimal("0.0");
+
+	
+
+	public Extrato(LocalDate data, BigDecimal credito, BigDecimal debito) {
 		this.data = data;
 		this.credito = credito;
 		this.debito = debito;
 	}
 
-	public String getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public int getCredito() {
+	public BigDecimal getCredito() {
 		return credito;
 	}
 
-	public int getDebito() {
+	public BigDecimal getDebito() {
 		return debito;
 	}
 	

@@ -1,6 +1,7 @@
 package br.gov.serpro.banco;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,12 +12,14 @@ import br.gov.serpro.caixa24h.exception.ContaInexistenteException;
 public class ContaCorrenteEspecial implements Conta {
 
 	private static BigDecimal LIMITE_SALDO_PREMIUM = new BigDecimal("1000.0");
+	
 	private int numero;
+	
 	private BigDecimal saldo = new BigDecimal("0.0");
+	
+	private List<Extrato> extratos = new ArrayList<Extrato>();
+    
 
-	private List<String> transacoesEfetuadas = new ArrayList<String>();
-
-	private String insereTransacaoNoExtrato;
 
 	public ContaCorrenteEspecial(int numeroConta, BigDecimal valorInicial) {
 
@@ -49,10 +52,12 @@ public class ContaCorrenteEspecial implements Conta {
 			if (saldo.compareTo(valor) > 0 ) {
             
 				saldo = saldo.subtract(valor);
-
-				insereTransacaoNoExtrato = "operação realizada = realizar saque: " + valor;
-
-				transacoesEfetuadas.add(insereTransacaoNoExtrato);
+				
+				LocalDate data = LocalDate.now();
+				
+				Extrato extrato = new Extrato(data,valor, null);
+				
+				extratos.add(extrato);
 
 			} else {
 				throw new SaldoInsuficienteException("Saldo insuficiente");
@@ -70,9 +75,16 @@ public class ContaCorrenteEspecial implements Conta {
 
 
 				saldo = saldo.add(valor) ;
+				
+               
+          
 		
 	}
 		 
+	}
+
+	public List<Extrato> getExtrato() {
+		return extratos;
 	}
 }
 

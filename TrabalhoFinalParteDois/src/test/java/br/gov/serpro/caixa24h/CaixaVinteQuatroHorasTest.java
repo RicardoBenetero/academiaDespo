@@ -33,24 +33,64 @@ public class CaixaVinteQuatroHorasTest {
 		numeroConta = 123456;
 		contaDestino = 12345678;
 	}
-    @Ignore
+    
 	@Test
-	public void deveRetornarUmaConsultaDoExtrato() throws ContaInexistenteException, BancoInexistenteException {
+	public void deveRetornarUmaConsultaDoExtrato() throws ContaInexistenteException, BancoInexistenteException, SaldoInsuficienteException {
 		//dado
+    	/*
 		extrato = new Extrato("10/11/2014", 10000, 50000);
 		List<Extrato> listaExtratos = new ArrayList<Extrato>();
 		listaExtratos.add(extrato);
 		Mockito.when(bancoMock.consultarExtrato(numeroConta)).thenReturn(listaExtratos);
-		
+		*/
 		//quando
-		CaixaVinteQuatroHoras caixa24horas = new CaixaVinteQuatroHoras(bancoMock);
-		List<Extrato> consultaExtrato = caixa24horas.consultaExtrato(123456);
+		//CaixaVinteQuatroHoras caixa24horas = new CaixaVinteQuatroHoras(bancoMock);
+		//List<Extrato> consultaExtrato = caixa24horas.consultaExtrato(123456);
 
 		//entao
-		assertEquals(listaExtratos.get(0).getData(), consultaExtrato.get(0).getData());
-		assertEquals(listaExtratos.get(0).getCredito(), consultaExtrato.get(0).getCredito());
-		assertEquals(listaExtratos.get(0).getDebito(), consultaExtrato.get(0).getDebito());
-		assertEquals(listaExtratos.size(), consultaExtrato.size());
+		//assertEquals(listaExtratos.get(0).getData(), consultaExtrato.get(0).getData());
+		//assertEquals(listaExtratos.get(0).getCredito(), consultaExtrato.get(0).getCredito());
+		//assertEquals(listaExtratos.get(0).getDebito(), consultaExtrato.get(0).getDebito());
+		//assertEquals(listaExtratos.size(), consultaExtrato.size());
+    	
+    	
+    	//
+    	
+         BigDecimal valorInicial = new BigDecimal(10000.0);
+		 
+		 List<Conta> contas = new ArrayList<Conta>();
+		 
+		 Conta contaCorrenteTeste = new ContaCorrenteEspecial(7777,valorInicial); 
+		 
+		 Conta contaCorrenteTeste2 = new ContaCorrenteEspecial(101010,valorInicial);
+		 
+		 contas.add(contaCorrenteTeste);
+		 
+		 contas.add(contaCorrenteTeste2);
+		 BancoGeral bancoAlfa = new BancoAlfa(contas);
+		 
+		 CaixaVinteQuatroHoras caixa24horas = new CaixaVinteQuatroHoras(bancoAlfa);
+         BigDecimal valorSaqueConta7777 = new BigDecimal(500.0);
+         
+		 BigDecimal valorSaqueConta101010 = new BigDecimal(700.0);
+		 
+		 caixa24horas.efetuarSaque(7777, valorSaqueConta7777);
+		 
+		 caixa24horas.efetuarSaque(101010, valorSaqueConta101010);
+		 
+		 BigDecimal valorEsperadoConta7777 = new BigDecimal(9500.0);
+		 
+		 BigDecimal valorEsperadoConta101010 = new BigDecimal(9300.0);
+		 
+		 
+		 
+		// assertEquals(valorEsperadoConta7777, caixa24horas.consultaSaldo(7777));
+		
+		// assertEquals(valorEsperadoConta101010, caixa24horas.consultaSaldo(101010));	
+		 
+		 assertEquals(valorEsperadoConta101010, caixa24horas.consultaExtrato(101010));	
+
+    	
 	}
     @Ignore
 	@Test(expected = ContaInexistenteException.class)
