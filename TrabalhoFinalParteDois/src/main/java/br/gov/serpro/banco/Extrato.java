@@ -12,12 +12,13 @@ public class Extrato {
 
 	private BigDecimal debito = new BigDecimal("0.0");
 
-	
+	private String operacao;
 
-	public Extrato(LocalDate data, BigDecimal credito, BigDecimal debito) {
+	public Extrato(LocalDate data, BigDecimal credito, BigDecimal debito, String operacao) {
 		this.data = data;
 		this.credito = credito;
 		this.debito = debito;
+		this.operacao = operacao;
 	}
 
 	public LocalDate getData() {
@@ -31,8 +32,11 @@ public class Extrato {
 	public BigDecimal getDebito() {
 		return debito;
 	}
-	
-	
+
+	public String getOperacao() {
+		return operacao;
+	}
+
 	
 
 }

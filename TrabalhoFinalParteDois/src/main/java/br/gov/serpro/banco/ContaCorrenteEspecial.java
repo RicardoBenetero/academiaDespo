@@ -46,26 +46,27 @@ public class ContaCorrenteEspecial implements Conta {
 
 	public void sacar(BigDecimal valor) throws SaldoInsuficienteException {
 		
-		try {
-			//if (saldo.compareTo(this.saldo.add(LIMITE_SALDO_PREMIUM)) > 0) {
-			
-			if (saldo.compareTo(valor) > 0 ) {
+		
+		if (this.saldo.add(LIMITE_SALDO_PREMIUM).doubleValue() >= valor.doubleValue()) {			
+				
+
             
 				saldo = saldo.subtract(valor);
 				
 				LocalDate data = LocalDate.now();
 				
-				Extrato extrato = new Extrato(data,valor, null);
+				String operacao = "Saque";
+				
+				Extrato extrato = new Extrato(data,null, valor, operacao);
 				
 				extratos.add(extrato);
 
 			} else {
 				throw new SaldoInsuficienteException("Saldo insuficiente");
 
-			}
-		} catch (Exception e) {
+			
 		
-			e.printStackTrace();
+	
 		}
 
 	}
