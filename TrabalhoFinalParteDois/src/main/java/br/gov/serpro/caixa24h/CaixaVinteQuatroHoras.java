@@ -7,6 +7,7 @@ import br.gov.serpro.banco.BancoGeral;
 import br.gov.serpro.banco.Extrato;
 import br.gov.serpro.caixa24h.exception.BancoInexistenteException;
 import br.gov.serpro.caixa24h.exception.ContaInexistenteException;
+import br.gov.serpro.caixa24h.exception.LimiteDeOperacoesPorDiaAtingidoException;
 import br.gov.serpro.caixa24h.exception.SaldoInsuficienteException;
 
 public class CaixaVinteQuatroHoras {
@@ -24,11 +25,11 @@ public class CaixaVinteQuatroHoras {
 		return banco.consultarExtrato(numeroConta);
 	}
 	
-	public BigDecimal consultaSaldo(int numeroConta) throws ContaInexistenteException {
+	public BigDecimal consultaSaldo(int numeroConta) throws ContaInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
 		return banco.consultarSaldo(numeroConta);
 	}	
 	
-	public void efetuarTransferencia(int numeroConta, int contaDestino, BigDecimal valor) throws SaldoInsuficienteException, ContaInexistenteException {
+	public void efetuarTransferencia(int numeroConta, int contaDestino, BigDecimal valor) throws SaldoInsuficienteException, ContaInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
 		 banco.efetuarTransferencia(numeroConta, contaDestino, valor);
 	}
 
@@ -36,7 +37,7 @@ public class CaixaVinteQuatroHoras {
 		 banco.efetuarDeposito(numeroConta, valor);
 	}
 
-	public void efetuarSaque(int numeroConta, BigDecimal valor) throws SaldoInsuficienteException {
+	public void efetuarSaque(int numeroConta, BigDecimal valor) throws SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
 		 banco.efetuarSaque(numeroConta, valor);
 	}	
 }
