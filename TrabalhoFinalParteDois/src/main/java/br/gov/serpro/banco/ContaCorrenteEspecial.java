@@ -8,18 +8,15 @@ import java.util.List;
 import br.gov.serpro.caixa24h.exception.SaldoInsuficienteException;
 import br.gov.serpro.caixa24h.exception.ContaInexistenteException;
 
-
 public class ContaCorrenteEspecial implements ContaBancoAlfa {
 
 	private static BigDecimal LIMITE_SALDO_PREMIUM = new BigDecimal("1000.0");
-	
-	private int numero;
-	
-	private BigDecimal saldo = new BigDecimal("0.0");
-	
-	private List<Extrato> extratos = new ArrayList<Extrato>();
-    
 
+	private int numero;
+
+	private BigDecimal saldo = new BigDecimal("0.0");
+
+	private List<Extrato> extratos = new ArrayList<Extrato>();
 
 	public ContaCorrenteEspecial(int numeroConta, BigDecimal valorInicial) {
 
@@ -38,61 +35,50 @@ public class ContaCorrenteEspecial implements ContaBancoAlfa {
 	}
 
 	public void realizarDeposito(BigDecimal valor) throws ContaInexistenteException {
-		
+
 		System.out.println("deposito indisponivel");
-		
-      }
 
+	}
 
-	public void sacar(BigDecimal valor)throws SaldoInsuficienteException {
-		
-		
-		if (this.saldo.add(LIMITE_SALDO_PREMIUM).doubleValue() >= valor.doubleValue()) {			
-				
+	public void sacar(BigDecimal valor) throws SaldoInsuficienteException {
 
-            
-				saldo = saldo.subtract(valor);
-				
-				LocalDate data = LocalDate.now();
-				
-				String operacao = "Saque";
-				
-				Extrato extrato = new Extrato(data,null, valor, operacao);
-				
-				extratos.add(extrato);
+		if (this.saldo.add(LIMITE_SALDO_PREMIUM).doubleValue() >= valor.doubleValue()) {
 
-			} else {
-				throw new SaldoInsuficienteException("Saldo insuficiente");
+			saldo = saldo.subtract(valor);
 
-			
-		
-	
-			}
+			LocalDate data = LocalDate.now();
+
+			String operacao = "Saque";
+
+			Extrato extrato = new Extrato(data, null, valor, operacao);
+
+			extratos.add(extrato);
+
+		} else {
+			throw new SaldoInsuficienteException("Saldo insuficiente");
+
+		}
 
 	}
 
 	public void insereValorDeTransferencia(BigDecimal valor) {
-		 if(valor.compareTo(BigDecimal.ZERO) > 0) {
+		if (valor.compareTo(BigDecimal.ZERO) > 0) {
 
+			saldo = saldo.add(valor);
 
-				saldo = saldo.add(valor) ;
-				
-               
-                LocalDate data = LocalDate.now();
-				
-				String operacao = "Transferencia";
-				
-				Extrato extrato = new Extrato(data,null, valor, operacao);
-				
-				extratos.add(extrato);
-		
-	}
-		 
+			LocalDate data = LocalDate.now();
+
+			String operacao = "Transferencia";
+
+			Extrato extrato = new Extrato(data, null, valor, operacao);
+
+			extratos.add(extrato);
+
+		}
+
 	}
 
 	public List<Extrato> getExtrato() {
 		return extratos;
 	}
 }
-
-	

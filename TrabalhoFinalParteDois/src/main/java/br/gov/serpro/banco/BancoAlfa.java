@@ -1,7 +1,5 @@
 package br.gov.serpro.banco;
 
-
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +8,6 @@ import br.gov.serpro.banco.ContaBancoAlfa;
 import br.gov.serpro.caixa24h.exception.ContaInexistenteException;
 import br.gov.serpro.caixa24h.exception.LimiteDeOperacoesPorDiaAtingidoException;
 import br.gov.serpro.caixa24h.exception.SaldoInsuficienteException;
-
-
 
 public class BancoAlfa implements BancoGeral {
 
@@ -24,19 +20,20 @@ public class BancoAlfa implements BancoGeral {
 	}
 
 	public List<Extrato> consultarExtrato(int numeroConta) throws ContaInexistenteException {
-		
+
 		for (ContaBancoAlfa conta : contas) {
 			if (conta.getNumero() == numeroConta) {
 				return conta.getExtrato();
-				
+
 			}
-			
+
 		}
-			throw new ContaInexistenteException("Conta Inexistente");
-	
+		throw new ContaInexistenteException("Conta Inexistente");
+
 	}
 
-	public BigDecimal consultarSaldo(int numeroConta) throws ContaInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
+	public BigDecimal consultarSaldo(int numeroConta)
+			throws ContaInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
 		for (ContaBancoAlfa conta : contas) {
 			if (conta.getNumero() == numeroConta) {
 				return conta.consultarSaldo();
@@ -48,36 +45,33 @@ public class BancoAlfa implements BancoGeral {
 
 	public void efetuarTransferencia(int numeroConta, int contaDestino, BigDecimal valor)
 			throws SaldoInsuficienteException, ContaInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
+
 		for (ContaBancoAlfa conta : contas) {
 			if (conta.getNumero() == numeroConta) {
 				conta.sacar(valor);
-				
+
 			}
 			if (conta.getNumero() == contaDestino) {
 				conta.insereValorDeTransferencia(valor);
-				
+
 			}
 		}
 
-
-		
 	}
 
 	public void efetuarDeposito(int numeroConta, BigDecimal valor) {
-		
+
 	}
 
-	public void efetuarSaque(int numeroConta, BigDecimal valor) throws SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
-		
-		
+	public void efetuarSaque(int numeroConta, BigDecimal valor)
+			throws SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
+
 		for (ContaBancoAlfa conta : contas) {
 			if (conta.getNumero() == numeroConta) {
 				conta.sacar(valor);
 			}
 		}
-		
+
 	}
 
-	
 }
-

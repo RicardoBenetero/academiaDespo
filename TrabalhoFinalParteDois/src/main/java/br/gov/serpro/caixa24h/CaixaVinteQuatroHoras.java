@@ -16,7 +16,7 @@ public class CaixaVinteQuatroHoras {
 
 	public CaixaVinteQuatroHoras(BancoGeral banco) throws BancoInexistenteException {
 		if (banco == null) {
-			 throw new BancoInexistenteException("Banco inexistente");
+			throw new BancoInexistenteException("Banco inexistente");
 		}
 		this.banco = banco;
 	}
@@ -24,20 +24,25 @@ public class CaixaVinteQuatroHoras {
 	public List<Extrato> consultaExtrato(int numeroConta) throws ContaInexistenteException {
 		return banco.consultarExtrato(numeroConta);
 	}
-	
-	public BigDecimal consultaSaldo(int numeroConta) throws ContaInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
+
+	public BigDecimal consultaSaldo(int numeroConta)
+			throws ContaInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
 		return banco.consultarSaldo(numeroConta);
-	}	
-	
-	public void efetuarTransferencia(int numeroConta, int contaDestino, BigDecimal valor) throws SaldoInsuficienteException, ContaInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
-		 banco.efetuarTransferencia(numeroConta, contaDestino, valor);
+	}
+
+	public void efetuarTransferencia(int numeroConta, int contaDestino, BigDecimal valor)
+			throws SaldoInsuficienteException, ContaInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
+
+		banco.efetuarTransferencia(numeroConta, contaDestino, valor);
+
 	}
 
 	public void efetuarDeposito(int numeroConta, BigDecimal valor) {
-		 banco.efetuarDeposito(numeroConta, valor);
+		banco.efetuarDeposito(numeroConta, valor);
 	}
 
-	public void efetuarSaque(int numeroConta, BigDecimal valor) throws SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
-		 banco.efetuarSaque(numeroConta, valor);
-	}	
+	public void efetuarSaque(int numeroConta, BigDecimal valor)
+			throws SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
+		banco.efetuarSaque(numeroConta, valor);
+	}
 }
