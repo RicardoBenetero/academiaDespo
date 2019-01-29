@@ -5,11 +5,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.gov.serpro.caixa24h.exception.ContaInexistenteException;
-import br.gov.serpro.caixa24h.exception.LimiteDeOperacoesPorDiaAtingidoException;
 import br.gov.serpro.caixa24h.exception.SaldoInsuficienteException;
+import br.gov.serpro.caixa24h.exception.ContaInexistenteException;
 
-public class ContaCorrenteComum implements ContaBancoAlfa {
+public class ContaCorrenteEspecialBancoAlfa implements ContaBancoAlfa {
+
+	private static BigDecimal LIMITE_SALDO_PREMIUM = new BigDecimal("1000.0");
 
 	private int numero;
 
@@ -17,11 +18,7 @@ public class ContaCorrenteComum implements ContaBancoAlfa {
 
 	private List<Extrato> extratos = new ArrayList<Extrato>();
 
-	private int quantidadeOperacoes = 1;
-
-	LocalDate data = LocalDate.now();
-
-	public ContaCorrenteComum(int numeroConta, BigDecimal valorInicial) {
+	public ContaCorrenteEspecialBancoAlfa(int numeroConta, BigDecimal valorInicial) {
 
 		this.numero = numeroConta;
 		this.saldo = valorInicial;
@@ -33,18 +30,8 @@ public class ContaCorrenteComum implements ContaBancoAlfa {
 		return numero;
 	}
 
-	public BigDecimal consultarSaldo() throws LimiteDeOperacoesPorDiaAtingidoException {
-
-		if (quantidadeOperacoes <= 3) {
-
-			quantidadeOperacoes++;
-			return saldo;
-
-		} else {
-			throw new LimiteDeOperacoesPorDiaAtingidoException("Limite diario de operacoes atingido");
-
-		}
-
+	public BigDecimal consultarSaldo() {
+		return saldo;
 	}
 
 	public void realizarDeposito(BigDecimal valor) throws ContaInexistenteException {
@@ -53,11 +40,13 @@ public class ContaCorrenteComum implements ContaBancoAlfa {
 
 	}
 
-	public void sacar(BigDecimal valor) throws SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
+	public void sacar(BigDecimal valor) throws SaldoInsuficienteException {
 
-		if (saldo.compareTo(valor) > 0 && quantidadeOperacoes <= 3) {
+		if (this.saldo.add(LIMITE_SALDO_PREMIUM).doubleValue() >= valor.doubleValue()) {
 
 			saldo = saldo.subtract(valor);
+
+			LocalDate data = LocalDate.now();
 
 			String operacao = "Saque";
 
@@ -65,29 +54,25 @@ public class ContaCorrenteComum implements ContaBancoAlfa {
 
 			extratos.add(extrato);
 
-			quantidadeOperacoes++;
-
-		} else if (saldo.compareTo(valor) < 0 && quantidadeOperacoes <= 3) {
+		} else {
 			throw new SaldoInsuficienteException("Saldo insuficiente");
-		} else if (saldo.compareTo(valor) > 0 && quantidadeOperacoes > 3) {
-			throw new LimiteDeOperacoesPorDiaAtingidoException("Limite diario de operacoes atingido");
+
 		}
 
 	}
 
 	public void insereValorDeTransferencia(BigDecimal valor) {
-
-		if (valor.compareTo(BigDecimal.ZERO) > 0 && quantidadeOperacoes <= 3) {
+		if (valor.compareTo(BigDecimal.ZERO) > 0) {
 
 			saldo = saldo.add(valor);
+
+			LocalDate data = LocalDate.now();
 
 			String operacao = "Transferencia";
 
 			Extrato extrato = new Extrato(data, null, valor, operacao);
 
 			extratos.add(extrato);
-
-			quantidadeOperacoes++;
 
 		}
 

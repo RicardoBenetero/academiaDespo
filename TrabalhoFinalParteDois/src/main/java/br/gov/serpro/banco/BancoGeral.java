@@ -11,6 +11,6 @@ public interface BancoGeral {
 	 List<Extrato> consultarExtrato(int numeroConta) throws ContaInexistenteException;	
 	 BigDecimal consultarSaldo(int numeroConta)throws ContaInexistenteException, LimiteDeOperacoesPorDiaAtingidoException;	
 	 void efetuarTransferencia(int numeroConta, int contaDestino, BigDecimal valor) throws SaldoInsuficienteException, ContaInexistenteException, LimiteDeOperacoesPorDiaAtingidoException;	
-	 void efetuarDeposito(int numeroConta, BigDecimal valor);	
+	 void efetuarDeposito(int numeroConta, BigDecimal valor) throws ContaInexistenteException;	
 	 void efetuarSaque(int numeroConta, BigDecimal valor) throws SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException;
 }

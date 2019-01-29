@@ -37,7 +37,8 @@ public class CaixaVinteQuatroHoras {
 
 	}
 
-	public void efetuarDeposito(int numeroConta, BigDecimal valor) {
+	public void efetuarDeposito(int numeroConta, BigDecimal valor) throws ContaInexistenteException {
+		System.out.println("passou no realizar deposito do caixa");
 		banco.efetuarDeposito(numeroConta, valor);
 	}
 

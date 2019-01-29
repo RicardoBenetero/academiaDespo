@@ -14,8 +14,8 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import br.gov.serpro.banco.ContaBancoAlfa;
-import br.gov.serpro.banco.ContaCorrenteComum;
-import br.gov.serpro.banco.ContaCorrenteEspecial;
+import br.gov.serpro.banco.ContaCorrenteComumBancoAlfa;
+import br.gov.serpro.banco.ContaCorrenteEspecialBancoAlfa;
 import br.gov.serpro.banco.BancoAlfa;
 import br.gov.serpro.banco.BancoGeral;
 import br.gov.serpro.banco.Extrato;
@@ -24,7 +24,7 @@ import br.gov.serpro.caixa24h.exception.ContaInexistenteException;
 import br.gov.serpro.caixa24h.exception.LimiteDeOperacoesPorDiaAtingidoException;
 import br.gov.serpro.caixa24h.exception.SaldoInsuficienteException;
 
-public class CaixaVinteQuatroHorasTest {
+public class CaixaVinteQuatroHorasBancoAlfaTest {
 
 	BancoGeral bancoMock = Mockito.mock(BancoGeral.class);
 	private int numeroConta;
@@ -66,9 +66,9 @@ public class CaixaVinteQuatroHorasTest {
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecial(7777, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecialBancoAlfa(7777, valorInicial);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecial(101010, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecialBancoAlfa(101010, valorInicial);
 
 		contas.add(contaCorrenteTeste);
 
@@ -104,9 +104,9 @@ public class CaixaVinteQuatroHorasTest {
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComum(234, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComumBancoAlfa(234, valorInicial);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecial(567, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecialBancoAlfa(567, valorInicial);
 
 		contas.add(contaCorrenteTeste);
 
@@ -150,9 +150,9 @@ public class CaixaVinteQuatroHorasTest {
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComum(234, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComumBancoAlfa(234, valorInicial);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecial(567, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecialBancoAlfa(567, valorInicial);
 
 		contas.add(contaCorrenteTeste);
 
@@ -183,9 +183,9 @@ public class CaixaVinteQuatroHorasTest {
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecial(2323, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecialBancoAlfa(2323, valorInicial);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecial(7878, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecialBancoAlfa(7878, valorInicial);
 
 		contas.add(contaCorrenteTeste);
 
@@ -217,9 +217,9 @@ public class CaixaVinteQuatroHorasTest {
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComum(2323, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComumBancoAlfa(2323, valorInicial);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComum(7878, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComumBancoAlfa(7878, valorInicial);
 
 		contas.add(contaCorrenteTeste);
 
@@ -245,9 +245,9 @@ public class CaixaVinteQuatroHorasTest {
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecial(456, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecialBancoAlfa(456, valorInicial);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecial(789, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecialBancoAlfa(789, valorInicial);
 
 		contas.add(contaCorrenteTeste);
 
@@ -277,9 +277,9 @@ public class CaixaVinteQuatroHorasTest {
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComum(456, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComumBancoAlfa(456, valorInicial);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComum(789, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComumBancoAlfa(789, valorInicial);
 
 		contas.add(contaCorrenteTeste);
 
@@ -321,9 +321,9 @@ public class CaixaVinteQuatroHorasTest {
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecial(7777, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecialBancoAlfa(7777, valorInicial);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecial(101010, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecialBancoAlfa(101010, valorInicial);
 
 		contas.add(contaCorrenteTeste);
 
@@ -365,9 +365,9 @@ public class CaixaVinteQuatroHorasTest {
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComum(7777, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComumBancoAlfa(7777, valorInicial);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComum(101010, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComumBancoAlfa(101010, valorInicial);
 
 		contas.add(contaCorrenteTeste);
 
@@ -409,9 +409,9 @@ public class CaixaVinteQuatroHorasTest {
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecial(2323, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecialBancoAlfa(2323, valorInicial);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecial(7878, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecialBancoAlfa(7878, valorInicial);
 
 		contas.add(contaCorrenteTeste);
 
@@ -449,9 +449,9 @@ public class CaixaVinteQuatroHorasTest {
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComum(2323, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComumBancoAlfa(2323, valorInicial);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComum(7878, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComumBancoAlfa(7878, valorInicial);
 
 		contas.add(contaCorrenteTeste);
 
@@ -475,7 +475,7 @@ public class CaixaVinteQuatroHorasTest {
 
 	@Ignore
 	@Test
-	public void deveRetornarSeDepositoEfetuadoComSucesso() {
+	public void deveRetornarSeDepositoEfetuadoComSucesso() throws ContaInexistenteException {
 		BigDecimal valorDepositado = new BigDecimal(10000);
 		doNothing().when(bancoMock).efetuarDeposito(numeroConta, valorDepositado);
 		bancoMock.efetuarDeposito(numeroConta, valorDepositado);
@@ -497,9 +497,9 @@ public class CaixaVinteQuatroHorasTest {
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecial(7777, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecialBancoAlfa(7777, valorInicial);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecial(101010, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecialBancoAlfa(101010, valorInicial);
 
 		contas.add(contaCorrenteTeste);
 
@@ -543,9 +543,9 @@ public class CaixaVinteQuatroHorasTest {
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComum(7777, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComumBancoAlfa(7777, valorInicial);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComum(101010, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComumBancoAlfa(101010, valorInicial);
 
 		contas.add(contaCorrenteTeste);
 
@@ -585,9 +585,9 @@ public class CaixaVinteQuatroHorasTest {
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecial(456, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecialBancoAlfa(456, valorInicial);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecial(789, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecialBancoAlfa(789, valorInicial);
 
 		contas.add(contaCorrenteTeste);
 
@@ -630,9 +630,9 @@ public class CaixaVinteQuatroHorasTest {
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComum(2323, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComumBancoAlfa(2323, valorInicial);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComum(7878, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComumBancoAlfa(7878, valorInicial);
 
 		contas.add(contaCorrenteTeste);
 
@@ -665,9 +665,9 @@ public class CaixaVinteQuatroHorasTest {
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComum(2323, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComumBancoAlfa(2323, valorInicial);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComum(7878, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComumBancoAlfa(7878, valorInicial);
 
 		contas.add(contaCorrenteTeste);
 
@@ -707,9 +707,9 @@ public class CaixaVinteQuatroHorasTest {
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComum(2323, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComumBancoAlfa(2323, valorInicial);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComum(7878, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComumBancoAlfa(7878, valorInicial);
 
 		contas.add(contaCorrenteTeste);
 
@@ -728,7 +728,8 @@ public class CaixaVinteQuatroHorasTest {
 		atm.efetuarTransferencia(2323, 7878, valorTransferencia);
 
 	}
-
+	
+    @Test
 	public void devePermitirRealizarMaisDeTresOperacoesDiaContaEspecial_EfetuarTransferencia()
 			throws ContaInexistenteException, BancoInexistenteException, SaldoInsuficienteException,
 			LimiteDeOperacoesPorDiaAtingidoException {
@@ -746,9 +747,9 @@ public class CaixaVinteQuatroHorasTest {
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecial(2323, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecialBancoAlfa(2323, valorInicial);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecial(7878, valorInicial);
+		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecialBancoAlfa(7878, valorInicial);
 
 		contas.add(contaCorrenteTeste);
 
