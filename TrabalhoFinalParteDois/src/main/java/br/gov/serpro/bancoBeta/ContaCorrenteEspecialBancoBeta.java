@@ -1,10 +1,11 @@
-package br.gov.serpro.banco;
+package br.gov.serpro.bancoBeta;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.gov.serpro.banco.Extrato;
 import br.gov.serpro.caixa24h.exception.ContaInexistenteException;
 import br.gov.serpro.caixa24h.exception.LimiteDeOperacoesPorDiaAtingidoException;
 import br.gov.serpro.caixa24h.exception.SaldoInsuficienteException;
@@ -12,12 +13,14 @@ import br.gov.serpro.caixa24h.exception.SaldoInsuficienteException;
 public class ContaCorrenteEspecialBancoBeta implements ContaBancoBeta{
 	
 	private static BigDecimal LIMITE_SALDO_PREMIUM = new BigDecimal("5000.0");
-
+	
 	private int numero;
 
 	private BigDecimal saldo = new BigDecimal(0.0);
 
 	private List<Extrato> extratos = new ArrayList<Extrato>();
+	
+	private CalculaTaxa calculaTaxa = new CalculaTaxa();
 	
 	LocalDate data = LocalDate.now();
 
@@ -42,10 +45,8 @@ public class ContaCorrenteEspecialBancoBeta implements ContaBancoBeta{
 	public void realizarDeposito(BigDecimal valor) throws ContaInexistenteException {
 		
 		
-	System.out.println("passou no realizar deposito do contaEspecialBancoBeta antes do if");
 		 if(valor.compareTo(BigDecimal.ZERO) > 0) {
 			 
-				System.out.println("passou no realizar deposito do contaEspecialBancoBeta depois do if");
 
 			 
 				String operacao = "Deposito";
@@ -55,10 +56,8 @@ public class ContaCorrenteEspecialBancoBeta implements ContaBancoBeta{
 				extratos.add(extrato);
 
 				saldo = saldo.add(valor) ;
-				System.out.println("passou no realizar deposito do contaEspecialBancoBeta depois saldo.add");
 
 		 }else {
-				System.out.println("passou no realizar deposito do contaEspecialBancoBeta depois else");
 
 		 throw new ContaInexistenteException("Conta Inexistente");
 		 
@@ -66,7 +65,22 @@ public class ContaCorrenteEspecialBancoBeta implements ContaBancoBeta{
 	}
 
 	public void sacar(BigDecimal valor) throws SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
-		// TODO Auto-generated method stub
+		if (this.saldo.add(LIMITE_SALDO_PREMIUM).doubleValue() >= valor.doubleValue()) {
+
+			saldo = saldo.subtract(valor.add(calculaTaxa.calculaTaxaDoSaque(valor)));
+
+
+			String operacao = "Saque";
+
+			Extrato extrato = new Extrato(data, null, valor, operacao);
+
+			extratos.add(extrato);
+
+		} else {
+			throw new SaldoInsuficienteException("Saldo insuficiente");
+
+		}
+
 		
 	}
 

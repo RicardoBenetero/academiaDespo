@@ -1,4 +1,4 @@
-package br.gov.serpro.banco;
+package br.gov.serpro.bancoAlfa;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.gov.serpro.caixa24h.exception.SaldoInsuficienteException;
+import br.gov.serpro.banco.Extrato;
 import br.gov.serpro.caixa24h.exception.ContaInexistenteException;
 
 public class ContaCorrenteEspecialBancoAlfa implements ContaBancoAlfa {

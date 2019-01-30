@@ -1,13 +1,15 @@
-package br.gov.serpro.banco;
+package br.gov.serpro.bancoAlfa;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+import br.gov.serpro.banco.Extrato;
 import br.gov.serpro.caixa24h.exception.ContaInexistenteException;
 import br.gov.serpro.caixa24h.exception.LimiteDeOperacoesPorDiaAtingidoException;
 import br.gov.serpro.caixa24h.exception.SaldoInsuficienteException;
 
-public interface ContaBancoBeta {
+
+public interface ContaBancoAlfa {
 	
 	public int getNumero();
 	public BigDecimal consultarSaldo() throws LimiteDeOperacoesPorDiaAtingidoException;

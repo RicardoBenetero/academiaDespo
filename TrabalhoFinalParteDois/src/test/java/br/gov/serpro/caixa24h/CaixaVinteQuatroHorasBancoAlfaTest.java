@@ -13,12 +13,12 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import br.gov.serpro.banco.ContaBancoAlfa;
-import br.gov.serpro.banco.ContaCorrenteComumBancoAlfa;
-import br.gov.serpro.banco.ContaCorrenteEspecialBancoAlfa;
-import br.gov.serpro.banco.BancoAlfa;
 import br.gov.serpro.banco.BancoGeral;
 import br.gov.serpro.banco.Extrato;
+import br.gov.serpro.bancoAlfa.BancoAlfa;
+import br.gov.serpro.bancoAlfa.ContaBancoAlfa;
+import br.gov.serpro.bancoAlfa.ContaCorrenteComumBancoAlfa;
+import br.gov.serpro.bancoAlfa.ContaCorrenteEspecialBancoAlfa;
 import br.gov.serpro.caixa24h.exception.BancoInexistenteException;
 import br.gov.serpro.caixa24h.exception.ContaInexistenteException;
 import br.gov.serpro.caixa24h.exception.LimiteDeOperacoesPorDiaAtingidoException;
