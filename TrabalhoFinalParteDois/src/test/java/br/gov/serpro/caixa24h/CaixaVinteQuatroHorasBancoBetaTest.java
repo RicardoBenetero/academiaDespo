@@ -24,7 +24,7 @@ import br.gov.serpro.caixa24h.exception.SaldoInsuficienteException;
 public class CaixaVinteQuatroHorasBancoBetaTest {
 
 	
-	@Ignore
+	
 	@Test
 	public void deveRetornarUmaConsultaDoExtratoParaContaEspecial() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
@@ -49,24 +49,29 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 		// assertEquals(listaExtratos.size(), consultaExtrato.size());
 
 		//
+		
+		BigDecimal valorDeposito = new BigDecimal(1000.0);
 
-		BigDecimal valorInicial = new BigDecimal(10000.0);
+		List<ContaBancoBeta> contas = new ArrayList<ContaBancoBeta>();
 
-		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
+		ContaBancoBeta contaCorrenteTeste = new ContaCorrenteEspecialBancoBeta(7777);
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecialBancoAlfa(7777, valorInicial);
-
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecialBancoAlfa(101010, valorInicial);
+		ContaBancoBeta contaCorrenteTeste2 = new ContaCorrenteEspecialBancoBeta(101010);
 
 		contas.add(contaCorrenteTeste);
 
 		contas.add(contaCorrenteTeste2);
-		BancoGeral bancoAlfa = new BancoAlfa(contas);
+		BancoGeral bancoBeta = new BancoBeta(contas);
 
-		CaixaVinteQuatroHoras caixa24horas = new CaixaVinteQuatroHoras(bancoAlfa);
+		CaixaVinteQuatroHoras caixa24horas = new CaixaVinteQuatroHoras(bancoBeta);
+		
 		BigDecimal valorSaqueConta7777 = new BigDecimal(500.0);
 
-		BigDecimal valorSaqueConta101010 = new BigDecimal(700.0);
+		BigDecimal valorSaqueConta101010 = new BigDecimal(500.0);
+		
+        caixa24horas.efetuarDeposito(7777, valorDeposito);
+		
+		caixa24horas.efetuarDeposito(101010, valorDeposito);
 
 		caixa24horas.efetuarSaque(7777, valorSaqueConta7777);
 
@@ -74,39 +79,47 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 
 		LocalDate dataHoje = LocalDate.now();
 
-		assertEquals("Saque", caixa24horas.consultaExtrato(7777).iterator().next().getOperacao());
+		assertEquals("Deposito", caixa24horas.consultaExtrato(7777).iterator().next().getOperacao());
 		assertEquals(dataHoje, caixa24horas.consultaExtrato(7777).iterator().next().getData());
-		assertEquals(valorSaqueConta7777, caixa24horas.consultaExtrato(7777).iterator().next().getDebito());
-
-		assertEquals("Saque", caixa24horas.consultaExtrato(101010).iterator().next().getOperacao());
+		assertEquals(valorDeposito, caixa24horas.consultaExtrato(7777).iterator().next().getDebito());
+		
+		
+		assertEquals("Deposito", caixa24horas.consultaExtrato(101010).iterator().next().getOperacao());
 		assertEquals(dataHoje, caixa24horas.consultaExtrato(101010).iterator().next().getData());
-		assertEquals(valorSaqueConta101010, caixa24horas.consultaExtrato(101010).iterator().next().getDebito());
+		assertEquals(valorDeposito, caixa24horas.consultaExtrato(101010).iterator().next().getDebito());
 
 	}
 	
 	
-	@Ignore
+	
 	@Test
 	public void deveRetornarUmaConsultaDoExtratoParaContaComum() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
+		
+		
+		BigDecimal valorDeposito = new BigDecimal(1000.0);
 
-		BigDecimal valorInicial = new BigDecimal(10000.0);
 
-		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
+		List<ContaBancoBeta> contas = new ArrayList<ContaBancoBeta>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComumBancoAlfa(234, valorInicial);
+		ContaBancoBeta contaCorrenteTeste = new ContaCorrenteComumBancoBeta(234);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecialBancoAlfa(567, valorInicial);
+		ContaBancoBeta contaCorrenteTeste2 = new ContaCorrenteComumBancoBeta(567);
 
 		contas.add(contaCorrenteTeste);
 
 		contas.add(contaCorrenteTeste2);
-		BancoGeral bancoAlfa = new BancoAlfa(contas);
+		BancoGeral bancoBeta = new BancoBeta(contas);
 
-		CaixaVinteQuatroHoras caixa24horas = new CaixaVinteQuatroHoras(bancoAlfa);
+		CaixaVinteQuatroHoras caixa24horas = new CaixaVinteQuatroHoras(bancoBeta);
+		
 		BigDecimal valorSaqueConta234 = new BigDecimal(500.0);
 
-		BigDecimal valorSaqueConta567 = new BigDecimal(700.0);
+		BigDecimal valorSaqueConta567 = new BigDecimal(500.0);
+		
+		caixa24horas.efetuarDeposito(234, valorDeposito);
+		
+		caixa24horas.efetuarDeposito(567, valorDeposito);
 
 		caixa24horas.efetuarSaque(234, valorSaqueConta234);
 
@@ -114,13 +127,18 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 
 		LocalDate dataHoje = LocalDate.now();
 
-		assertEquals("Saque", caixa24horas.consultaExtrato(234).iterator().next().getOperacao());
+		
+		assertEquals("deposito", caixa24horas.consultaExtrato(234).iterator().next().getOperacao());
 		assertEquals(dataHoje, caixa24horas.consultaExtrato(234).iterator().next().getData());
-		assertEquals(valorSaqueConta234, caixa24horas.consultaExtrato(234).iterator().next().getDebito());
+		assertEquals(valorDeposito, caixa24horas.consultaExtrato(234).iterator().next().getDebito());
 
-		assertEquals("Saque", caixa24horas.consultaExtrato(567).iterator().next().getOperacao());
+		
+
+		assertEquals("deposito", caixa24horas.consultaExtrato(567).iterator().next().getOperacao());
 		assertEquals(dataHoje, caixa24horas.consultaExtrato(567).iterator().next().getData());
-		assertEquals(valorSaqueConta567, caixa24horas.consultaExtrato(567).iterator().next().getDebito());
+		assertEquals(valorDeposito, caixa24horas.consultaExtrato(567).iterator().next().getDebito());
+		
+
 
 	}
 	
@@ -311,7 +329,7 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 	
 	
 	
-	@Ignore
+	
 	@Test
 	public void deveRetornarSaldoAoInformarNumeroDaContaEspecial() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
@@ -356,7 +374,7 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 	}
 
 	
-	@Ignore
+	
 	@Test
 	public void deveRetornarSaldoAoInformarNumeroDaContaComum() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
@@ -374,16 +392,20 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 		ContaBancoBeta contaCorrenteTeste = new ContaCorrenteComumBancoBeta(7777);
 
 		ContaBancoBeta contaCorrenteTeste2 = new ContaCorrenteComumBancoBeta(101010);
-
 		contas.add(contaCorrenteTeste);
 
 		contas.add(contaCorrenteTeste2);
 		BancoGeral bancoBeta = new BancoBeta(contas);
 
 		CaixaVinteQuatroHoras caixa24horas = new CaixaVinteQuatroHoras(bancoBeta);
-		BigDecimal valorDepositoConta7777 = new BigDecimal(500.0);
+		
+		BigDecimal  valorDepositoConta7777 = new BigDecimal(1000.0);
 
-		BigDecimal valorDepositoConta101010 = new BigDecimal(700.0);
+		BigDecimal valorDepositoConta101010 = new BigDecimal(1000.0);
+		
+		BigDecimal  valorSaqueConta7777 = new BigDecimal(500.0);
+
+		BigDecimal valorSaqueConta101010 = new BigDecimal(500.0);
 
 		caixa24horas.efetuarSaque(7777, valorDepositoConta7777);
 
@@ -401,7 +423,7 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 
 	
 	
-	@Ignore
+	
 	@Test
 	public void deveRetornarSeTransferenciaFoiEfetuadaComSucessoParaContaEspecial() throws SaldoInsuficienteException,
 			ContaInexistenteException, BancoInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
@@ -412,27 +434,31 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 		 * saldoAntesTransferencia); bancoMock.efetuarTransferencia(numeroConta,
 		 * contaDestino, saldoAntesTransferencia);
 		 */
-		BigDecimal valorInicial = new BigDecimal(10000.0);
+		BigDecimal valordeposito = new BigDecimal(10000.0);
 
 		BigDecimal valorTransferencia = new BigDecimal(6000.0);
 
-		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
+		List<ContaBancoBeta> contas = new ArrayList<ContaBancoBeta>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecialBancoAlfa(2323, valorInicial);
+		ContaBancoBeta contaCorrenteTeste = new ContaCorrenteEspecialBancoBeta(2323);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecialBancoAlfa(7878, valorInicial);
+		ContaBancoBeta contaCorrenteTeste2 = new ContaCorrenteEspecialBancoBeta(7878);
 
 		contas.add(contaCorrenteTeste);
 
 		contas.add(contaCorrenteTeste2);
 
-		BancoGeral bancoAlfa = new BancoAlfa(contas);
+		BancoGeral bancoBeta = new BancoBeta(contas);
 
-		CaixaVinteQuatroHoras atm = new CaixaVinteQuatroHoras(bancoAlfa);
+		CaixaVinteQuatroHoras atm = new CaixaVinteQuatroHoras(bancoBeta);
+		
+		atm.efetuarDeposito(2323, valordeposito);
+		
+		atm.efetuarDeposito(7878, valordeposito);
 
 		atm.efetuarTransferencia(2323, 7878, valorTransferencia);
 
-		BigDecimal valorEsperadoConta2323 = new BigDecimal(4000.0);
+		BigDecimal valorEsperadoConta2323 = new BigDecimal(3999.0);//taxa de transferencia 1 real
 
 		BigDecimal valorEsperadoConta7878 = new BigDecimal(16000.0);
 
@@ -444,7 +470,7 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 	
 	
 	
-	@Ignore
+
 	@Test
 	public void deveRetornarSeTransferenciaFoiEfetuadaComSucessoParaContaComum() throws SaldoInsuficienteException,
 			ContaInexistenteException, BancoInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
@@ -455,27 +481,31 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 		 * saldoAntesTransferencia); bancoMock.efetuarTransferencia(numeroConta,
 		 * contaDestino, saldoAntesTransferencia);
 		 */
-		BigDecimal valorInicial = new BigDecimal(10000.0);
+		BigDecimal valordeposito = new BigDecimal(10000.0);
 
 		BigDecimal valorTransferencia = new BigDecimal(6000.0);
 
-		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
+		List<ContaBancoBeta> contas = new ArrayList<ContaBancoBeta>();
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComumBancoAlfa(2323, valorInicial);
+		ContaBancoBeta contaCorrenteTeste = new ContaCorrenteComumBancoBeta(2323);
 
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComumBancoAlfa(7878, valorInicial);
+		ContaBancoBeta contaCorrenteTeste2 = new ContaCorrenteComumBancoBeta(7878);
 
 		contas.add(contaCorrenteTeste);
 
 		contas.add(contaCorrenteTeste2);
 
-		BancoGeral bancoAlfa = new BancoAlfa(contas);
+		BancoGeral bancoBeta = new BancoBeta(contas);
 
-		CaixaVinteQuatroHoras atm = new CaixaVinteQuatroHoras(bancoAlfa);
+		CaixaVinteQuatroHoras atm = new CaixaVinteQuatroHoras(bancoBeta);
+		
+		atm.efetuarDeposito(2323, valordeposito);
+		
+		atm.efetuarDeposito(7878, valordeposito);
 
 		atm.efetuarTransferencia(2323, 7878, valorTransferencia);
 
-		BigDecimal valorEsperadoConta2323 = new BigDecimal(4000.0);
+		BigDecimal valorEsperadoConta2323 = new BigDecimal(3999.0);//taxa de transferencia 1 real
 
 		BigDecimal valorEsperadoConta7878 = new BigDecimal(16000.0);
 
@@ -521,6 +551,7 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 
 		
 	}
+	
 	
 	@Test
 	public void deveRetornarSeDepositoEfetuadoComSucesso_ContaCorrenteComum() throws ContaInexistenteException, BancoInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {

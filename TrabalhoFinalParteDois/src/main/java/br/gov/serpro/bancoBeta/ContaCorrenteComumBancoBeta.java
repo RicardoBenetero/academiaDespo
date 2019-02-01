@@ -13,7 +13,8 @@ import br.gov.serpro.caixa24h.exception.SaldoInsuficienteException;
 public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 	
 	
-	
+	private static BigDecimal LIMITE_SALDO_PREMIUM = new BigDecimal("200.0");
+
 	 private int numero;
 
 	 private BigDecimal saldo = new BigDecimal(0.0);
@@ -44,15 +45,15 @@ public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 	}
 
 	public void realizarDeposito(BigDecimal valor) throws ContaInexistenteException {
-		 if(valor.compareTo(BigDecimal.ZERO) > 0) {
+		 if(valor.compareTo(BigDecimal.ZERO) > 0 && quantidadeOperacoes <= 2)  {
 			 
+			 String operacao = "deposito";
 
-			 
-				String operacao = "Deposito";
-
-				Extrato extrato = new Extrato(data, valor, null, operacao);
+				Extrato extrato = new Extrato(data, null, valor, operacao);
 
 				extratos.add(extrato);
+
+				quantidadeOperacoes++;
 
 				saldo = saldo.add(valor) ;
 
@@ -66,7 +67,7 @@ public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 	
 
 	public void sacar(BigDecimal valor) throws SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
-		if (saldo.compareTo(valor) > 0 && quantidadeOperacoes <= 2) {
+			if (this.saldo.add(LIMITE_SALDO_PREMIUM).doubleValue() >= valor.doubleValue()&& quantidadeOperacoes <= 2) {
 
 			saldo = saldo.subtract(valor.add(calculaTaxa.calculaTaxaDoSaque(valor)));
 
@@ -87,16 +88,11 @@ public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 	}
 
 		
-	
-
-	public void insereValorDeTransferencia(BigDecimal valor) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public List<Extrato> getExtrato() {
-		// TODO Auto-generated method stub
-		return null;
+		return extratos;
+	}
+	public void setQuantidadeOperacoes() {
+		this.quantidadeOperacoes ++;;
 	}
 
 }

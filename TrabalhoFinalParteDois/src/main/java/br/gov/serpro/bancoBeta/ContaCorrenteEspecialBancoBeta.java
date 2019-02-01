@@ -51,7 +51,7 @@ public class ContaCorrenteEspecialBancoBeta implements ContaBancoBeta{
 			 
 				String operacao = "Deposito";
 
-				Extrato extrato = new Extrato(data, valor, null, operacao);
+				Extrato extrato = new Extrato(data, null,valor , operacao);
 
 				extratos.add(extrato);
 
@@ -84,14 +84,15 @@ public class ContaCorrenteEspecialBancoBeta implements ContaBancoBeta{
 		
 	}
 
-	public void insereValorDeTransferencia(BigDecimal valor) {
-		// TODO Auto-generated method stub
+	
+	
+
+	public List<Extrato> getExtrato() {
+		return extratos;
+	}
+	public void setQuantidadeOperacoes() {
 		
 	}
 
-	public List<Extrato> getExtrato() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }

@@ -20,22 +20,39 @@ public class BancoBeta implements BancoGeral {
 	
 	
 	public BancoBeta(List<ContaBancoBeta> contas) {
-		for (ContaBancoBeta conta : contas) {
-	
-		}
+		
 		this.contas = contas;
 
-		for (ContaBancoBeta conta : contas) {
-			
-			}
-		
 		
 	}
 
 	public List<Extrato> consultarExtrato(int numeroConta) throws ContaInexistenteException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		for (ContaBancoBeta conta : contas) {
+			if (conta.getNumero() == numeroConta) {
+				if(conta instanceof ContaCorrenteComumBancoBeta) {
+					
+					conta.setQuantidadeOperacoes();
+
+					return conta.getExtrato();
+					
+					
+					}else if(conta instanceof ContaCorrenteEspecialBancoBeta) {
+						
+						return conta.getExtrato();
+
+					}
+				}
+			
+
+			}
+	
+
+		
+		throw new ContaInexistenteException("Conta Inexistente");
+
 	}
+
 
 	public BigDecimal consultarSaldo(int numeroConta)
 			throws ContaInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
@@ -50,9 +67,29 @@ public class BancoBeta implements BancoGeral {
 
 	public void efetuarTransferencia(int numeroConta, int contaDestino, BigDecimal valor)
 			throws SaldoInsuficienteException, ContaInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
-		// TODO Auto-generated method stub
-		
+		for (ContaBancoBeta conta : contas) {
+			if (conta.getNumero() == numeroConta) {
+				conta.sacar(valor);
+
+			}
+			if (conta.getNumero() == contaDestino) {
+				
+				if(conta instanceof ContaCorrenteComumBancoBeta) {
+				conta.realizarDeposito(valor);
+				
+				conta.setQuantidadeOperacoes();
+				
+				}else if(conta instanceof ContaCorrenteEspecialBancoBeta) {
+					
+					conta.realizarDeposito(valor);
+
+				}
+			}
+		}
+
 	}
+
+	
 
 	public void efetuarDeposito(int numeroConta, BigDecimal valor)throws ContaInexistenteException {
 		

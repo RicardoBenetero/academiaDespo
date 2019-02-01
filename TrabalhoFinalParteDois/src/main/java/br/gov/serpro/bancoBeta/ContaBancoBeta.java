@@ -14,7 +14,7 @@ public interface ContaBancoBeta {
 	public BigDecimal consultarSaldo() throws LimiteDeOperacoesPorDiaAtingidoException;
 	public void realizarDeposito(BigDecimal valor) throws ContaInexistenteException;
 	public void sacar(BigDecimal valor) throws SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException;
-	public void insereValorDeTransferencia(BigDecimal valor);
 	public List<Extrato> getExtrato();
+	public void setQuantidadeOperacoes();
 
 }
