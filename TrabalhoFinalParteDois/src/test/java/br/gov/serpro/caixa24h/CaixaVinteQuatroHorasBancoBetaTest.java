@@ -23,8 +23,8 @@ import br.gov.serpro.caixa24h.exception.SaldoInsuficienteException;
 
 public class CaixaVinteQuatroHorasBancoBetaTest {
 
-	
-	
+	//testeok
+	@Ignore
 	@Test
 	public void deveRetornarUmaConsultaDoExtratoParaContaEspecial() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
@@ -91,7 +91,8 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 	}
 	
 	
-	
+	//testeok
+    @Ignore
 	@Test
 	public void deveRetornarUmaConsultaDoExtratoParaContaComum() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
@@ -355,17 +356,26 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 		BancoGeral bancoBeta = new BancoBeta(contas);
 
 		CaixaVinteQuatroHoras caixa24horas = new CaixaVinteQuatroHoras(bancoBeta);
-		BigDecimal valorDepositoConta7777 = new BigDecimal(500.0);
+		
+		BigDecimal valorDepositoConta7777 = new BigDecimal(1000.0);
 
-		BigDecimal valorDepositoConta101010 = new BigDecimal(700.0);
+		BigDecimal valorDepositoConta101010 = new BigDecimal(1000.0);
+		
+		BigDecimal valorSaque7777 = new BigDecimal(500.0);
 
-		caixa24horas.efetuarSaque(7777, valorDepositoConta7777);
+		BigDecimal valorSaque101010 = new BigDecimal(700.0);
+		
+		BigDecimal valorEsperadoConta7777 = new BigDecimal(486.5);
 
-		caixa24horas.efetuarSaque(101010, valorDepositoConta101010);
+		BigDecimal valorEsperadoConta101010 = new BigDecimal(274.5);
+		
+        caixa24horas.efetuarDeposito(7777, valorDepositoConta7777);
+		
+		caixa24horas.efetuarDeposito(101010, valorDepositoConta101010);
 
-		BigDecimal valorEsperadoConta7777 = new BigDecimal(500.0);
+		caixa24horas.efetuarSaque(7777, valorSaque7777);
 
-		BigDecimal valorEsperadoConta101010 = new BigDecimal(700.0);
+		caixa24horas.efetuarSaque(101010, valorSaque101010);
 
 		assertEquals(valorEsperadoConta7777, caixa24horas.consultaSaldo(7777));
 
@@ -374,7 +384,8 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 	}
 
 	
-	
+	//teste ok
+	@Ignore
 	@Test
 	public void deveRetornarSaldoAoInformarNumeroDaContaComum() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
@@ -405,25 +416,30 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 		
 		BigDecimal  valorSaqueConta7777 = new BigDecimal(500.0);
 
-		BigDecimal valorSaqueConta101010 = new BigDecimal(500.0);
+		BigDecimal valorSaqueConta101010 = new BigDecimal(300.0);
+		
+		caixa24horas.efetuarDeposito(7777, valorDepositoConta7777);
+		
+		caixa24horas.efetuarDeposito(101010, valorDepositoConta101010);
 
-		caixa24horas.efetuarSaque(7777, valorDepositoConta7777);
+		caixa24horas.efetuarSaque(7777, valorSaqueConta7777);
 
-		caixa24horas.efetuarSaque(101010, valorDepositoConta101010);
+		caixa24horas.efetuarSaque(101010, valorSaqueConta101010);
 
-		BigDecimal valorEsperadoConta7777 = new BigDecimal(500.0);
+		BigDecimal valorEsperadoConta7777 = new BigDecimal(486.5); // considerar taxa de saque
 
-		BigDecimal valorEsperadoConta101010 = new BigDecimal(700.0);
+		BigDecimal valorEsperadoConta101010 = new BigDecimal(694.5);// considerar taxa de saque
 
 		assertEquals(valorEsperadoConta7777, caixa24horas.consultaSaldo(7777));
 
-		assertEquals(valorEsperadoConta101010, caixa24horas.consultaSaldo(101010));
+	    assertEquals(valorEsperadoConta101010, caixa24horas.consultaSaldo(101010));
 
 	}
 
 	
 	
-	
+	//testeok
+	@Ignore
 	@Test
 	public void deveRetornarSeTransferenciaFoiEfetuadaComSucessoParaContaEspecial() throws SaldoInsuficienteException,
 			ContaInexistenteException, BancoInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
@@ -470,7 +486,8 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 	
 	
 	
-
+	//testeok
+	@Ignore
 	@Test
 	public void deveRetornarSeTransferenciaFoiEfetuadaComSucessoParaContaComum() throws SaldoInsuficienteException,
 			ContaInexistenteException, BancoInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
@@ -515,7 +532,8 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 
 	}
 
-	
+	//testeok
+	@Ignore
 	@Test
 	public void deveRetornarSeDepositoEfetuadoComSucesso_ContaCorrenteEspecial() throws ContaInexistenteException, BancoInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
 		
@@ -552,7 +570,8 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 		
 	}
 	
-	
+	//testeok
+	@Ignore
 	@Test
 	public void deveRetornarSeDepositoEfetuadoComSucesso_ContaCorrenteComum() throws ContaInexistenteException, BancoInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
 		

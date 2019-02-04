@@ -67,7 +67,7 @@ public class ContaCorrenteEspecialBancoBeta implements ContaBancoBeta{
 	public void sacar(BigDecimal valor) throws SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
 		if (this.saldo.add(LIMITE_SALDO_PREMIUM).doubleValue() >= valor.doubleValue()) {
 
-			saldo = saldo.subtract(valor.add(calculaTaxa.calculaTaxaDoSaque(valor)));
+			saldo = saldo.subtract((calculaTaxa.calculaTaxaDoSaque(valor)));
 
 
 			String operacao = "Saque";

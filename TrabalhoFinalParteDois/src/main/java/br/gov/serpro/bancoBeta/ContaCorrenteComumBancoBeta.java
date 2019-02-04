@@ -67,10 +67,20 @@ public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 	
 
 	public void sacar(BigDecimal valor) throws SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
+		
+		System.out.println("entrou no sacar da conta comum antes do if " + this.saldo.add(LIMITE_SALDO_PREMIUM) + "valor " +valor);
+
 			if (this.saldo.add(LIMITE_SALDO_PREMIUM).doubleValue() >= valor.doubleValue()&& quantidadeOperacoes <= 2) {
+           System.out.println("entrou no sacar da conta comum depois do if");
 
-			saldo = saldo.subtract(valor.add(calculaTaxa.calculaTaxaDoSaque(valor)));
 
+			saldo = saldo.subtract(calculaTaxa.calculaTaxaDoSaque(valor));
+			
+			System.out.println("retorno do calcula taxa " + calculaTaxa.calculaTaxaDoSaque(valor));
+			
+            System.out.println("Saldo depois de retirar "  + saldo);
+            
+            
 			String operacao = "Saque";
 
 			Extrato extrato = new Extrato(data, null, valor, operacao);
