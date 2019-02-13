@@ -44,7 +44,6 @@ public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 
 		quantidadeOperacoes++;
 		
-		System.out.println("qtd no consulta saldo " +quantidadeOperacoes);
 			return saldo;
 
 		} else {
@@ -66,7 +65,6 @@ public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 
 				quantidadeOperacoes++;
 				
-				System.out.println("qtd no depositar " +quantidadeOperacoes);
 
 
 				saldo = saldo.add(valor) ;
@@ -82,17 +80,13 @@ public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 
 	public void sacar(BigDecimal valor) throws SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
 		
-		System.out.println("entrou no sacar da conta comum antes do if " + this.saldo.add(LIMITE_SALDO_COMUM) + "valor " +valor);
 
 			if (this.saldo.add(LIMITE_SALDO_COMUM).doubleValue() >= valor.doubleValue()&& quantidadeOperacoes < 3) {
-           System.out.println("entrou no sacar da conta comum depois do if");
 
 
 			saldo = saldo.subtract(calculaTaxa.calculaTaxaDoSaque(valor));
 			
-			System.out.println("retorno do calcula taxa " + calculaTaxa.calculaTaxaDoSaque(valor));
 			
-            System.out.println("Saldo depois de retirar "  + saldo);
             
             
 			String operacao = "Saque";
@@ -103,7 +97,6 @@ public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 
 			quantidadeOperacoes++;
 			
-			System.out.println("qtd no consulta sacar " +quantidadeOperacoes);
 
 
 		} else if (saldo.compareTo(valor) < 0 && quantidadeOperacoes < 3) {
@@ -121,8 +114,5 @@ public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 	public void setQuantidadeOperacoes() {
 		this.quantidadeOperacoes ++;;
 	}
-	public int getQuantidadeOperacoes() {
-		return quantidadeOperacoes;
-	}
-
+	
 }

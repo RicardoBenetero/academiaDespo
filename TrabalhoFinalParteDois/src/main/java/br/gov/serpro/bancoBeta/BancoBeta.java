@@ -71,8 +71,6 @@ public class BancoBeta implements BancoGeral {
 			if (conta.getNumero() == numeroConta) {
 				if(conta instanceof ContaCorrenteComumBancoBeta) {
 				conta.sacar(valor);
-				//conta.setQuantidadeOperacoes();
-				System.out.println("qtd no transferiri " +conta.getQuantidadeOperacoes());
 
 
 				System.out.println("conta do metodo tranferir conta 1 " + conta.getNumero());
@@ -83,18 +81,13 @@ public class BancoBeta implements BancoGeral {
 			}
 			if (conta.getNumero() == contaDestino) {
 				
-			//	if(conta instanceof ContaCorrenteComumBancoBeta) {
+		
 				conta.realizarDeposito(valor);
 				
-			//	conta.setQuantidadeOperacoes();
+			
 				
-				System.out.println("conta do metodo tranferir " + conta.getNumero());
 				
-			//	}else if(conta instanceof ContaCorrenteEspecialBancoBeta) {
-					
-				//	conta.realizarDeposito(valor);
-
-				//}
+			
 			}
 		}
 
