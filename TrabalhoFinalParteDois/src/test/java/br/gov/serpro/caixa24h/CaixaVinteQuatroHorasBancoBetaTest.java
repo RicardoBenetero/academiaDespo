@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -22,6 +23,64 @@ import br.gov.serpro.caixa24h.exception.LimiteDeOperacoesPorDiaAtingidoException
 import br.gov.serpro.caixa24h.exception.SaldoInsuficienteException;
 
 public class CaixaVinteQuatroHorasBancoBetaTest {
+	private List<ContaBancoBeta> contas;
+	
+
+	private ContaBancoBeta contaCorrenteComum1;
+
+	private ContaBancoBeta contaCorrenteComum2;
+	
+	private ContaBancoBeta contaCorrenteEspecial1;
+
+	private ContaBancoBeta contaCorrenteEspecial2;
+	
+	private BancoGeral bancoBeta;
+
+	private CaixaVinteQuatroHoras caixa24horas;
+	
+	private BigDecimal  valorTransferencia;
+
+	private BigDecimal valorDeposito ;
+	
+
+	@Before
+	public void preparaMassa() throws BancoInexistenteException, ContaInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
+		
+		this.contas = new ArrayList<ContaBancoBeta>();
+
+		this.contaCorrenteComum1 = new ContaCorrenteComumBancoBeta(7777);
+
+		this.contaCorrenteComum2 = new ContaCorrenteComumBancoBeta(101010);
+		
+		this.contaCorrenteEspecial1 = new ContaCorrenteEspecialBancoBeta(3333);
+
+		this.contaCorrenteEspecial2 = new ContaCorrenteEspecialBancoBeta(4444);
+		
+		contas.add(contaCorrenteComum1);
+
+		contas.add(contaCorrenteComum2);
+		
+		contas.add(contaCorrenteEspecial1);
+
+		contas.add(contaCorrenteEspecial2);
+		
+		this.bancoBeta = new BancoBeta(contas);
+
+		this.caixa24horas = new CaixaVinteQuatroHoras(bancoBeta);
+		
+		this.valorTransferencia = new BigDecimal(1000.0);
+
+		this.valorDeposito = new BigDecimal(10000.0);		
+		
+		caixa24horas.efetuarDeposito(101010, valorDeposito);
+		
+		caixa24horas.efetuarTransferencia(101010, 7777, valorTransferencia);
+
+        caixa24horas.efetuarDeposito(4444, valorDeposito);
+		
+		caixa24horas.efetuarTransferencia(4444, 3333, valorTransferencia);
+		
+	}
 
 	//testeok
 	@Ignore
@@ -144,182 +203,74 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 	}
 	
 	
-	@Ignore
+	//@Ignore
 	@Test(expected = ContaInexistenteException.class)
 	public void naoDevePermitirNumeroContaInexistenteParaConsultaExtrato()
 			throws ContaInexistenteException, BancoInexistenteException {
-		/*
-		 * List<String> extrato = new ArrayList<String>();
-		 * extrato.add("data: 10/11/2014 ; credito: 10000");
-		 * Mockito.when(bancoMock.consultarExtrato(numeroConta)) .thenThrow(new
-		 * ContaInexistenteException("Conta inexistente")); CaixaVinteQuatroHoras
-		 * caixa24horas = new CaixaVinteQuatroHoras(bancoMock);
-		 * caixa24horas.consultaExtrato(123456);
-		 */
-
-		BigDecimal valorInicial = new BigDecimal(10000.0);
-
-		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
-
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComumBancoAlfa(234, valorInicial);
-
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecialBancoAlfa(567, valorInicial);
-
-		contas.add(contaCorrenteTeste);
-
-		contas.add(contaCorrenteTeste2);
-		BancoGeral bancoAlfa = new BancoAlfa(contas);
-
-		CaixaVinteQuatroHoras caixa24horas = new CaixaVinteQuatroHoras(bancoAlfa);
-
-		assertEquals("Saque", caixa24horas.consultaExtrato(7777).iterator().next().getOperacao());
+		
+		assertEquals("Saque", caixa24horas.consultaExtrato(1234).iterator().next().getOperacao());
 
 	}
 	
 	
-	@Ignore
+	//@Ignore
 	@Test(expected = SaldoInsuficienteException.class)
 	public void naoDevePermitirSaldoInsuficienteAoEfetuarTransferenciaContaEspecial() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
 
-		/*
-		 * BigDecimal valorTransferido = new BigDecimal(10000);
-		 * Mockito.doThrow(SaldoInsuficienteException.class).when(bancoMock).
-		 * efetuarTransferencia(numeroConta, contaDestino, valorTransferido);
-		 * bancoMock.efetuarTransferencia(numeroConta, contaDestino, valorTransferido);
-		 * 
-		 */
-
-		BigDecimal valorInicial = new BigDecimal(10000.0);
-
+		
 		BigDecimal valorTransferencia = new BigDecimal(11000.1);
 
-		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
-
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecialBancoAlfa(2323, valorInicial);
-
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecialBancoAlfa(7878, valorInicial);
-
-		contas.add(contaCorrenteTeste);
-
-		contas.add(contaCorrenteTeste2);
-
-		BancoGeral bancoAlfa = new BancoAlfa(contas);
-
-		CaixaVinteQuatroHoras atm = new CaixaVinteQuatroHoras(bancoAlfa);
-
-		atm.efetuarTransferencia(2323, 7878, valorTransferencia);
+		caixa24horas.efetuarTransferencia(7777, 101010, valorTransferencia);
 
 	}
 	
 	
 	
-	@Ignore
+	//@Ignore
 	@Test(expected = SaldoInsuficienteException.class)
 	public void naoDevePermitirSaldoInsuficienteAoEfetuarTransferenciaContaComum() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
 
-		/*
-		 * BigDecimal valorTransferido = new BigDecimal(10000);
-		 * Mockito.doThrow(SaldoInsuficienteException.class).when(bancoMock).
-		 * efetuarTransferencia(numeroConta, contaDestino, valorTransferido);
-		 * bancoMock.efetuarTransferencia(numeroConta, contaDestino, valorTransferido);
-		 * 
-		 */
+		
 
-		BigDecimal valorInicial = new BigDecimal(10000.0);
+	     BigDecimal valorTransferencia = new BigDecimal(10000.1);
 
-		BigDecimal valorTransferencia = new BigDecimal(10000.1);
-
-		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
-
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComumBancoAlfa(2323, valorInicial);
-
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComumBancoAlfa(7878, valorInicial);
-
-		contas.add(contaCorrenteTeste);
-
-		contas.add(contaCorrenteTeste2);
-
-		BancoGeral bancoAlfa = new BancoAlfa(contas);
-
-		CaixaVinteQuatroHoras atm = new CaixaVinteQuatroHoras(bancoAlfa);
-
-		atm.efetuarTransferencia(2323, 7878, valorTransferencia);
+		caixa24horas.efetuarTransferencia(3333, 4444, valorTransferencia);
 
 	}
 
 	
-	@Ignore
+	//@Ignore
 	@Test(expected = SaldoInsuficienteException.class)
 	public void naoDevePermitirSaldoInsuficienteAoEfetuarSaqueParaContaEspecial() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
-		// BigDecimal valorSaque = new BigDecimal(10000);
-		// Mockito.doThrow(SaldoInsuficienteException.class).when(bancoMock).efetuarSaque(numeroConta,
-		// valorSaque);
-		// bancoMock.efetuarSaque(numeroConta, valorSaque);
+		
+		BigDecimal valorSaqueConta = new BigDecimal(10000.1);
 
-		BigDecimal valorInicial = new BigDecimal(1000.0);
+		caixa24horas.efetuarSaque(4444, valorSaqueConta);
 
-		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
-
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecialBancoAlfa(456, valorInicial);
-
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecialBancoAlfa(789, valorInicial);
-
-		contas.add(contaCorrenteTeste);
-
-		contas.add(contaCorrenteTeste2);
-		BancoGeral bancoAlfa = new BancoAlfa(contas);
-
-		CaixaVinteQuatroHoras caixa24horas = new CaixaVinteQuatroHoras(bancoAlfa);
-		BigDecimal valorSaqueConta456 = new BigDecimal(2000.1);
-
-		BigDecimal valorSaqueConta789 = new BigDecimal(700.0);
-
-		caixa24horas.efetuarSaque(456, valorSaqueConta456);
-
-		caixa24horas.efetuarSaque(789, valorSaqueConta789);
+		caixa24horas.efetuarSaque(3333, valorSaqueConta);
 
 	}
 	
 	
 	
-	@Ignore
+	//@Ignore
 	@Test(expected = SaldoInsuficienteException.class)
 	public void naoDevePermitirSaldoInsuficienteAoEfetuarSaqueParaContaComum() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
-		// BigDecimal valorSaque = new BigDecimal(10000);
-		// Mockito.doThrow(SaldoInsuficienteException.class).when(bancoMock).efetuarSaque(numeroConta,
-		// valorSaque);
-		// bancoMock.efetuarSaque(numeroConta, valorSaque);
+		
+		BigDecimal valorSaqueConta = new BigDecimal(10000.1);
 
-		BigDecimal valorInicial = new BigDecimal(1000.0);
+		caixa24horas.efetuarSaque(7777, valorSaqueConta);
 
-		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
-
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComumBancoAlfa(456, valorInicial);
-
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComumBancoAlfa(789, valorInicial);
-
-		contas.add(contaCorrenteTeste);
-
-		contas.add(contaCorrenteTeste2);
-		BancoGeral bancoAlfa = new BancoAlfa(contas);
-
-		CaixaVinteQuatroHoras caixa24horas = new CaixaVinteQuatroHoras(bancoAlfa);
-		BigDecimal valorSaqueConta456 = new BigDecimal(1000.1);
-
-		BigDecimal valorSaqueConta789 = new BigDecimal(1000.1);
-
-		caixa24horas.efetuarSaque(456, valorSaqueConta456);
-
-		caixa24horas.efetuarSaque(789, valorSaqueConta789);
+	    caixa24horas.efetuarSaque(101010, valorSaqueConta);
 
 	}
 	
 	
-	@Ignore
+	//@Ignore
 	@Test(expected = BancoInexistenteException.class)
 	public void deveRetornarExcecaoQuandoInformadoBancoNulo()
 			throws ContaInexistenteException, BancoInexistenteException {
@@ -330,7 +281,8 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 	
 	
 	
-	
+	//testeok
+	@Ignore
 	@Test
 	public void deveRetornarSaldoAoInformarNumeroDaContaEspecial() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
@@ -610,96 +562,41 @@ public class CaixaVinteQuatroHorasBancoBetaTest {
 	
 	
 	
-	@Ignore
+	//testeok
+	//@Ignore
 	@Test
 	public void deveRetornarSeSaqueEfetuadoComSucessoParaContaEspecial() throws SaldoInsuficienteException,
 			ContaInexistenteException, BancoInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
 
-		/*
-		 * BigDecimal valorSaque = new BigDecimal(10000);
-		 * doNothing().when(bancoMock).efetuarSaque(numeroConta, valorSaque);
-		 * bancoMock.efetuarDeposito(numeroConta, valorSaque); CaixaVinteQuatroHoras
-		 * caixa24horas = new CaixaVinteQuatroHoras(bancoMock);
-		 * 
-		 */
+		
+		BigDecimal valorSaque7777 = new BigDecimal(500.0);
 
-		BigDecimal valorInicial = new BigDecimal(10000.0);
+		
+		BigDecimal valorEsperadoConta7777 = new BigDecimal(486.5);
 
-		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
+		
+		caixa24horas.efetuarSaque(7777, valorSaque7777);
 
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteEspecialBancoAlfa(7777, valorInicial);
-
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteEspecialBancoAlfa(101010, valorInicial);
-
-		contas.add(contaCorrenteTeste);
-
-		contas.add(contaCorrenteTeste2);
-
-		BancoGeral bancoAlfa = new BancoAlfa(contas);
-
-		CaixaVinteQuatroHoras caixa24horas = new CaixaVinteQuatroHoras(bancoAlfa);
-
-		BigDecimal valorSaqueConta7777 = new BigDecimal(500.0);
-
-		BigDecimal valorSaqueConta101010 = new BigDecimal(700.0);
-
-		caixa24horas.efetuarSaque(7777, valorSaqueConta7777);
-
-		caixa24horas.efetuarSaque(101010, valorSaqueConta101010);
-
-		BigDecimal valorEsperadoConta7777 = new BigDecimal(9500.0);
-
-		BigDecimal valorEsperadoConta101010 = new BigDecimal(9300.0);
 
 		assertEquals(valorEsperadoConta7777, caixa24horas.consultaSaldo(7777));
 
-		assertEquals(valorEsperadoConta101010, caixa24horas.consultaSaldo(101010));
 
 	}
-	@Ignore
+	
 	@Test
 	public void deveRetornarSeSaqueEfetuadoComSucessoParaContaComum() throws SaldoInsuficienteException,
 			ContaInexistenteException, BancoInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
 
-		/*
-		 * BigDecimal valorSaque = new BigDecimal(10000);
-		 * doNothing().when(bancoMock).efetuarSaque(numeroConta, valorSaque);
-		 * bancoMock.efetuarDeposito(numeroConta, valorSaque); CaixaVinteQuatroHoras
-		 * caixa24horas = new CaixaVinteQuatroHoras(bancoMock);
-		 * 
-		 */
-
-		BigDecimal valorInicial = new BigDecimal(10000.0);
-
-		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
-
-		ContaBancoAlfa contaCorrenteTeste = new ContaCorrenteComumBancoAlfa(7777, valorInicial);
-
-		ContaBancoAlfa contaCorrenteTeste2 = new ContaCorrenteComumBancoAlfa(101010, valorInicial);
-
-		contas.add(contaCorrenteTeste);
-
-		contas.add(contaCorrenteTeste2);
-
-		BancoGeral bancoAlfa = new BancoAlfa(contas);
-
-		CaixaVinteQuatroHoras caixa24horas = new CaixaVinteQuatroHoras(bancoAlfa);
-
-		BigDecimal valorSaqueConta7777 = new BigDecimal(500.0);
-
-		BigDecimal valorSaqueConta101010 = new BigDecimal(700.0);
+		
+		
+		BigDecimal  valorSaqueConta7777 = new BigDecimal(500.0);
 
 		caixa24horas.efetuarSaque(7777, valorSaqueConta7777);
 
-		caixa24horas.efetuarSaque(101010, valorSaqueConta101010);
-
-		BigDecimal valorEsperadoConta7777 = new BigDecimal(9500.0);
-
-		BigDecimal valorEsperadoConta101010 = new BigDecimal(9300.0);
+		BigDecimal valorEsperadoConta7777 = new BigDecimal(486.5); // considerar taxa de saque
 
 		assertEquals(valorEsperadoConta7777, caixa24horas.consultaSaldo(7777));
 
-		assertEquals(valorEsperadoConta101010, caixa24horas.consultaSaldo(101010));
 
 	}
 	@Ignore

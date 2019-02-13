@@ -69,21 +69,32 @@ public class BancoBeta implements BancoGeral {
 			throws SaldoInsuficienteException, ContaInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
 		for (ContaBancoBeta conta : contas) {
 			if (conta.getNumero() == numeroConta) {
+				if(conta instanceof ContaCorrenteComumBancoBeta) {
 				conta.sacar(valor);
+				//conta.setQuantidadeOperacoes();
+				System.out.println("qtd no transferiri " +conta.getQuantidadeOperacoes());
 
+
+				System.out.println("conta do metodo tranferir conta 1 " + conta.getNumero());
+				}else if(conta instanceof ContaCorrenteEspecialBancoBeta) {
+					conta.sacar(valor);
+
+				}
 			}
 			if (conta.getNumero() == contaDestino) {
 				
-				if(conta instanceof ContaCorrenteComumBancoBeta) {
+			//	if(conta instanceof ContaCorrenteComumBancoBeta) {
 				conta.realizarDeposito(valor);
 				
-				conta.setQuantidadeOperacoes();
+			//	conta.setQuantidadeOperacoes();
 				
-				}else if(conta instanceof ContaCorrenteEspecialBancoBeta) {
+				System.out.println("conta do metodo tranferir " + conta.getNumero());
+				
+			//	}else if(conta instanceof ContaCorrenteEspecialBancoBeta) {
 					
-					conta.realizarDeposito(valor);
+				//	conta.realizarDeposito(valor);
 
-				}
+				//}
 			}
 		}
 

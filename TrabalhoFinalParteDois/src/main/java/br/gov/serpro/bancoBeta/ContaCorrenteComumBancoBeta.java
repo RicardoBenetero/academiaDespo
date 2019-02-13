@@ -13,7 +13,7 @@ import br.gov.serpro.caixa24h.exception.SaldoInsuficienteException;
 public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 	
 	
-	private static BigDecimal LIMITE_SALDO_PREMIUM = new BigDecimal("200.0");
+	private static BigDecimal LIMITE_SALDO_COMUM = new BigDecimal("200.0");
 
 	 private int numero;
 
@@ -23,7 +23,7 @@ public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 	
 	 LocalDate data = LocalDate.now();
 	 
-	 private int quantidadeOperacoes = 1;
+	 private int quantidadeOperacoes = 0;
 
      private CalculaTaxa calculaTaxa = new CalculaTaxa();
 
@@ -40,12 +40,23 @@ public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 	}
 
 	public BigDecimal consultarSaldo() throws LimiteDeOperacoesPorDiaAtingidoException {
-		return saldo;
+		if (quantidadeOperacoes < 3) {
+
+		quantidadeOperacoes++;
+		
+		System.out.println("qtd no consulta saldo " +quantidadeOperacoes);
+			return saldo;
+
+		} else {
+			throw new LimiteDeOperacoesPorDiaAtingidoException("Limite diario de operacoes atingido");
+
+		}
+
 
 	}
 
 	public void realizarDeposito(BigDecimal valor) throws ContaInexistenteException {
-		 if(valor.compareTo(BigDecimal.ZERO) > 0 && quantidadeOperacoes <= 2)  {
+		 if(valor.compareTo(BigDecimal.ZERO) > 0 && quantidadeOperacoes < 3)  {
 			 
 			 String operacao = "deposito";
 
@@ -54,6 +65,9 @@ public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 				extratos.add(extrato);
 
 				quantidadeOperacoes++;
+				
+				System.out.println("qtd no depositar " +quantidadeOperacoes);
+
 
 				saldo = saldo.add(valor) ;
 
@@ -68,9 +82,9 @@ public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 
 	public void sacar(BigDecimal valor) throws SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
 		
-		System.out.println("entrou no sacar da conta comum antes do if " + this.saldo.add(LIMITE_SALDO_PREMIUM) + "valor " +valor);
+		System.out.println("entrou no sacar da conta comum antes do if " + this.saldo.add(LIMITE_SALDO_COMUM) + "valor " +valor);
 
-			if (this.saldo.add(LIMITE_SALDO_PREMIUM).doubleValue() >= valor.doubleValue()&& quantidadeOperacoes <= 2) {
+			if (this.saldo.add(LIMITE_SALDO_COMUM).doubleValue() >= valor.doubleValue()&& quantidadeOperacoes < 3) {
            System.out.println("entrou no sacar da conta comum depois do if");
 
 
@@ -88,8 +102,11 @@ public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 			extratos.add(extrato);
 
 			quantidadeOperacoes++;
+			
+			System.out.println("qtd no consulta sacar " +quantidadeOperacoes);
 
-		} else if (saldo.compareTo(valor) < 0 && quantidadeOperacoes <= 2) {
+
+		} else if (saldo.compareTo(valor) < 0 && quantidadeOperacoes < 3) {
 			throw new SaldoInsuficienteException("Saldo insuficiente");
 		} else if (saldo.compareTo(valor) > 0 && quantidadeOperacoes > 2) {
 			throw new LimiteDeOperacoesPorDiaAtingidoException("Limite diario de operacoes atingido");
@@ -103,6 +120,9 @@ public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 	}
 	public void setQuantidadeOperacoes() {
 		this.quantidadeOperacoes ++;;
+	}
+	public int getQuantidadeOperacoes() {
+		return quantidadeOperacoes;
 	}
 
 }

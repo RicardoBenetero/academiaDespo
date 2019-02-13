@@ -16,5 +16,7 @@ public interface ContaBancoBeta {
 	public void sacar(BigDecimal valor) throws SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException;
 	public List<Extrato> getExtrato();
 	public void setQuantidadeOperacoes();
+	public int getQuantidadeOperacoes();
+
 
 }
