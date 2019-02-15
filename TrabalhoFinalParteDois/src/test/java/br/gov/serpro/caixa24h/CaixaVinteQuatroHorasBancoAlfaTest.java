@@ -40,27 +40,7 @@ public class CaixaVinteQuatroHorasBancoAlfaTest {
 	@Test
 	public void deveRetornarUmaConsultaDoExtratoParaContaEspecial() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
-		// dado
-		/*
-		 * extrato = new Extrato("10/11/2014", 10000, 50000); List<Extrato>
-		 * listaExtratos = new ArrayList<Extrato>(); listaExtratos.add(extrato);
-		 * Mockito.when(bancoMock.consultarExtrato(numeroConta)).thenReturn(
-		 * listaExtratos);
-		 */
-		// quando
-		// CaixaVinteQuatroHoras caixa24horas = new CaixaVinteQuatroHoras(bancoMock);
-		// List<Extrato> consultaExtrato = caixa24horas.consultaExtrato(123456);
-
-		// entao
-		// assertEquals(listaExtratos.get(0).getData(),
-		// consultaExtrato.get(0).getData());
-		// assertEquals(listaExtratos.get(0).getCredito(),
-		// consultaExtrato.get(0).getCredito());
-		// assertEquals(listaExtratos.get(0).getDebito(),
-		// consultaExtrato.get(0).getDebito());
-		// assertEquals(listaExtratos.size(), consultaExtrato.size());
-
-		//
+		
 
 		BigDecimal valorInicial = new BigDecimal(10000.0);
 
@@ -136,15 +116,7 @@ public class CaixaVinteQuatroHorasBancoAlfaTest {
 
 	@Test(expected = ContaInexistenteException.class)
 	public void naoDevePermitirNumeroContaInexistenteParaConsultaExtrato()
-			throws ContaInexistenteException, BancoInexistenteException {
-		/*
-		 * List<String> extrato = new ArrayList<String>();
-		 * extrato.add("data: 10/11/2014 ; credito: 10000");
-		 * Mockito.when(bancoMock.consultarExtrato(numeroConta)) .thenThrow(new
-		 * ContaInexistenteException("Conta inexistente")); CaixaVinteQuatroHoras
-		 * caixa24horas = new CaixaVinteQuatroHoras(bancoMock);
-		 * caixa24horas.consultaExtrato(123456);
-		 */
+			throws ContaInexistenteException, BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
 
 		BigDecimal valorInicial = new BigDecimal(10000.0);
 
@@ -169,13 +141,6 @@ public class CaixaVinteQuatroHorasBancoAlfaTest {
 	public void naoDevePermitirSaldoInsuficienteAoEfetuarTransferenciaContaEspecial() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
 
-		/*
-		 * BigDecimal valorTransferido = new BigDecimal(10000);
-		 * Mockito.doThrow(SaldoInsuficienteException.class).when(bancoMock).
-		 * efetuarTransferencia(numeroConta, contaDestino, valorTransferido);
-		 * bancoMock.efetuarTransferencia(numeroConta, contaDestino, valorTransferido);
-		 * 
-		 */
 
 		BigDecimal valorInicial = new BigDecimal(10000.0);
 
@@ -203,13 +168,6 @@ public class CaixaVinteQuatroHorasBancoAlfaTest {
 	public void naoDevePermitirSaldoInsuficienteAoEfetuarTransferenciaContaComum() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
 
-		/*
-		 * BigDecimal valorTransferido = new BigDecimal(10000);
-		 * Mockito.doThrow(SaldoInsuficienteException.class).when(bancoMock).
-		 * efetuarTransferencia(numeroConta, contaDestino, valorTransferido);
-		 * bancoMock.efetuarTransferencia(numeroConta, contaDestino, valorTransferido);
-		 * 
-		 */
 
 		BigDecimal valorInicial = new BigDecimal(10000.0);
 
@@ -236,11 +194,7 @@ public class CaixaVinteQuatroHorasBancoAlfaTest {
 	@Test(expected = SaldoInsuficienteException.class)
 	public void naoDevePermitirSaldoInsuficienteAoEfetuarSaqueParaContaEspecial() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
-		// BigDecimal valorSaque = new BigDecimal(10000);
-		// Mockito.doThrow(SaldoInsuficienteException.class).when(bancoMock).efetuarSaque(numeroConta,
-		// valorSaque);
-		// bancoMock.efetuarSaque(numeroConta, valorSaque);
-
+		
 		BigDecimal valorInicial = new BigDecimal(1000.0);
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
@@ -268,10 +222,6 @@ public class CaixaVinteQuatroHorasBancoAlfaTest {
 	@Test(expected = SaldoInsuficienteException.class)
 	public void naoDevePermitirSaldoInsuficienteAoEfetuarSaqueParaContaComum() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
-		// BigDecimal valorSaque = new BigDecimal(10000);
-		// Mockito.doThrow(SaldoInsuficienteException.class).when(bancoMock).efetuarSaque(numeroConta,
-		// valorSaque);
-		// bancoMock.efetuarSaque(numeroConta, valorSaque);
 
 		BigDecimal valorInicial = new BigDecimal(1000.0);
 
@@ -299,7 +249,7 @@ public class CaixaVinteQuatroHorasBancoAlfaTest {
 
 	@Test(expected = BancoInexistenteException.class)
 	public void deveRetornarExcecaoQuandoInformadoBancoNulo()
-			throws ContaInexistenteException, BancoInexistenteException {
+			throws ContaInexistenteException, BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
 		CaixaVinteQuatroHoras caixa24horas = new CaixaVinteQuatroHoras(null);
 		caixa24horas.consultaExtrato(123456);
 
@@ -309,13 +259,6 @@ public class CaixaVinteQuatroHorasBancoAlfaTest {
 	public void deveRetornarSaldoAoInformarNumeroDaContaEspecial() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
 
-		/*
-		 * BigDecimal saldoRetornado = new BigDecimal(10000);
-		 * Mockito.when(bancoMock.consultarSaldo(numeroConta)).thenReturn(saldoRetornado
-		 * ); CaixaVinteQuatroHoras caixa24horas = new CaixaVinteQuatroHoras(bancoMock);
-		 * BigDecimal consultaSaldo = caixa24horas.consultaSaldo(numeroConta);
-		 * assertEquals(saldoRetornado, consultaSaldo);
-		 */
 
 		BigDecimal valorInicial = new BigDecimal(10000.0);
 
@@ -353,13 +296,6 @@ public class CaixaVinteQuatroHorasBancoAlfaTest {
 	public void deveRetornarSaldoAoInformarNumeroDaContaComum() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
 
-		/*
-		 * BigDecimal saldoRetornado = new BigDecimal(10000);
-		 * Mockito.when(bancoMock.consultarSaldo(numeroConta)).thenReturn(saldoRetornado
-		 * ); CaixaVinteQuatroHoras caixa24horas = new CaixaVinteQuatroHoras(bancoMock);
-		 * BigDecimal consultaSaldo = caixa24horas.consultaSaldo(numeroConta);
-		 * assertEquals(saldoRetornado, consultaSaldo);
-		 */
 
 		BigDecimal valorInicial = new BigDecimal(10000.0);
 
@@ -397,12 +333,6 @@ public class CaixaVinteQuatroHorasBancoAlfaTest {
 	public void deveRetornarSeTransferenciaFoiEfetuadaComSucessoParaContaEspecial() throws SaldoInsuficienteException,
 			ContaInexistenteException, BancoInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
 
-		/*
-		 * BigDecimal saldoAntesTransferencia = new BigDecimal(10000);
-		 * doNothing().when(bancoMock).efetuarTransferencia(numeroConta, contaDestino,
-		 * saldoAntesTransferencia); bancoMock.efetuarTransferencia(numeroConta,
-		 * contaDestino, saldoAntesTransferencia);
-		 */
 		BigDecimal valorInicial = new BigDecimal(10000.0);
 
 		BigDecimal valorTransferencia = new BigDecimal(6000.0);
@@ -437,12 +367,7 @@ public class CaixaVinteQuatroHorasBancoAlfaTest {
 	public void deveRetornarSeTransferenciaFoiEfetuadaComSucessoParaContaComum() throws SaldoInsuficienteException,
 			ContaInexistenteException, BancoInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
 
-		/*
-		 * BigDecimal saldoAntesTransferencia = new BigDecimal(10000);
-		 * doNothing().when(bancoMock).efetuarTransferencia(numeroConta, contaDestino,
-		 * saldoAntesTransferencia); bancoMock.efetuarTransferencia(numeroConta,
-		 * contaDestino, saldoAntesTransferencia);
-		 */
+		
 		BigDecimal valorInicial = new BigDecimal(10000.0);
 
 		BigDecimal valorTransferencia = new BigDecimal(6000.0);
@@ -485,13 +410,6 @@ public class CaixaVinteQuatroHorasBancoAlfaTest {
 	public void deveRetornarSeSaqueEfetuadoComSucessoParaContaEspecial() throws SaldoInsuficienteException,
 			ContaInexistenteException, BancoInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
 
-		/*
-		 * BigDecimal valorSaque = new BigDecimal(10000);
-		 * doNothing().when(bancoMock).efetuarSaque(numeroConta, valorSaque);
-		 * bancoMock.efetuarDeposito(numeroConta, valorSaque); CaixaVinteQuatroHoras
-		 * caixa24horas = new CaixaVinteQuatroHoras(bancoMock);
-		 * 
-		 */
 
 		BigDecimal valorInicial = new BigDecimal(10000.0);
 
@@ -531,13 +449,6 @@ public class CaixaVinteQuatroHorasBancoAlfaTest {
 	public void deveRetornarSeSaqueEfetuadoComSucessoParaContaComum() throws SaldoInsuficienteException,
 			ContaInexistenteException, BancoInexistenteException, LimiteDeOperacoesPorDiaAtingidoException {
 
-		/*
-		 * BigDecimal valorSaque = new BigDecimal(10000);
-		 * doNothing().when(bancoMock).efetuarSaque(numeroConta, valorSaque);
-		 * bancoMock.efetuarDeposito(numeroConta, valorSaque); CaixaVinteQuatroHoras
-		 * caixa24horas = new CaixaVinteQuatroHoras(bancoMock);
-		 * 
-		 */
 
 		BigDecimal valorInicial = new BigDecimal(10000.0);
 
@@ -576,11 +487,7 @@ public class CaixaVinteQuatroHorasBancoAlfaTest {
 	@Test
 	public void devePermitirSaldoFicarNegativoAteMilAoEfetuarSaqueEmContaEspecial() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
-		// BigDecimal valorSaque = new BigDecimal(10000);
-		// Mockito.doThrow(SaldoInsuficienteException.class).when(bancoMock).efetuarSaque(numeroConta,
-		// valorSaque);
-		// bancoMock.efetuarSaque(numeroConta, valorSaque);
-
+		
 		BigDecimal valorInicial = new BigDecimal(1000.0);
 
 		List<ContaBancoAlfa> contas = new ArrayList<ContaBancoAlfa>();
@@ -618,13 +525,6 @@ public class CaixaVinteQuatroHorasBancoAlfaTest {
 			throws ContaInexistenteException, BancoInexistenteException, SaldoInsuficienteException,
 			LimiteDeOperacoesPorDiaAtingidoException {
 
-		/*
-		 * BigDecimal valorTransferido = new BigDecimal(10000);
-		 * Mockito.doThrow(SaldoInsuficienteException.class).when(bancoMock).
-		 * efetuarTransferencia(numeroConta, contaDestino, valorTransferido);
-		 * bancoMock.efetuarTransferencia(numeroConta, contaDestino, valorTransferido);
-		 * 
-		 */
 
 		BigDecimal valorInicial = new BigDecimal(10000.0);
 
@@ -653,13 +553,6 @@ public class CaixaVinteQuatroHorasBancoAlfaTest {
 	public void naoDevePermitirRealizarMaisDeTresOperacoesDiaContaComum_EfetuarSaque() throws ContaInexistenteException,
 			BancoInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
 
-		/*
-		 * BigDecimal valorTransferido = new BigDecimal(10000);
-		 * Mockito.doThrow(SaldoInsuficienteException.class).when(bancoMock).
-		 * efetuarTransferencia(numeroConta, contaDestino, valorTransferido);
-		 * bancoMock.efetuarTransferencia(numeroConta, contaDestino, valorTransferido);
-		 * 
-		 */
 
 		BigDecimal valorInicial = new BigDecimal(10000.0);
 
@@ -694,13 +587,6 @@ public class CaixaVinteQuatroHorasBancoAlfaTest {
 			throws ContaInexistenteException, BancoInexistenteException, SaldoInsuficienteException,
 			LimiteDeOperacoesPorDiaAtingidoException {
 
-		/*
-		 * BigDecimal valorTransferido = new BigDecimal(10000);
-		 * Mockito.doThrow(SaldoInsuficienteException.class).when(bancoMock).
-		 * efetuarTransferencia(numeroConta, contaDestino, valorTransferido);
-		 * bancoMock.efetuarTransferencia(numeroConta, contaDestino, valorTransferido);
-		 * 
-		 */
 		BigDecimal valorInicial = new BigDecimal(10000.0);
 
 		BigDecimal valorTransferencia = new BigDecimal(1000.0);
@@ -734,13 +620,7 @@ public class CaixaVinteQuatroHorasBancoAlfaTest {
 			throws ContaInexistenteException, BancoInexistenteException, SaldoInsuficienteException,
 			LimiteDeOperacoesPorDiaAtingidoException {
 
-		/*
-		 * BigDecimal valorTransferido = new BigDecimal(10000);
-		 * Mockito.doThrow(SaldoInsuficienteException.class).when(bancoMock).
-		 * efetuarTransferencia(numeroConta, contaDestino, valorTransferido);
-		 * bancoMock.efetuarTransferencia(numeroConta, contaDestino, valorTransferido);
-		 * 
-		 */
+	
 		BigDecimal valorInicial = new BigDecimal(10000.0);
 
 		BigDecimal valorTransferencia = new BigDecimal(1000.0);

@@ -40,7 +40,7 @@ public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 	}
 
 	public BigDecimal consultarSaldo() throws LimiteDeOperacoesPorDiaAtingidoException {
-		if (quantidadeOperacoes < 3) {
+		if (quantidadeOperacoes < 2) {
 
 		quantidadeOperacoes++;
 		
@@ -80,39 +80,43 @@ public class ContaCorrenteComumBancoBeta implements ContaBancoBeta{
 
 	public void sacar(BigDecimal valor) throws SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
 		
+		
+		BigDecimal saldoAposTaxa = new BigDecimal(0.0);
+	       
+        saldoAposTaxa   = saldo.subtract((calculaTaxa.calculaTaxaDoSaque(valor)));
 
-			if (this.saldo.add(LIMITE_SALDO_COMUM).doubleValue() >= valor.doubleValue()&& quantidadeOperacoes < 3) {
+        if (saldoAposTaxa.doubleValue() < LIMITE_SALDO_COMUM.subtract(LIMITE_SALDO_COMUM.add(LIMITE_SALDO_COMUM)).doubleValue()&& quantidadeOperacoes < 2) {
+        	
+        	throw new SaldoInsuficienteException("Saldo insuficiente");
+        } else if (saldoAposTaxa.doubleValue() > LIMITE_SALDO_COMUM.subtract(LIMITE_SALDO_COMUM.add(LIMITE_SALDO_COMUM)).doubleValue() && quantidadeOperacoes > 1) {
+			throw new LimiteDeOperacoesPorDiaAtingidoException("Limite diario de operacoes atingido");	
+        	
+        } else {
 
+       
+			saldo = saldo.subtract((calculaTaxa.calculaTaxaDoSaque(valor)));
 
-			saldo = saldo.subtract(calculaTaxa.calculaTaxaDoSaque(valor));
-			
-			
-            
-            
 			String operacao = "Saque";
 
 			Extrato extrato = new Extrato(data, null, valor, operacao);
 
 			extratos.add(extrato);
-
-			quantidadeOperacoes++;
 			
+			quantidadeOperacoes++;
 
 
-		} else if (saldo.compareTo(valor) < 0 && quantidadeOperacoes < 3) {
-			throw new SaldoInsuficienteException("Saldo insuficiente");
-		} else if (saldo.compareTo(valor) > 0 && quantidadeOperacoes > 2) {
-			throw new LimiteDeOperacoesPorDiaAtingidoException("Limite diario de operacoes atingido");
 		}
 
+		
 	}
+	
 
 		
 	public List<Extrato> getExtrato() {
 		return extratos;
 	}
 	public void setQuantidadeOperacoes() {
-		this.quantidadeOperacoes ++;;
+		this.quantidadeOperacoes --;;
 	}
 	
 }

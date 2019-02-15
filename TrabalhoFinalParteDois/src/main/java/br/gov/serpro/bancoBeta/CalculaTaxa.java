@@ -21,9 +21,9 @@ public class CalculaTaxa {
      
      
      public BigDecimal calculaTaxaDaTransferencia() {
- 		return TAXA_ACRESCIMO_TRANSFERENCIA;
-     	 
-     	 
+    	 
+ 		 return TAXA_ACRESCIMO_TRANSFERENCIA;
+     	  
      	 
       }
      

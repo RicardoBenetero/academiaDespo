@@ -21,7 +21,7 @@ public class CaixaVinteQuatroHoras {
 		this.banco = banco;
 	}
 
-	public List<Extrato> consultaExtrato(int numeroConta) throws ContaInexistenteException {
+	public List<Extrato> consultaExtrato(int numeroConta) throws ContaInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
 		return banco.consultarExtrato(numeroConta);
 	}
 

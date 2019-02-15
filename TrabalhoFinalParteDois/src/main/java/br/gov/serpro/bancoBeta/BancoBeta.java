@@ -16,6 +16,7 @@ import br.gov.serpro.caixa24h.exception.SaldoInsuficienteException;
 public class BancoBeta implements BancoGeral {
 	
 	private final static String NOME = "BANCO BETA";
+	private CalculaTaxa calculaTaxa = new CalculaTaxa();
 	List<ContaBancoBeta> contas = new ArrayList<ContaBancoBeta>();
 	
 	
@@ -26,18 +27,22 @@ public class BancoBeta implements BancoGeral {
 		
 	}
 
-	public List<Extrato> consultarExtrato(int numeroConta) throws ContaInexistenteException {
+	public List<Extrato> consultarExtrato(int numeroConta) throws ContaInexistenteException, SaldoInsuficienteException, LimiteDeOperacoesPorDiaAtingidoException {
 		
 		for (ContaBancoBeta conta : contas) {
 			if (conta.getNumero() == numeroConta) {
 				if(conta instanceof ContaCorrenteComumBancoBeta) {
 					
 					conta.setQuantidadeOperacoes();
-
+                    
+					conta.sacar(calculaTaxa.calculaTaxaDaConsultaExtrato());
+					
 					return conta.getExtrato();
 					
 					
 					}else if(conta instanceof ContaCorrenteEspecialBancoBeta) {
+						
+						conta.sacar(calculaTaxa.calculaTaxaDaConsultaExtrato());
 						
 						return conta.getExtrato();
 
@@ -70,28 +75,25 @@ public class BancoBeta implements BancoGeral {
 		for (ContaBancoBeta conta : contas) {
 			if (conta.getNumero() == numeroConta) {
 				if(conta instanceof ContaCorrenteComumBancoBeta) {
-				conta.sacar(valor);
+				conta.sacar(valor.add(calculaTaxa.calculaTaxaDaTransferencia()));
 
 
-				System.out.println("conta do metodo tranferir conta 1 " + conta.getNumero());
 				}else if(conta instanceof ContaCorrenteEspecialBancoBeta) {
-					conta.sacar(valor);
-					System.out.println("conta do metodo tranferir contaespecial  " + conta.getNumero());
+					conta.sacar(valor.add(calculaTaxa.calculaTaxaDaTransferencia()));
 
 				}
 			}
 			if (conta.getNumero() == contaDestino) {
-				
-		
-				conta.realizarDeposito(valor);
-				
-			
-				
-				
-			
-			}
-		}
+				if(conta instanceof ContaCorrenteComumBancoBeta) {
+					conta.realizarDeposito(valor);
+                    conta.setQuantidadeOperacoes();
 
+					}else if(conta instanceof ContaCorrenteEspecialBancoBeta) {
+						conta.realizarDeposito(valor);
+
+					}
+				}
+	}
 	}
 
 	
