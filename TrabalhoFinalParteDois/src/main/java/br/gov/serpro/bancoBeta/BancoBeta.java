@@ -76,6 +76,7 @@ public class BancoBeta implements BancoGeral {
 				System.out.println("conta do metodo tranferir conta 1 " + conta.getNumero());
 				}else if(conta instanceof ContaCorrenteEspecialBancoBeta) {
 					conta.sacar(valor);
+					System.out.println("conta do metodo tranferir contaespecial  " + conta.getNumero());
 
 				}
 			}
